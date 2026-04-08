@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jase George - Computer Engineer & Security Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── DESIGN TOKENS ─── */
+    :root {
+      --bg:       #0b0e13;
+      --surface:  #12161f;
+      --surface2: #1a2030;
+      --border:   #252d3d;
+      --accent:   #4fffb0;      /* electric mint - GT green reimagined */
+      --accent2:  #ffb347;      /* warm amber for secondary callouts */
+      --text:     #e8eaf0;
+      --muted:    #7a8398;
+      --heading:  #ffffff;
+      --mono:     'DM Mono', monospace;
+      --sans:     'DM Sans', sans-serif;
+      --serif:    'DM Serif Display', serif;
+      --radius:   6px;
+      --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ─── RESET & BASE ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+    a:hover { opacity: 0.8; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: var(--accent); color: #000; }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(11,14,19,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: padding var(--transition);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--accent); opacity: 1; }
+
+    /* mobile hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 1px; transition: all var(--transition); }
+    .nav-mobile { display: none; }
+
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-mobile.open {
+        display: flex; flex-direction: column; gap: 1.5rem;
+        position: fixed; top: 60px; left: 0; right: 0;
+        background: var(--surface); border-bottom: 1px solid var(--border);
+        padding: 2rem 1.5rem; z-index: 99;
+      }
+      .nav-mobile a {
+        font-family: var(--mono); font-size: 0.9rem;
+        color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
+      }
+    }
+
+    /* ─── LAYOUT HELPERS ─── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+    section { padding: 6rem 0; }
+    .section-label {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::before { content: '//'; opacity: 0.5; }
+    h2.section-title {
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--heading); font-weight: 400; line-height: 1.15;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: grid; place-items: center;
+      padding-top: 80px;
+      background:
+        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(79,255,176,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,179,71,0.04) 0%, transparent 60%),
+        var(--bg);
+    }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .hero-tag {
+      font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
+      display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;
+    }
+    .hero-tag::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
+    h1.hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 5rem);
+      color: var(--heading); font-weight: 400; line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+    h1.hero-name em { font-style: italic; color: var(--accent); }
+    .hero-title {
+      font-family: var(--mono); font-size: 0.9rem; color: var(--muted);
+      margin-bottom: 2rem; letter-spacing: 0.04em;
+    }
+    .hero-desc { font-size: 1.05rem; color: var(--text); line-height: 1.8; margin-bottom: 2.5rem; max-width: 480px; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem; border-radius: var(--radius);
+      font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.06em;
+      text-transform: uppercase; transition: all var(--transition); font-weight: 500;
+    }
+    .btn-primary {
+      background: var(--accent); color: #000; border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: transparent; color: var(--accent); opacity: 1; }
+    .btn-outline {
+      background: transparent; color: var(--text); border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+
+    /* hero visual */
+    .hero-visual {
+      display: flex; flex-direction: column; gap: 1rem; align-items: flex-end;
+    }
+    .hero-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 1.25rem 1.5rem; width: 100%; max-width: 340px;
+      animation: floatA 6s ease-in-out infinite;
+    }
+    .hero-card:nth-child(2) { animation: floatB 6s ease-in-out infinite; animation-delay: -3s; margin-right: 2rem; }
+    @keyframes floatA { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-8px) } }
+    @keyframes floatB { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(8px) } }
+    .card-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .card-value { font-family: var(--serif); font-size: 1.1rem; color: var(--heading); }
+    .card-sub { font-size: 0.82rem; color: var(--muted); margin-top: 0.25rem; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 0.5rem; box-shadow: 0 0 8px var(--accent); }
+    .dot.amber { background: var(--accent2); box-shadow: 0 0 8px var(--accent2); }
+
+    @media (max-width: 800px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-visual { align-items: center; }
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text p { color: var(--text); font-size: 1.02rem; line-height: 1.9; margin-bottom: 1.25rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-meta { display: flex; flex-direction: column; gap: 1.25rem; }
+    .meta-item {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+    }
+    .meta-key { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.35rem; }
+    .meta-val { font-size: 0.95rem; color: var(--text); }
+
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1.5rem; transition: border-color var(--transition), transform var(--transition);
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .skill-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .skill-card-title { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem;
+      border-radius: 3px; background: var(--surface2); color: var(--muted); border: 1px solid var(--border);
+    }
+
+    /* ─── EXPERIENCE ─── */
+    #experience { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item {
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 2rem; padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-date { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); line-height: 1.6; padding-top: 0.25rem; }
+    .timeline-content h3 { font-size: 1.05rem; color: var(--heading); font-weight: 500; margin-bottom: 0.2rem; }
+    .timeline-content .org { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); margin-bottom: 0.75rem; }
+    .timeline-content ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .timeline-content ul li { font-size: 0.92rem; color: var(--text); padding-left: 1rem; position: relative; }
+    .timeline-content ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 4px; }
+
+    @media (max-width: 600px) {
+      .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects { }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; transition: border-color var(--transition), transform var(--transition);
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .project-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.2fr 1fr; }
+    .project-header {
+      padding: 2rem; background: var(--surface2);
+      display: flex; flex-direction: column; justify-content: center; gap: 0.75rem;
+    }
+    .project-card.featured .project-header { padding: 2.5rem; }
+    .project-type { font-family: var(--mono); font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; }
+    .project-title { font-family: var(--serif); font-size: 1.5rem; color: var(--heading); font-weight: 400; line-height: 1.2; }
+    .project-card.featured .project-title { font-size: 2rem; }
+    .project-date { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+    .project-body { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+    .project-desc { font-size: 0.92rem; color: var(--text); line-height: 1.8; margin-bottom: 1.5rem; flex: 1; }
+    .project-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .project-link {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--accent);
+      border: 1px solid var(--accent); border-radius: var(--radius);
+      padding: 0.4rem 0.9rem; transition: all var(--transition);
+    }
+    .project-link:hover { background: var(--accent); color: #000; opacity: 1; }
+    .project-link.muted { color: var(--muted); border-color: var(--border); }
+    .project-link.muted:hover { color: var(--text); border-color: var(--text); background: transparent; opacity: 1; }
+    /* Features list */
+    .features-toggle { display: none; }
+    .features-label {
+      font-family: var(--mono); font-size: 0.72rem; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .features-label::after { content: '▾'; transition: transform var(--transition); }
+    .features-toggle:checked + .features-label::after { transform: rotate(180deg); }
+    .features-list { display: none; }
+    .features-toggle:checked ~ .features-list { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 1rem; }
+    .features-list li { font-size: 0.82rem; color: var(--muted); padding-left: 1rem; position: relative; }
+    .features-list li::before { content: '·'; position: absolute; left: 0; color: var(--accent); }
+
+    @media (max-width: 700px) {
+      .project-card.featured { grid-template-columns: 1fr; }
+    }
+
+    /* ─── CAREER GOALS ─── */
+    #goals { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .goal-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2rem; position: relative; overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .goal-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .goal-num {
+      font-family: var(--serif); font-size: 5rem; color: var(--surface2);
+      position: absolute; top: -1rem; right: 1rem; line-height: 1; font-weight: 400;
+      pointer-events: none;
+    }
+    .goal-title { font-size: 1.1rem; font-weight: 500; color: var(--heading); margin-bottom: 0.5rem; }
+    .goal-horizon { font-family: var(--mono); font-size: 0.72rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+    .goal-desc { font-size: 0.92rem; color: var(--text); line-height: 1.75; margin-bottom: 1rem; }
+    .goal-path-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+    .goal-path { font-size: 0.88rem; color: var(--text); line-height: 1.7; }
+
+    /* ─── RESUME ─── */
+    #resume { }
+    .resume-inner {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 3rem; display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem;
+    }
+    .resume-left { border-right: 1px solid var(--border); padding-right: 3rem; }
+    .resume-section-title { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 1rem; margin-top: 2rem; }
+    .resume-section-title:first-child { margin-top: 0; }
+    .resume-contact-item { font-size: 0.88rem; color: var(--text); margin-bottom: 0.4rem; }
+    .resume-contact-item a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border); }
+    .resume-contact-item a:hover { color: var(--accent); opacity: 1; }
+    .resume-tag-list { display: flex; flex-direction: column; gap: 0.3rem; }
+    .resume-tag-list li { font-size: 0.88rem; color: var(--text); padding-left: 1rem; position: relative; }
+    .resume-tag-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 3px; }
+    .resume-skill-group { margin-bottom: 0.75rem; }
+    .resume-skill-group strong { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); display: block; margin-bottom: 0.25rem; text-transform: uppercase; }
+    .resume-exp-item { margin-bottom: 1.5rem; }
+    .resume-exp-item h4 { font-size: 0.95rem; font-weight: 500; color: var(--heading); }
+    .resume-exp-item .exp-meta { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-bottom: 0.4rem; }
+    .resume-exp-item ul { list-style: none; }
+    .resume-exp-item ul li { font-size: 0.85rem; color: var(--text); padding-left: 1rem; position: relative; margin-bottom: 0.25rem; line-height: 1.6; }
+    .resume-exp-item ul li::before { content: '·'; position: absolute; left: 0; color: var(--accent); }
+    .resume-download { text-align: center; margin-top: 2.5rem; }
+    @media (max-width: 750px) {
+      .resume-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .resume-left { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 2rem; }
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--surface); border-top: 1px solid var(--border); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .contact-tagline { font-family: var(--serif); font-size: 2rem; color: var(--heading); font-weight: 400; line-height: 1.3; margin-bottom: 1.5rem; }
+    .contact-tagline em { font-style: italic; color: var(--accent); }
+    .contact-desc { font-size: 0.95rem; color: var(--text); line-height: 1.8; margin-bottom: 2rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.25rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      transition: border-color var(--transition);
+    }
+    .contact-link-item:hover { border-color: var(--accent); }
+    .contact-link-item .link-icon { font-size: 1.1rem; width: 2rem; text-align: center; }
+    .contact-link-item .link-info { flex: 1; }
+    .contact-link-item .link-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .contact-link-item .link-value { font-size: 0.88rem; color: var(--text); }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .form-group input, .form-group textarea {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text); font-family: var(--sans); font-size: 0.9rem;
+      padding: 0.75rem 1rem; outline: none; transition: border-color var(--transition);
+      resize: vertical;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-note { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.5rem; }
+    @media (max-width: 700px) { .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      font-family: var(--mono); font-size: 0.72rem; color: var(--muted);
+    }
+    footer span { color: var(--accent); }
+
+    /* ─── FADE-IN ANIMATIONS ─── */
+    /* Visible by default - JS opts in to animation by adding .js-ready to <html> */
+    .fade-in { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
+    .js-ready .fade-in { opacity: 0; transform: translateY(24px); }
+    .js-ready .fade-in.visible { opacity: 1; transform: none; }
+    .js-ready .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .js-ready .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .js-ready .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ─── PROGRESS BARS ─── */
+    .progress-item { margin-bottom: 0.75rem; }
+    .progress-header { display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
+    .progress-name { font-size: 0.82rem; color: var(--text); }
+    .progress-level { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+    .progress-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transform-origin: left; transform: scaleX(0); transition: transform 1s cubic-bezier(0.4,0,0.2,1); }
+    .progress-fill.animated { transform: scaleX(1); }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <div class="nav-logo">jg@gatech ~ $</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#goals">Goals</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#skills" onclick="closeMenu()">Skills</a>
+    <a href="#experience" onclick="closeMenu()">Experience</a>
+    <a href="#projects" onclick="closeMenu()">Projects</a>
+    <a href="#goals" onclick="closeMenu()">Goals</a>
+    <a href="#resume" onclick="closeMenu()">Resume</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-tag">Computer Engineer</div>
+          <h1 class="hero-name">Jase<br><em>George</em></h1>
+          <div class="hero-title">CompE @ Georgia Institute of Technology · Cybersecurity & Software</div>
+          <p class="hero-desc">
+            I build secure, resilient software systems - from low-level firmware protocols to full-stack web applications.
+            My work lives at the intersection of system security and thoughtful software engineering.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="card-label">Current Focus</div>
+            <div class="card-value"><span class="dot"></span>Cybersecurity Research</div>
+            <div class="card-sub">Offensive & Defensive Security · System Hardening</div>
+          </div>
+          <div class="hero-card">
+            <div class="card-label">Latest Project</div>
+            <div class="card-value"><span class="dot amber"></span>GT Movies Store</div>
+            <div class="card-sub">Django 5 · Full-Stack Web Application</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">About</div>
+      <h2 class="section-title">Engineer. Security Researcher.<br>Problem Solver.</h2>
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <p>
+            My journey into technology started with a simple curiosity about how things work under the hood -
+            and that curiosity is what ultimately led me to study Computer Engineering at Georgia Tech. I've always
+            believed that the best software isn't just functional; it's resilient and thoughtfully built from the ground up.
+          </p>
+          <p>
+            Whether I'm hardening a Linux system against vulnerabilities or architecting the backend logic for a full-stack
+            web application, I'm driven by the challenge of making complex systems feel seamless and secure for the person
+            on the other side of the screen.
+          </p>
+          <p>
+            For me, engineering is about more than writing code - it's about the discipline of creating tools that people
+            can actually trust. I grew up in Lilburn, GA, and that grounded, community-driven mindset carries into
+            everything I build.
+          </p>
+        </div>
+        <div class="about-meta fade-in">
+          <div class="meta-item">
+            <div class="meta-key">Degree</div>
+            <div class="meta-val">B.S. Computer Engineering - Georgia Tech</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-key">Threads</div>
+            <div class="meta-val">Cybersecurity & Information Internetworks</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-key">Location</div>
+            <div class="meta-val">Lilburn, GA 30047 · U.S. Citizen</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-key">Interests</div>
+            <div class="meta-val">Offensive Security · Embedded Systems · CTF Competitions · Robotics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SKILLS ─── -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label">Technical Skills</div>
+      <h2 class="section-title">What I Work With</h2>
+      <div class="skills-grid">
+        <div class="skill-card fade-in">
+          <div class="skill-card-icon">⌨️</div>
+          <div class="skill-card-title">Programming Languages</div>
+          <div class="skill-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">C</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Bash/Shell</span>
+            <span class="tag">MATLAB</span>
+            <span class="tag">RISC-V Assembly</span>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-icon">🖥️</div>
+          <div class="skill-card-title">Platforms & OS</div>
+          <div class="skill-tags">
+            <span class="tag">Linux (Ubuntu, Fedora, Kali, Debian)</span>
+            <span class="tag">Windows / Windows Server</span>
+            <span class="tag">macOS</span>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-icon">🔩</div>
+          <div class="skill-card-title">Hardware</div>
+          <div class="skill-tags">
+            <span class="tag">Raspberry Pi</span>
+            <span class="tag">Arduino (Uno, Nano)</span>
+            <span class="tag">Unitree Go2 Robot</span>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-icon">🛡️</div>
+          <div class="skill-card-title">Security Tools</div>
+          <div class="skill-tags">
+            <span class="tag">Autopsy</span>
+            <span class="tag">Ghidra</span>
+            <span class="tag">Metasploit</span>
+            <span class="tag">Steghide</span>
+            <span class="tag">Cisco Packet Tracer</span>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-icon">🔧</div>
+          <div class="skill-card-title">Dev Tools</div>
+          <div class="skill-tags">
+            <span class="tag">Git</span>
+            <span class="tag">GitHub</span>
+            <span class="tag">Django</span>
+            <span class="tag">PythonAnywhere</span>
+          </div>
+        </div>
+        <div class="skill-card fade-in">
+          <div class="skill-card-icon">📝</div>
+          <div class="skill-card-title">Communication</div>
+          <div class="skill-tags">
+            <span class="tag">Technical Reports</span>
+            <span class="tag">Design Proposals</span>
+            <span class="tag">Instruction Manuals</span>
+            <span class="tag">Presentations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EXPERIENCE ─── -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label">Work Experience</div>
+      <h2 class="section-title">Where I've Contributed</h2>
+      <div class="timeline">
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-date">
+            Aug 2022 - May 2025
+          </div>
+          <div class="timeline-content">
+            <h3>Cybersecurity Head & Chief of Competitions</h3>
+            <div class="org">GSMST Computer Science Club · Lawrenceville, GA</div>
+            <ul>
+              <li>Led a 5-member team to three consecutive CyberPatriot National Semifinals (Platinum) along with top placements in CTFs including PicoCTF, LineCTF, GA TSA Cybersecurity CTF, and Lockheed Martin CyberQuest.</li>
+              <li>Implemented system hardening across Ubuntu, Fedora, and Windows 10/Server environments, with emphasis on Linux security.</li>
+              <li>Delivered weekly cybersecurity instruction to 30+ students on vulnerability identification, exploitation, and mitigation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-date">
+            Aug 2024 - May 2025
+          </div>
+          <div class="timeline-content">
+            <h3>Student Intern & Curriculum Designer</h3>
+            <div class="org">GSMST Computer Science Department · Lawrenceville, GA</div>
+            <ul>
+              <li>Developed AI-focused curriculum for new computer science classes, including web scraping and Raspberry Pi projects.</li>
+              <li>Assisted faculty with hardware setup, Linux troubleshooting, and support for machine learning-based class projects.</li>
+              <li>Optimized hardware performance of the Unitree Go2 robot through sensor calibration, control system tuning, and troubleshooting.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-date">
+            May 2024 - Aug 2024
+          </div>
+          <div class="timeline-content">
+            <h3>Software Engineering Intern</h3>
+            <div class="org">American Megatrends (AMI) · Remote</div>
+            <ul>
+              <li>Researched system control protocols and developed algorithms using MCTP and PLDM for efficient data transmission and platform management.</li>
+              <li>Implemented error-detection methods to ensure data integrity and reliable transmission in low-level system communication.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item fade-in">
+          <div class="timeline-date">
+            Jun 2023 - Jul 2023
+          </div>
+          <div class="timeline-content">
+            <h3>Summer Student Intern</h3>
+            <div class="org">Joseph Maxwell Cleland Atlanta VA Medical Center · Decatur, GA</div>
+            <ul>
+              <li>Provided comprehensive support to the Medical Media Department in a secretarial capacity.</li>
+              <li>Collaborated with the Operating Room Charge Nurse to facilitate communication among medical staff.</li>
+              <li>Organized surgery schedules, tracked OR status, and updated documentation for the Chief Nurse using Microsoft Office.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROJECTS ─── -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label">Technical Projects</div>
+      <h2 class="section-title">Things I've Built</h2>
+      <div class="projects-grid">
+
+        <!-- FEATURED: GT Movies Store -->
+        <div class="project-card featured fade-in">
+          <div class="project-header">
+            <div class="project-type">Featured · Full-Stack Web App</div>
+            <div class="project-title">GT Movies Store</div>
+            <div class="project-date">January 2026</div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A full-stack movie marketplace built with Django 5. Users can browse a curated movie library, manage purchases,
+              and submit reviews - while administrators have full control over platform data and moderation. I built this by
+              intentionally typing every line of code by hand rather than copy-pasting, which gave me deep insight into how
+              HTML, CSS, and Python interconnect within a Django project. Features include a custom review-reporting system
+              I designed independently - not covered in the source textbook.
+            </p>
+
+            <input type="checkbox" class="features-toggle" id="ft-movies" />
+            <label class="features-label" for="ft-movies">21 Implemented Features</label>
+            <ul class="features-list">
+              <li>View application information via About page</li>
+              <li>Register an account and log in</li>
+              <li>Browse full movie catalog with images & titles</li>
+              <li>Search movies dynamically by title keyword</li>
+              <li>Add to cart, set quantities, and purchase</li>
+              <li>Clear shopping cart at any time</li>
+              <li>Create, edit, and delete personal reviews</li>
+              <li>View all reviews without logging in</li>
+              <li>View full order history with order numbers</li>
+              <li>Responsive UI for mobile, tablet, and desktop</li>
+              <li>Admin: manage users, movies, reviews, orders</li>
+              <li>Report inappropriate reviews (self-implemented feature)</li>
+            </ul>
+
+            <div class="project-links">
+              <a href="https://jgeorge337.pythonanywhere.com/" target="_blank" class="project-link">Live Site ↗</a>
+              <a href="https://github.com/AzureRaven25/moviesstore" target="_blank" class="project-link">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ECE 1100 Discovery Project -->
+        <div class="project-card fade-in">
+          <div class="project-header">
+            <div class="project-type">ECE 1100 · Discovery Project</div>
+            <div class="project-title">ECE 1100 Discovery Project</div>
+            <div class="project-date">Spring 2025</div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              The culminating project for ECE 1100 at Georgia Tech, representing my first deep dive into the intersection of
+              engineering coursework and hands-on exploration. This project involved investigating a topic at the frontier of
+              electrical and computer engineering, synthesizing research, and presenting findings - an exercise in both technical
+              depth and professional communication.
+            </p>
+            <div class="project-links">
+              <span class="project-link muted">Georgia Tech · ECE 1100</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CS 2340 Project 2 - PandaPulse -->
+        <div class="project-card fade-in">
+          <div class="project-header">
+            <div class="project-type">CS 2340 · Object-Oriented Design</div>
+            <div class="project-title">PandaPulse - LinkedIn-style Hiring Platform</div>
+            <div class="project-date">Spring 2025 · <span style="color:var(--accent2)">🏆 Top 5 / Both Sections · Final Exam Exempt</span></div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              PandaPulse is a full-featured job search and hiring platform built in Django for CS 2340 (Objects and Design)
+              at Georgia Tech. The platform serves three user roles - Job Seekers, Recruiters, and Administrators - and placed
+              <strong style="color:var(--heading)">3rd out of all submissions across both class sections</strong>, earning
+              our team a final exam exemption. Beyond the 15 required user stories, we designed and implemented over a dozen
+              original features that pushed the platform significantly beyond the baseline requirement.
+            </p>
+
+            <input type="checkbox" class="features-toggle" id="ft-panda" />
+            <label class="features-label" for="ft-panda">Standout Features We Built</label>
+            <ul class="features-list">
+              <li><strong>Panda Paul</strong> - an integrated mascot chatbot that lets logged-in users navigate the site, update their profile, apply to jobs, and message people through natural conversation</li>
+              <li><strong>"Pulses" Video Feed</strong> - short-form video posts (like Reels) where any user can promote themselves, their company, or share informative content; includes likes and deletion</li>
+              <li><strong>Offer Comparison Tool</strong> - applicants can compare multiple job offers side-by-side with custom-weighted categories (salary, location, visa, benefits, etc.)</li>
+              <li><strong>Interview Calendar</strong> - applicants schedule interviews from time slots set by the employer, fully integrated into the application workflow</li>
+              <li><strong>One-Click Follow-Up</strong> - send a polished follow-up message after X days using pre-built templates</li>
+              <li><strong>Skill Endorsements</strong> - employers can endorse applicant skills with one click after interviews</li>
+              <li><strong>Response-Time SLA Badge</strong> - each employer shows a "responds in ~N days" badge on their listings</li>
+              <li><strong>Resume Auto-Parser</strong> - uploaded resumes are parsed into profile fields with skill normalization for better job matching</li>
+              <li><strong>Confetti on Apply</strong> - celebrates application submissions with confetti and fanfare</li>
+              <li><strong>Application Viewed Indicator</strong> - applicants can see when an employer has opened their application</li>
+              <li><strong>Private Notes</strong> - both applicants and employers can add private notes on applications</li>
+              <li><strong>Rejection Feedback Templates</strong> - structured rejection messages with optional personalized notes</li>
+              <li><strong>Applicant Activity Feed</strong> - real-time view of what's happening with each application</li>
+              <li><strong>Company Culture Pages</strong> - company profiles featuring culture, perks, and office map gallery</li>
+              <li><strong>Dark Mode</strong> - full site dark/light mode toggle persisted per user</li>
+              <li><strong>Forgot Username / Password</strong> - email-based account recovery flow</li>
+              <li><strong>Interactive Job Map</strong> - view all open roles pinned on a map; filter by commute radius</li>
+              <li><strong>Kanban Recruiter Pipeline</strong> - drag-and-drop applicant management across hiring stages</li>
+              <li><strong>Interview Feedback Workflow</strong> - structured internal feedback and decision rationale per candidate</li>
+              <li><strong>Archived Rejections</strong> - employers can archive rejected candidates to revisit if new positions open</li>
+            </ul>
+
+            <div class="project-links">
+              <a href="https://pandapulseadmins.pythonanywhere.com/" target="_blank" class="project-link">Live Site ↗</a>
+              <span class="project-link muted">Django · Python · CS 2340</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CyberPatriot -->
+        <div class="project-card fade-in">
+          <div class="project-header">
+            <div class="project-type">Cybersecurity · Competition</div>
+            <div class="project-title">CyberPatriot National Semifinals</div>
+            <div class="project-date">2022-2025</div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              As Cybersecurity Head of the GSMST CS Club, I led a 5-member team to three consecutive CyberPatriot National
+              Semifinals at the Platinum tier. This required deep expertise in Linux and Windows system hardening, vulnerability
+              identification, and real-time remediation under competition pressure. Additional CTF wins include PicoCTF,
+              LineCTF, and Lockheed Martin CyberQuest.
+            </p>
+            <div class="project-links">
+              <span class="project-link muted">National Semifinals · Platinum</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CAREER GOALS ─── -->
+  <section id="goals">
+    <div class="container">
+      <div class="section-label">Career Goals</div>
+      <h2 class="section-title">Where I'm Headed</h2>
+      <div class="goals-grid">
+
+        <div class="goal-card fade-in">
+          <div class="goal-num">01</div>
+          <div class="goal-horizon">0-5 Years</div>
+          <div class="goal-title">Cybersecurity Specialist</div>
+          <p class="goal-desc">
+            Transition into a professional cybersecurity role within five years, exploring offensive, defensive, or hardware security tracks.
+          </p>
+          <div class="goal-path-label">The Path</div>
+          <div class="goal-path">
+            Leveraging the Cybersecurity and Information Internetworks threads at Georgia Tech to master secure systems and network protocols. Pursuing internships in security-focused roles.
+          </div>
+        </div>
+
+        <div class="goal-card fade-in">
+          <div class="goal-num">02</div>
+          <div class="goal-horizon">5-10 Years</div>
+          <div class="goal-title">Technical Lead & Security Architect</div>
+          <p class="goal-desc">
+            Evolve into a Technical Lead or Security Architect role, heading major security initiatives and guiding engineering teams.
+          </p>
+          <div class="goal-path-label">The Path</div>
+          <div class="goal-path">
+            Building leadership experience through student organizations at Georgia Tech, then progressively taking on larger scopes in industry or research - from individual contributor to team lead.
+          </div>
+        </div>
+
+        <div class="goal-card fade-in">
+          <div class="goal-num">03</div>
+          <div class="goal-horizon">Long-Term</div>
+          <div class="goal-title">Specialized Security Operations</div>
+          <p class="goal-desc">
+            Gain real-world experience at the highest level - including potential roles in government or specialized offensive analysis.
+          </p>
+          <div class="goal-path-label">The Path</div>
+          <div class="goal-path">
+            Pursuing elite opportunities such as the NSA Cybersecurity Co-op and Validin internship to obtain security clearances and develop advanced technical skills in offensive security and intelligence.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RESUME ─── -->
+  <section id="resume">
+    <div class="container">
+      <div class="section-label">Resume</div>
+      <h2 class="section-title">Credentials at a Glance</h2>
+      <div class="resume-inner">
+
+        <div class="resume-left">
+          <div class="resume-section-title">Contact</div>
+          <div class="resume-contact-item">📍 Lilburn, GA 30047</div>
+          <div class="resume-contact-item">📞 <a href="tel:6784620842">(678) 462-0842</a></div>
+          <div class="resume-contact-item">✉️ <a href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a></div>
+          <div class="resume-contact-item">🔗 <a href="https://www.linkedin.com/in/jaseg2026" target="_blank">linkedin.com/in/jaseg2026</a></div>
+
+          <div class="resume-section-title">Education</div>
+          <div class="resume-skill-group">
+            <strong>Degree</strong>
+            B.S. Computer Engineering
+          </div>
+          <div class="resume-skill-group">
+            <strong>Institution</strong>
+            Georgia Institute of Technology
+          </div>
+          <div class="resume-skill-group">
+            <strong>Threads</strong>
+            Cybersecurity · Information Internetworks
+          </div>
+
+          <div class="resume-section-title">Skills - Languages</div>
+          <ul class="resume-tag-list">
+            <li>Java, Python, SQL</li>
+            <li>Bash/Shell, MATLAB, C</li>
+            <li>RISC-V Assembly, JavaScript</li>
+          </ul>
+
+          <div class="resume-section-title">Skills - Platforms</div>
+          <ul class="resume-tag-list">
+            <li>Linux (Ubuntu, Fedora, Kali, Debian)</li>
+            <li>Windows, Windows Server, macOS</li>
+          </ul>
+
+          <div class="resume-section-title">Skills - Tools</div>
+          <ul class="resume-tag-list">
+            <li>Autopsy, Ghidra, Metasploit, Steghide</li>
+            <li>Git, GitHub, Cisco Packet Tracer</li>
+          </ul>
+
+          <div class="resume-section-title">Hardware</div>
+          <ul class="resume-tag-list">
+            <li>Raspberry Pi, Arduino (Uno, Nano)</li>
+            <li>Unitree Go2 Quadruped Robot</li>
+          </ul>
+        </div>
+
+        <div class="resume-right">
+          <div class="resume-section-title">Work Experience</div>
+
+          <div class="resume-exp-item">
+            <h4>Cybersecurity Head & Chief of Competitions</h4>
+            <div class="exp-meta">GSMST Computer Science Club · Aug 2022 - May 2025</div>
+            <ul>
+              <li>Led team to 3x CyberPatriot National Semifinals (Platinum tier)</li>
+              <li>System hardening across Ubuntu, Fedora, Windows 10/Server</li>
+              <li>Taught weekly cybersecurity to 30+ students</li>
+            </ul>
+          </div>
+
+          <div class="resume-exp-item">
+            <h4>Student Intern & Curriculum Designer</h4>
+            <div class="exp-meta">GSMST CS Department · Aug 2024 - May 2025</div>
+            <ul>
+              <li>Developed AI-focused CS curriculum (web scraping, Raspberry Pi)</li>
+              <li>Tuned Unitree Go2 robot: sensor calibration & control systems</li>
+              <li>Supported ML-based class projects and Linux troubleshooting</li>
+            </ul>
+          </div>
+
+          <div class="resume-exp-item">
+            <h4>Software Engineering Intern</h4>
+            <div class="exp-meta">American Megatrends (AMI) · May-Aug 2024 · Remote</div>
+            <ul>
+              <li>Developed MCTP/PLDM algorithms for platform data management</li>
+              <li>Implemented error-detection for low-level system communication</li>
+            </ul>
+          </div>
+
+          <div class="resume-exp-item">
+            <h4>Summer Student Intern</h4>
+            <div class="exp-meta">Atlanta VA Medical Center · Jun-Jul 2023</div>
+            <ul>
+              <li>Supported Medical Media Department; facilitated OR communications</li>
+              <li>Maintained surgery schedules and documentation in Microsoft Office</li>
+            </ul>
+          </div>
+
+          <div class="resume-download">
+            <a href="https://ae420a60-236c-44ef-8e6d-af5dae8e6ee0.filesusr.com/ugd/d019eb_937db510440843658dcb8a02de3a3400.pdf"
+               target="_blank" class="btn btn-primary">
+              Download Full Resume (PDF)
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div>
+          <div class="section-label">Contact</div>
+          <div class="contact-tagline">Let's build something <em>secure</em> together.</div>
+          <p class="contact-desc">
+            I'm always open to internship opportunities, research collaborations, and conversations with
+            fellow engineers and security professionals. Feel free to reach out.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:jgeorge337@gatech.edu" class="contact-link-item">
+              <div class="link-icon">✉️</div>
+              <div class="link-info">
+                <div class="link-label">Email</div>
+                <div class="link-value">jgeorge337@gatech.edu</div>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/jaseg2026" target="_blank" class="contact-link-item">
+              <div class="link-icon">🔗</div>
+              <div class="link-info">
+                <div class="link-label">LinkedIn</div>
+                <div class="link-value">linkedin.com/in/jaseg2026</div>
+              </div>
+            </a>
+            <a href="tel:6784620842" class="contact-link-item">
+              <div class="link-icon">📞</div>
+              <div class="link-info">
+                <div class="link-label">Phone</div>
+                <div class="link-value">(678) 462-0842</div>
+              </div>
+            </a>
+            <a href="https://github.com/AzureRaven25" target="_blank" class="contact-link-item">
+              <div class="link-icon">⌨️</div>
+              <div class="link-info">
+                <div class="link-label">GitHub</div>
+                <div class="link-value">github.com/AzureRaven25</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="contact-form">
+            <div class="form-group">
+              <label for="c-name">Name</label>
+              <input type="text" id="c-name" placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email</label>
+              <input type="email" id="c-email" placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="c-msg">Message</label>
+              <textarea id="c-msg" rows="5" placeholder="What's on your mind?"></textarea>
+            </div>
+            <a href="mailto:jgeorge337@gatech.edu" class="btn btn-primary" style="text-align:center; justify-content:center;">
+              Send via Email
+            </a>
+            <div class="form-note">Opens your email client · jgeorge337@gatech.edu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container">
+      © 2026 <span>Jase V. George</span> · Computer Engineering @ Georgia Tech ·
+      Built for GitHub Pages
+    </div>
+  </footer>
+
+  <!-- ─── SCRIPTS ─── -->
+  <script>
+    // Mobile nav
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+    hamburger.addEventListener('click', () => navMobile.classList.toggle('open'));
+    function closeMenu() { navMobile.classList.remove('open'); }
+
+    // Enable fade-in animations - opt-in via JS so content is always visible even if JS fails
+    document.documentElement.classList.add('js-ready');
+
+    // Intersection observer for fade-ins
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const progressFills = document.querySelectorAll('.progress-fill');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Hard fallback: show everything after 1.2s in case observer misfires
+    setTimeout(() => {
+      document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+    }, 1200);
+
+    const progressObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('animated'), 200);
+          progressObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    progressFills.forEach(el => progressObserver.observe(el));
+
+    // Contact form → mailto builder
+    document.querySelector('.contact-form .btn-primary').addEventListener('click', function(e) {
+      const nam

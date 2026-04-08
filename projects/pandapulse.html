@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PandaPulse - Jase George</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+/* ---- DESIGN TOKENS ---- */
+:root {
+  --bg:       #0b0e13;
+  --surface:  #12161f;
+  --surface2: #1a2030;
+  --border:   #252d3d;
+  --accent:   #4fffb0;
+  --accent2:  #ffb347;
+  --text:     #e8eaf0;
+  --muted:    #7a8398;
+  --heading:  #ffffff;
+  --mono:     'DM Mono', monospace;
+  --sans:     'DM Sans', sans-serif;
+  --serif:    'DM Serif Display', serif;
+  --radius:   6px;
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ---- RESET ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.7; overflow-x: hidden; }
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: 0.8; }
+img { max-width: 100%; display: block; }
+::selection { background: var(--accent); color: #000; }
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(11,14,19,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.08em; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; transition: color var(--transition); }
+.nav-links a:hover { color: var(--accent); opacity: 1; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 1px; }
+.nav-mobile { display: none; }
+@media (max-width: 700px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-mobile.open {
+    display: flex; flex-direction: column; gap: 1.5rem;
+    position: fixed; top: 60px; left: 0; right: 0;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 2rem 1.5rem; z-index: 99;
+  }
+  .nav-mobile a { font-family: var(--mono); font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+}
+
+/* ---- LAYOUT ---- */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+section { padding: 6rem 0; }
+.section-label {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::before { content: '//'; opacity: 0.5; }
+h2.section-title {
+  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--heading); font-weight: 400; line-height: 1.15; margin-bottom: 3rem;
+}
+
+/* ---- BUTTONS ---- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.75rem; border-radius: var(--radius);
+  font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.06em;
+  text-transform: uppercase; transition: all var(--transition); font-weight: 500;
+}
+.btn-primary { background: var(--accent); color: #000; border: 1px solid var(--accent); }
+.btn-primary:hover { background: transparent; color: var(--accent); opacity: 1; }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+
+/* ---- TAGS ---- */
+.tag { font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 3px; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+
+/* ---- FOOTER ---- */
+footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+footer span { color: var(--accent); }
+
+/* ---- FADE-IN ---- */
+.fade-in { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
+.js-ready .fade-in { opacity: 0; transform: translateY(24px); }
+.js-ready .fade-in.visible { opacity: 1; transform: none; }
+.js-ready .fade-in:nth-child(2) { transition-delay: 0.1s; }
+.js-ready .fade-in:nth-child(3) { transition-delay: 0.2s; }
+.js-ready .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+/* ---- PROJECT PAGE SHARED STYLES ---- */
+.project-page { padding-top: 100px; padding-bottom: 6rem; }
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2.5rem;
+  transition: color var(--transition);
+}
+.back-link:hover { color: var(--accent); opacity: 1; }
+.project-page-header { margin-bottom: 3rem; }
+.project-page-type { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.project-page-type::before { content: '//'; opacity: 0.5; }
+.project-page-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--heading); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
+.project-page-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+.project-page-meta .tag { font-size: 0.78rem; padding: 0.3rem 0.8rem; }
+.project-page-meta .tag.highlight { background: rgba(79,255,176,0.1); border-color: var(--accent); color: var(--accent); }
+.project-links-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.project-body-text { font-size: 1rem; color: var(--text); line-height: 1.9; }
+.project-body-text p { margin-bottom: 1.25rem; }
+.project-body-text h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--heading); font-weight: 400; margin: 2.5rem 0 1rem; }
+.project-body-text ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+.project-body-text ul li { padding-left: 1.25rem; position: relative; font-size: 0.95rem; }
+.project-body-text ul li::before { content: '->'; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); font-size: 0.65rem; top: 5px; }
+
+/* Photo gallery on project pages */
+.photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 2rem 0; }
+.photo-gallery img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; object-fit: cover; }
+.photo-gallery-single img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; max-height: 500px; object-fit: cover; margin: 2rem 0; }
+
+/* Photo placeholder for project pages */
+.photo-placeholder-box {
+  background: var(--surface); border: 2px dashed var(--border); border-radius: var(--radius);
+  padding: 3rem 2rem; text-align: center; margin: 2rem 0; color: var(--muted);
+}
+.photo-placeholder-box .ph-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.photo-placeholder-box .ph-title { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: var(--text); }
+.photo-placeholder-box .ph-desc { font-size: 0.85rem; line-height: 1.6; }
+.photo-placeholder-box code { font-family: var(--mono); font-size: 0.8rem; background: var(--surface2); padding: 0.15rem 0.4rem; border-radius: 3px; color: var(--accent); }
+
+/* Feature list grid */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.feature-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
+.feature-item-title { font-size: 0.88rem; color: var(--heading); font-weight: 500; margin-bottom: 0.3rem; }
+.feature-item-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+/* Stat row */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
+.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; text-align: center; }
+.stat-box-val { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); }
+.stat-box-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+
+</style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="nav-logo">jg@gatech ~ $</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#goals">Goals</a></li>
+      <li><a href="../index.html#resume">Resume</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="../index.html#about" onclick="closeMenu()">About</a>
+    <a href="../index.html#skills" onclick="closeMenu()">Skills</a>
+    <a href="../index.html#experience" onclick="closeMenu()">Experience</a>
+    <a href="../index.html#projects" onclick="closeMenu()">Projects</a>
+    <a href="../index.html#goals" onclick="closeMenu()">Goals</a>
+    <a href="../index.html#resume" onclick="closeMenu()">Resume</a>
+    <a href="../index.html#contact" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <div class="project-page">
+    <div class="container">
+
+      <a href="../index.html#projects" class="back-link">&lt;- Back to Projects</a>
+
+      <div class="project-page-header fade-in">
+        <div class="project-page-type">CS 2340 &middot; Object-Oriented Design &middot; March 2026</div>
+        <h1 class="project-page-title">PandaPulse</h1>
+        <div class="project-page-meta">
+          <span class="tag highlight">3rd Place - Both Sections</span>
+          <span class="tag highlight">Final Exam Exempt</span>
+          <span class="tag">Django</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">HTML/CSS</span>
+        </div>
+        <div class="project-links-bar">
+          <a href="https://pandapulseadmins.pythonanywhere.com/" target="_blank" class="btn btn-primary">Live Site</a>
+        </div>
+      </div>
+
+      <div class="stat-row fade-in">
+        <div class="stat-box"><div class="stat-box-val">3rd</div><div class="stat-box-label">Place out of both sections</div></div>
+        <div class="stat-box"><div class="stat-box-val">35+</div><div class="stat-box-label">Implemented features</div></div>
+        <div class="stat-box"><div class="stat-box-val">3</div><div class="stat-box-label">User roles</div></div>
+        <div class="stat-box"><div class="stat-box-val">Top 5</div><div class="stat-box-label">Final exam exemption</div></div>
+      </div>
+
+      <!--
+        PHOTOS: Add screenshots of PandaPulse here.
+        Example - replace the placeholder below with:
+
+        <div class="photo-gallery">
+          <img src="../images/pandapulse-home.png" alt="PandaPulse homepage" />
+          <img src="../images/pandapulse-jobs.png" alt="Job search page" />
+          <img src="../images/pandapulse-panda.png" alt="Panda Paul chatbot" />
+        </div>
+
+        For a single wide screenshot:
+        <div class="photo-gallery-single">
+          <img src="../images/pandapulse-dashboard.png" alt="PandaPulse dashboard" />
+        </div>
+      -->
+      <div class="photo-placeholder-box fade-in">
+        <div class="ph-icon">&#128247;</div>
+        <div class="ph-title">Add Screenshots Here</div>
+        <p class="ph-desc">
+          Create an <code>images/</code> folder in your repo and add your screenshots there.<br />
+          Then replace this block with <code>&lt;div class="photo-gallery"&gt;</code> containing your <code>&lt;img&gt;</code> tags.<br />
+          See the HTML comment above this box for exact instructions.
+        </p>
+      </div>
+
+      <div class="project-body-text fade-in">
+
+        <h3>Overview</h3>
+        <p>
+          PandaPulse is a full-featured job search and hiring platform built in Django for CS 2340 (Objects and Design)
+          at Georgia Tech. The platform functions similarly to LinkedIn - connecting job seekers with employers through
+          structured profiles, job listings, and an application pipeline. It serves three distinct user roles: Job Seekers,
+          Recruiters, and Administrators.
+        </p>
+        <p>
+          The project placed 3rd out of all submissions across both class sections, earning our team a final exam exemption.
+          Beyond the 15 required user stories, our team designed and implemented over 20 original features that pushed
+          the platform well beyond the baseline requirement.
+        </p>
+
+        <h3>Required Features (15 User Stories)</h3>
+        <ul>
+          <li>Job Seeker profile creation with headline, skills, education, work experience, and links</li>
+          <li>Job search with filters for title, skills, location, salary range, remote/on-site, and visa sponsorship</li>
+          <li>One-click job application with a personalized tailored note</li>
+          <li>Application status tracking: Applied, Review, Interview, Offer, Closed</li>
+          <li>Privacy controls on seeker profiles</li>
+          <li>Skill-based job recommendations for seekers</li>
+          <li>Interactive map view of job postings</li>
+          <li>Distance-based map filtering from current location</li>
+          <li>Preferred commute radius setting</li>
+          <li>Recruiter job posting and editing</li>
+          <li>Candidate search by skills, location, and projects</li>
+          <li>Kanban-style applicant pipeline for recruiters</li>
+          <li>In-platform messaging between recruiters and candidates</li>
+          <li>Email candidates through the platform</li>
+          <li>Saved candidate searches with new-match notifications</li>
+          <li>Candidate recommendations for recruiter job postings</li>
+          <li>Office location pinned on map for each job posting</li>
+          <li>Applicant location clusters on recruiter map view</li>
+          <li>Admin user and role management</li>
+          <li>Admin job post moderation and removal</li>
+          <li>Admin CSV data export for reporting</li>
+        </ul>
+
+        <h3>Original Features We Added</h3>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-item-title">Panda Paul - AI Chatbot Mascot</div>
+            <div class="feature-item-desc">An integrated panda mascot chatbot that lets logged-in users navigate the site, update profile info, apply to jobs, and message people through natural conversation.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Pulses - Short-Form Video Feed</div>
+            <div class="feature-item-desc">Any logged-in user can post short videos to promote themselves or their company. Users can like pulses and posters can delete their own content.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Offer Comparison Tool</div>
+            <div class="feature-item-desc">Applicants can compare multiple job offers side-by-side with custom-weighted categories including salary, location, visa sponsorship, and benefits.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Interview Calendar System</div>
+            <div class="feature-item-desc">Applicants schedule interviews from time slots set by the employer, fully integrated into the application workflow on both sides.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">One-Click Follow-Up</div>
+            <div class="feature-item-desc">Applicants can send a polite follow-up message after a set number of days using pre-built professional templates.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Skill Endorsements</div>
+            <div class="feature-item-desc">Employers can endorse applicant skills with one click after conducting interviews, adding social proof to candidate profiles.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Response-Time SLA Badge</div>
+            <div class="feature-item-desc">Each employer displays a "responds in approximately N days" badge on their job listings so applicants know what to expect.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Resume Auto-Parser</div>
+            <div class="feature-item-desc">Uploaded resumes are automatically parsed into profile fields with skill normalization for better job matching accuracy.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Confetti on Application Submit</div>
+            <div class="feature-item-desc">Celebrates job application submissions with confetti and fanfare to make the experience feel rewarding.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Application Viewed Indicator</div>
+            <div class="feature-item-desc">Applicants can see when an employer has opened and viewed their application in real time.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Private Notes</div>
+            <div class="feature-item-desc">Both applicants and employers can attach private notes to applications that are only visible to themselves.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Rejection Feedback Templates</div>
+            <div class="feature-item-desc">Structured rejection messages with optional personalized notes so candidates always receive meaningful feedback.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Applicant Activity Feed</div>
+            <div class="feature-item-desc">A real-time feed showing applicants exactly what is happening with each of their applications as status changes occur.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Company Culture Pages</div>
+            <div class="feature-item-desc">Company profiles featuring culture descriptions, perks, and an office map gallery so candidates can evaluate fit before applying.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Dark Mode</div>
+            <div class="feature-item-desc">Full site dark/light mode toggle that persists per user across sessions.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Account Recovery Flow</div>
+            <div class="feature-item-desc">Forgot username and forgot password buttons that send recovery links to the email address associated with the account.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Interview Feedback Workflow</div>
+            <div class="feature-item-desc">Employers can leave structured internal feedback and decision rationale for each candidate after interviews.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Archived Rejections</div>
+            <div class="feature-item-desc">Employers can archive rejected applicants to revisit them later if new positions open up, preserving the candidate pool.</div>
+          </div>
+        </div>
+
+        <h3>Technical Approach</h3>
+        <p>
+          The platform was built entirely in Django, leveraging its ORM, class-based views, and template system throughout.
+          The project emphasized object-oriented design principles - the core focus of CS 2340 - including clean model
+          separation, reusable components, and a well-structured codebase that could scale with additional features.
+        </p>
+        <p>
+          The map features use an interactive mapping library to pin job locations and cluster applicants geographically.
+          The Pulses video feed, Panda Paul chatbot, and offer comparison tool were all designed and built entirely by our
+          team without external templates or starter code for those components.
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 <span>Jase V. George</span> &middot; <a href="../index.html">Back to Portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+// Mobile nav
+const hamburger = document.getElementById('hamburger');
+const navMobile = document.getElementById('nav-mobile');
+if (hamburger) hamburger.addEventListener('click', () => navMobile.classList.toggle('open'));
+function closeMenu() { if (navMobile) navMobile.classList.remove('open'); }
+
+// Enable fade-in animations only once JS is confirmed running
+document.documentElement.classList.add('js-ready');
+
+// Intersection observer for fade-ins
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+fadeEls.forEach(el => observer.observe(el));
+
+// Hard fallback: show everything after 1.2s in case observer misfires
+setTimeout(() => {
+  document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+}, 1200);
+
+</script>
+</body>
+</html>

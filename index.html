@@ -273,11 +273,25 @@ footer span { color: var(--accent); }
     #projects { }
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 
-    /* Featured card spans full width */
+    /* Projects layout: featured on top, three cards below */
+    .projects-grid {
+      display: flex !important;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .projects-sub-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 800px) { .projects-sub-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 550px) { .projects-sub-grid { grid-template-columns: 1fr; } }
+
+    /* Featured card - full width, two column interior */
     .project-card-featured {
-      grid-column: 1 / -1;
+      width: 100%;
       background: var(--surface); border: 1px solid var(--accent); border-radius: var(--radius);
-      display: grid; grid-template-columns: 1fr 1fr;
+      display: grid; grid-template-columns: 1.1fr 0.9fr;
       overflow: hidden; transition: transform var(--transition), box-shadow var(--transition);
       text-decoration: none;
     }
@@ -292,20 +306,18 @@ footer span { color: var(--accent); }
       color: #000; background: var(--accent); padding: 0.3rem 0.7rem; border-radius: 3px;
       margin-bottom: 1.25rem; width: fit-content;
     }
-    .featured-title { font-family: var(--serif); font-size: 2rem; color: var(--heading); font-weight: 400; line-height: 1.15; margin-bottom: 0.5rem; }
+    .featured-title { font-family: var(--serif); font-size: 2.5rem; color: var(--heading); font-weight: 400; line-height: 1.1; margin-bottom: 0.5rem; }
     .featured-sub { font-family: var(--mono); font-size: 0.75rem; color: var(--accent2); margin-bottom: 1.5rem; }
-    .featured-desc { font-size: 0.95rem; color: var(--text); line-height: 1.85; margin-bottom: 2rem; }
+    .featured-desc { font-size: 0.97rem; color: var(--text); line-height: 1.85; margin-bottom: 2rem; }
     .featured-right {
-      padding: 2.5rem;
-      display: flex; flex-direction: column; justify-content: center; gap: 1.25rem;
+      padding: 2.5rem; background: var(--bg);
+      display: flex; flex-direction: column; justify-content: center; gap: 1.5rem;
     }
-    .featured-stat { border-left: 2px solid var(--accent); padding-left: 1rem; }
-    .featured-stat-val { font-family: var(--serif); font-size: 1.4rem; color: var(--heading); }
+    .featured-stat { border-left: 2px solid var(--accent); padding-left: 1.25rem; }
+    .featured-stat-val { font-family: var(--serif); font-size: 1.6rem; color: var(--heading); }
     .featured-stat-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
     .featured-link-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
-    @media (max-width: 700px) {
-      .project-card-featured { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 750px) { .project-card-featured { grid-template-columns: 1fr; } }
 
     /* Regular project cards */
     .project-card {
@@ -314,15 +326,12 @@ footer span { color: var(--accent); }
       display: flex; flex-direction: column; text-decoration: none;
     }
     .project-card:hover { border-color: var(--accent); transform: translateY(-4px); opacity: 1; }
-    .project-card-header {
-      padding: 1.75rem 1.75rem 1.25rem;
-      background: var(--surface2);
-    }
+    .project-card-header { padding: 1.5rem 1.5rem 1rem; background: var(--surface2); }
     .project-type { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-    .project-title { font-family: var(--serif); font-size: 1.3rem; color: var(--heading); font-weight: 400; line-height: 1.2; }
+    .project-title { font-family: var(--serif); font-size: 1.2rem; color: var(--heading); font-weight: 400; line-height: 1.2; }
     .project-date { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-top: 0.35rem; }
-    .project-card-body { padding: 1.5rem 1.75rem; flex: 1; display: flex; flex-direction: column; }
-    .project-desc { font-size: 0.9rem; color: var(--text); line-height: 1.8; flex: 1; margin-bottom: 1.25rem; }
+    .project-card-body { padding: 1.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .project-desc { font-size: 0.88rem; color: var(--text); line-height: 1.8; flex: 1; margin-bottom: 1.25rem; }
     .project-footer { display: flex; align-items: center; justify-content: space-between; }
     .view-more { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
     .view-more::after { content: ' ->'; }
@@ -688,64 +697,68 @@ footer span { color: var(--accent); }
           </div>
         </a>
 
-        <!-- GT Movies Store -->
-        <a href="projects/gtmovies.html" class="project-card fade-in">
-          <div class="project-card-header">
-            <div class="project-type">Full-Stack Web App</div>
-            <div class="project-title">GT Movies Store</div>
-            <div class="project-date">January 2026</div>
-          </div>
-          <div class="project-card-body">
-            <p class="project-desc">
-              A full-stack movie marketplace built with Django 5. Features 21 implemented user stories including
-              browsing, purchasing, reviews, and a custom report system designed independently from the source material.
-            </p>
-            <div class="project-footer">
-              <span class="view-more">View Project</span>
-              <span class="tag">Django 5 &middot; Python</span>
-            </div>
-          </div>
-        </a>
+        <div class="projects-sub-grid">
 
-        <!-- CyberPatriot -->
-        <a href="projects/cyberpatriot.html" class="project-card fade-in">
-          <div class="project-card-header">
-            <div class="project-type">Cybersecurity &middot; Competition</div>
-            <div class="project-title">CyberPatriot National Semifinals</div>
-            <div class="project-date">2022 - 2025</div>
-          </div>
-          <div class="project-card-body">
-            <p class="project-desc">
-              Led a 5-member team to three consecutive CyberPatriot National Semifinals at the Platinum tier,
-              requiring deep expertise in Linux and Windows system hardening under live competition pressure.
-            </p>
-            <div class="project-footer">
-              <span class="view-more">View Project</span>
-              <span class="tag">Platinum &middot; 3x Nationals</span>
+          <!-- GT Movies Store -->
+          <a href="projects/gtmovies.html" class="project-card fade-in">
+            <div class="project-card-header">
+              <div class="project-type">Full-Stack Web App</div>
+              <div class="project-title">GT Movies Store</div>
+              <div class="project-date">January 2026</div>
             </div>
-          </div>
-        </a>
-
-        <!-- ECE 1100 Discovery -->
-        <a href="projects/discovery.html" class="project-card fade-in">
-          <div class="project-card-header">
-            <div class="project-type">ECE 1100 &middot; Discovery Project</div>
-            <div class="project-title">ECE 1100 Discovery Project</div>
-            <div class="project-date">April 2026</div>
-          </div>
-          <div class="project-card-body">
-            <p class="project-desc">
-              The culminating project for ECE 1100 at Georgia Tech - an investigation into a topic at the frontier
-              of electrical and computer engineering, synthesizing research and presenting findings professionally.
-            </p>
-            <div class="project-footer">
-              <span class="view-more">View Project</span>
-              <span class="tag">Georgia Tech &middot; ECE 1100</span>
+            <div class="project-card-body">
+              <p class="project-desc">
+                A full-stack movie marketplace built with Django 5. Features 21 implemented user stories including
+                browsing, purchasing, reviews, and a custom report system designed independently from the source material.
+              </p>
+              <div class="project-footer">
+                <span class="view-more">View Project</span>
+                <span class="tag">Django 5 &middot; Python</span>
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-      </div>
+          <!-- CyberPatriot -->
+          <a href="projects/cyberpatriot.html" class="project-card fade-in">
+            <div class="project-card-header">
+              <div class="project-type">Cybersecurity &middot; Competition</div>
+              <div class="project-title">CyberPatriot National Semifinals</div>
+              <div class="project-date">2022 - 2025</div>
+            </div>
+            <div class="project-card-body">
+              <p class="project-desc">
+                Led a 5-member team to three consecutive CyberPatriot National Semifinals at the Platinum tier,
+                requiring deep expertise in Linux and Windows system hardening under live competition pressure.
+              </p>
+              <div class="project-footer">
+                <span class="view-more">View Project</span>
+                <span class="tag">Platinum &middot; 3x Nationals</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- ECE 1100 Discovery -->
+          <a href="projects/discovery.html" class="project-card fade-in">
+            <div class="project-card-header">
+              <div class="project-type">ECE 1100 &middot; Discovery Project</div>
+              <div class="project-title">ECE 1100 Discovery Project</div>
+              <div class="project-date">April 2026</div>
+            </div>
+            <div class="project-card-body">
+              <p class="project-desc">
+                The culminating project for ECE 1100 at Georgia Tech - an investigation into a topic at the frontier
+                of electrical and computer engineering, synthesizing research and presenting findings professionally.
+              </p>
+              <div class="project-footer">
+                <span class="view-more">View Project</span>
+                <span class="tag">Georgia Tech &middot; ECE 1100</span>
+              </div>
+            </div>
+          </a>
+
+        </div><!-- end projects-sub-grid -->
+
+      </div><!-- end projects-grid -->
     </div>
   </section>
 

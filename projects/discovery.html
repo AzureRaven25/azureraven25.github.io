@@ -237,15 +237,7 @@ footer span { color: var(--accent); }
           SACC Hoops March Madness is a custom-built platform designed to bring a professional, "ESPN-style" experience to the St. Alphonsa Syro-Malabar Forane Catholic Church's annual basketball tournament. In the past, tracking scores and player stats was a messy process involving paper sheets and fragmented group chats. I built this site to serve as a central home for the community, where every player and fan can see live updates, deep-dive into player statistics, and even participate in tournament predictions right from their phones.
         </p>
         <p>
-          The project covers the entire journey of the tournament. It starts with a streamlined registration and payment flow for players and moves into a live draft system for team captains. Once the games begin, the site transforms into a real-time leaderboard. This wasn't just a class assignment; it was a fully deployed product used by hundreds of people in the SACC community, which forced me to focus on reliability and ease of use above all else.
-        </p>
-
-        <h3>The Process</h3>
-        <p>
-          The development started with a simple question: "How can I make this as fast as possible for someone standing on the sidelines?" I spent a lot of time on the design, ensuring that even if the gym’s Wi-Fi was slow, the most important information—the score—would load instantly. I chose a "mobile-first" approach because I knew 90% of the users would be checking the site on their phones while watching the games in person. This meant making buttons large enough to tap easily and keeping the interface clean and dark-mode friendly to save battery and look sleek.
-        </p>
-        <p>
-          On the technical side, I had to build a database that could handle a lot of moving parts at once. Every time a basket is scored, several things have to update simultaneously: the game score, the individual player's points, their team's standing, and even the "Fantasy Points" leaderboard. I spent weeks refining how the data flows from the admin's phone to the database and out to every fan's screen. The goal was to create a "live" feeling where the site feels like a living, breathing part of the tournament.
+          The project covers the entire journey of the tournament. It starts with a streamlined registration and payment flow for players and moves into a live draft system for team captains. Once the games begin, the site transforms into a real-time leaderboard.
         </p>
 
         <h3>Key Features</h3>
@@ -318,27 +310,22 @@ footer span { color: var(--accent); }
 
         <h3>Project Successes & Failures</h3>
         <p>
-          One of the biggest wins of this project was the "Pick'em" and "MVP Voting" features. Usually, getting people to participate in community polls is hard because signing up for an account is a hassle. I designed a system that recognizes a user’s device without requiring a login. This made participating as easy as clicking a button, which led to a massive spike in engagement. Seeing the community argue over who would win based on the live pick percentages I was displaying was a huge confirmation that the design worked.
-        </p>
-        <p>
-          However, not everything went perfectly. During the live draft, I learned a tough lesson about how different devices talk to each other. I originally built a draft timer that ran on each person's phone, but because some phones were faster than others, the clocks got out of sync. Some captains thought they had ten seconds left when they actually only had two. I had to quickly rewrite the logic so that one central "master clock" in the database controlled everyone's screen. It was a stressful moment, but it taught me that in live systems, you can never assume two devices are perfectly in sync.
-        </p>
+          Building the core features of this site was a huge success, especially the real-time voting and the snake draft board. Getting a web application to update instantly across multiple devices without the user having to refresh the page was a major technical win for me. I was able to successfully implement a system that identifies a user's device to allow for "one-vote-only" polls and anonymous game predictions, which makes the site feel interactive and professional.       </p>
+          <p>However, not everything went perfectly. During the live draft, I learned a tough lesson about how different devices talk to each other. I originally built a draft timer that ran on each person's phone, but because some phones were faster than others, the clocks got out of sync. Some phones showed they had ten seconds left when they actually only had two. So, I had rewrite the logic so that one central "master clock" in the database controlled everyone's screen. </p>
 
         <h3>ECE Skills Gained</h3>
         <p>
-          Building this site has been a gateway into the more physical side of Computer Engineering. While most of the work so far has been on the screen, I am now moving into the "Internet of Things" (IoT) space. I am learning how to take the data from my website and send it to a physical microcontroller—a tiny computer—that can then control electrical signals. This involves understanding how to "bridge" two different worlds: the high-level world of web code and the low-level world of electrical pulses and wires.
+          Through this project, I have significantly expanded my <strong>software engineering</strong> skills. I learned how to build a modern, interactive frontend using React and how to manage complex, real-time data flows between a website and a cloud database. Understanding how to secure data and manage different levels of user access gave me a much stronger grasp of how professional web applications are architected. These software skills have given me a solid foundation for building the interfaces that modern hardware systems require.
         </p>
         <p>
-          I am specifically gaining skills in hardware communication protocols. To get the scoreboard to work, I have to learn exactly how it "listens" for data. This means studying things like serial communication, where I send a specific string of ones and zeros to turn on certain lights on the scoreboard. I’m also learning about signal integrity—making sure that the electrical signal doesn't get "noisy" or corrupted as it travels through the wires in a big, crowded gym. It's a perfect blend of software logic and hardware reality.
+          As I continue this project, I will begin gaining hands-on <strong>hardware skills</strong> by connecting the website to a physical scoreboard. This transition into the "Internet of Things" (IoT) will teach me how to use microcontrollers to bridge the gap between digital code and physical electronics. I will be learning how to handle serial communication, sending specific strings of electrical pulses to turn on scoreboard lights, and how to manage power and signal integrity so that the scoreboard updates.
         </p>
 
         <h3>Next Steps</h3>
         <p>
-          The most exciting next step is the completion of the physical scoreboard integration. I have an electronic scoreboard and am currently figuring out the best way to hook it up to my laptop. The vision is simple: when an official updates the score on the PandaPulse website, the physical scoreboard hanging in the gym will update instantly. I'll be using an ESP32 microcontroller to act as the "brain" that catches the update from the internet and physically flips the digits on the scoreboard.
-        </p>
+          The most exciting next step is the completion of the physical scoreboard integration. I have an electronic scoreboard and am currently figuring out the best way to hook it up to my laptop. When an official updates the score on the website, the physical scoreboard on a table will update instantly. I'll be using an ESP32 microcontroller to act as the "brain" that catches the update from the internet and physically flips the digits on the scoreboard.</p>
         <p>
-          Beyond the hardware, I want to make the site even "smarter" by adding automated features. Right now, I still have to do some manual work to set the playoff brackets. I plan to write an algorithm that looks at all the scores from the regular season and automatically seeds the teams into the bracket based on how well they played. This will make the tournament run even smoother and take the "human error" out of the equation, making the whole experience feel even more like a professional sports league.
-        </p>
+          Beyond the hardware, I want to make the site smarter by adding automated features. Right now, I still have to do some manual work to set the playoff brackets. I plan to write an algorithm that looks at all the scores from the regular season and automatically seeds the teams into the bracket based on how well they played. This will make the tournament run even smoother and take the "human error" out of the equation, making the whole experience feel even more like a professional sports league.</p>
 
       </div>
 

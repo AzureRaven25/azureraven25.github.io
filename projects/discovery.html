@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <style>
+
 /* ---- DESIGN TOKENS ---- */
 :root {
   --bg:       #0b0e13;
@@ -161,7 +162,8 @@ footer span { color: var(--accent); }
 .stat-box-val { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); }
 .stat-box-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
 
-</style>
+
+  </style>
 </head>
 <body>
   <nav>
@@ -191,75 +193,193 @@ footer span { color: var(--accent); }
       <a href="../index.html#projects" class="back-link">&lt;- Back to Projects</a>
 
       <div class="project-page-header fade-in">
-        <div class="project-page-type">ECE 1100 &middot; Georgia Tech &middot; April 2026</div>
-        <h1 class="project-page-title">ECE 1100 Discovery Project</h1>
+        <div class="project-page-type">ECE 1100 &middot; Discovery Project &middot; April 2026</div>
+        <h1 class="project-page-title">SACC Hoops March Madness</h1>
         <div class="project-page-meta">
-          <span class="tag">Georgia Tech</span>
-          <span class="tag">ECE 1100</span>
-          <span class="tag">Research</span>
-          <span class="tag">Technical Writing</span>
+          <span class="tag highlight">ECE 1100 Discovery Project</span>
+          <span class="tag">React 18</span>
+          <span class="tag">Vite</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Vercel</span>
+          <span class="tag">React Router v6</span>
+          <span class="tag">Recharts</span>
+        </div>
+        <div class="project-links-bar">
+          <a href="https://sacc-march-madness.vercel.app" target="_blank" class="btn btn-primary">Live Site</a>
+          <a href="https://github.com/AzureRaven25/SACC-March-Madness" target="_blank" class="btn btn-outline">GitHub Repo</a>
         </div>
       </div>
 
+      <div class="stat-row fade-in">
+        <div class="stat-box"><div class="stat-box-val">20+</div><div class="stat-box-label">Platform features</div></div>
+        <div class="stat-box"><div class="stat-box-val">Real-Time</div><div class="stat-box-label">Live score &amp; data sync</div></div>
+        <div class="stat-box"><div class="stat-box-val">React 18</div><div class="stat-box-label">Frontend framework</div></div>
+        <div class="stat-box"><div class="stat-box-val">Supabase</div><div class="stat-box-label">Database &amp; realtime</div></div>
+      </div>
+
       <!--
-        PHOTOS: Add project photos, diagrams, poster, or presentation slides here.
+        PHOTOS: Add screenshots of SACC Hoops here.
         Example:
 
-        <div class="photo-gallery-single">
-          <img src="../images/discovery-poster.png" alt="Discovery Project poster" />
+        <div class="photo-gallery">
+          <img src="../images/sacc-home.png" alt="SACC Hoops homepage" />
+          <img src="../images/sacc-bracket.png" alt="Playoff bracket" />
+          <img src="../images/sacc-stats.png" alt="Player stats leaderboard" />
         </div>
 
-        <div class="photo-gallery">
-          <img src="../images/discovery-diagram.png" alt="System diagram" />
-          <img src="../images/discovery-results.png" alt="Results" />
+        For a single wide hero screenshot:
+        <div class="photo-gallery-single">
+          <img src="../images/sacc-hero.png" alt="SACC Hoops platform" />
         </div>
       -->
       <div class="photo-placeholder-box fade-in">
         <div class="ph-icon">&#128247;</div>
-        <div class="ph-title">Add Project Photos Here</div>
+        <div class="ph-title">Add Screenshots Here</div>
         <p class="ph-desc">
-          Great options: your project poster, diagrams, demo photos, or presentation slides.<br />
-          Create an <code>images/</code> folder in your repo, add your images, then replace this block with your
-          <code>&lt;img&gt;</code> tags inside <code>&lt;div class="photo-gallery"&gt;</code>.
+          Create an <code>images/</code> folder in your repo and add your screenshots there.<br />
+          Then replace this block with <code>&lt;div class="photo-gallery"&gt;</code> containing your <code>&lt;img&gt;</code> tags.<br />
+          Great options: homepage, bracket view, player profile, leaderboard, or the draft board.
         </p>
       </div>
 
       <div class="project-body-text fade-in">
 
-        <h3>About This Project</h3>
+        <h3>Overview</h3>
         <p>
-          The ECE 1100 Discovery Project is the culminating assignment of the ECE 1100 course at Georgia Tech.
-          It represents a student's first deep investigation into a topic at the frontier of electrical and
-          computer engineering, combining independent research with technical writing and professional presentation.
+          SACC Hoops March Madness is a full-stack web application built for the St. Alphonsa Syro-Malabar Forane
+          Catholic Church's annual basketball tournament in Atlanta, Georgia. The site serves as a central hub for
+          players, team captains, and fans to follow the tournament in real time - from registration all the way
+          through the final championship game. It is designed to feel like a professional sports platform while
+          being tailored specifically to the SACC community.
+        </p>
+        <p>
+          The platform covers the entire tournament lifecycle: players can register and submit payment via Zelle,
+          captains can manage their rosters, and everyone can follow live scores, standings, and player stats as
+          games are played. A fantasy points system (FPTS) adds a competitive layer on top of the real tournament,
+          letting fans track individual player performance across the bracket. This project was built entirely
+          independently - no starter templates, no component libraries - as a real deployed product used by
+          the actual SACC community.
         </p>
 
-        <!--
-          ADD YOUR PROJECT CONTENT HERE.
-          Replace this placeholder section with your actual Discovery Project write-up.
-          The assignment requires a minimum of ~500 words of text plus images.
-
-          Suggested structure:
-          - What topic did you investigate?
-          - Why did you choose it? What drew you to it?
-          - What did you learn / research / build?
-          - What were your results or findings?
-          - What does this mean for your future in ECE?
-
-          Example:
-          <h3>Topic: [Your Topic Here]</h3>
-          <p>I investigated ... because ...</p>
-
-          <h3>Research and Findings</h3>
-          <p>Through this project I learned ...</p>
-
-          <h3>Reflection</h3>
-          <p>This project shaped my understanding of ...</p>
-        -->
-
-        <h3>Project Content Coming Soon</h3>
+        <h3>The Problem It Solves</h3>
         <p>
-          This project page will be updated with the full write-up, findings, and visuals upon completion
-          of the Discovery Project Showcase. Check back after April 2026.
+          Community sports tournaments often rely on group chats, spreadsheets, and word-of-mouth to track
+          standings and schedules. SACC's annual basketball tournament had the same problem - no central place
+          for players to register, fans to follow scores, or captains to manage rosters. I built this platform
+          to replace all of that with a single, live, mobile-friendly web app that anyone in the community can
+          open on their phone during games.
+        </p>
+
+        <h3>Key Features</h3>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-item-title">Live Score Ticker</div>
+            <div class="feature-item-desc">A scrolling score ticker runs across the top of every page showing live and recent game scores, updating in real time via Supabase Realtime.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Playoff Bracket</div>
+            <div class="feature-item-desc">A full bracket view with auto-advancing results and live game status - updates automatically as scores are entered by the admin.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Team Pages</div>
+            <div class="feature-item-desc">Each team has a dedicated page with full rosters, per-player stats, team colors, and record. Captains can manage their roster through the platform.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Fantasy Points System (FPTS)</div>
+            <div class="feature-item-desc">A custom formula (PTS + REB x1.2 + AST x1.5 + STL x3 + BLK x3 - TO) ranks all players across the tournament, giving fans a way to follow individual performance.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Player Stat Leaderboards</div>
+            <div class="feature-item-desc">Sortable leaderboard tables for FPTS, points, rebounds, assists, and steals. Every column is clickable to re-sort live.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Player Profile Pages</div>
+            <div class="feature-item-desc">Individual profile pages per player featuring radar charts and stat bars built with Recharts, showing their performance breakdown across all categories.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Power Rankings</div>
+            <div class="feature-item-desc">Weekly power rankings with movement arrows (up, down, same) showing team momentum across the tournament.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Pick'em Predictions</div>
+            <div class="feature-item-desc">Fans can make predictions on upcoming games and see live pick percentages across all users - no login required, tracked by anonymous browser session ID.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">MVP Voting</div>
+            <div class="feature-item-desc">Anonymous one-vote-per-session MVP voting system. Results update in real time as votes come in throughout the tournament.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Snake Draft Board</div>
+            <div class="feature-item-desc">An interactive snake draft board with a pick timer and real-time roster updates - used by team captains to select players before the tournament.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Online Registration</div>
+            <div class="feature-item-desc">Player registration form with integrated Zelle payment flow and waiver tracking. Submission data feeds directly into the admin panel.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Admin Panel</div>
+            <div class="feature-item-desc">A full admin interface for managing games, players, teams, and commissioner announcements - everything needed to run the tournament from one dashboard.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Player &amp; Team of the Week</div>
+            <div class="feature-item-desc">Weekly spotlights on the home page highlighting standout individual and team performances from the previous round.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Game Schedule</div>
+            <div class="feature-item-desc">Full schedule view showing court assignments, tip-off times, round info, and live game status for every game in the tournament.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">GroupMe Integration</div>
+            <div class="feature-item-desc">Commissioner announcements sync with GroupMe so updates reach the whole community instantly through the messaging app they already use.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Mobile-First Design</div>
+            <div class="feature-item-desc">The entire platform is built mobile-first with a bottom navigation bar - designed to be opened on a phone courtside during live games.</div>
+          </div>
+        </div>
+
+        <h3>Technical Architecture</h3>
+        <p>
+          The frontend is built with React 18 and Vite, deployed on Vercel. Supabase handles the PostgreSQL
+          database, authentication-free anonymous sessions, and real-time subscriptions via Postgres Realtime
+          channels. Every piece of live data - scores, picks, votes, rosters - syncs instantly across all
+          connected clients without a page refresh.
+        </p>
+        <p>
+          The data layer uses a custom hooks pattern in <code>useData.jsx</code>. Each data type (teams,
+          players, games, announcements) has its own hook that fetches on mount and subscribes to database
+          changes for live updates. Each hook instance uses a unique channel name to avoid Supabase
+          subscription conflicts when multiple components mount simultaneously. A fallback dataset ensures
+          the UI renders immediately even before Supabase responds, so there is no loading flash on first visit.
+        </p>
+        <p>
+          Anonymous user sessions are tracked via <code>localStorage</code> IDs for features like voting and
+          Pick'em - no login or account creation required, which was a deliberate choice to keep the barrier
+          to participation as low as possible for casual fans. React Router v6 handles all client-side navigation.
+          Stat visualizations use Recharts, and the entire visual design is built on CSS custom properties
+          for consistent dark-mode-first theming across all pages.
+        </p>
+
+        <h3>What I Learned</h3>
+        <p>
+          This was my first serious project with React and my first time building a real-time data architecture.
+          The biggest technical challenge was managing Supabase Realtime subscriptions at scale - early on,
+          multiple components subscribing to the same channel caused conflicts and duplicate data. The solution
+          was enforcing unique channel names per hook instance, which required understanding how Supabase
+          manages WebSocket connections under the hood.
+        </p>
+        <p>
+          Building for a real audience - the SACC community actually using this during live games - pushed me
+          to care about things I would have ignored in a class project: load time on mobile networks, graceful
+          fallbacks when the database is slow, and UI decisions that make sense to someone who just wants to
+          check the score quickly. That gap between "it works" and "it works for real people in real conditions"
+          was the most valuable thing this project taught me.
+        </p>
+        <p>
+          The ECE 1100 Discovery Project framework challenged me to not just build something, but to investigate
+          a technical topic at the frontier of what I know. For me, that was real-time web architecture: how do
+          you design a system where data consistency, latency, and user experience all have to be solved
+          simultaneously? This project is my answer to that question.
         </p>
 
       </div>
@@ -274,6 +394,7 @@ footer span { color: var(--accent); }
   </footer>
 
   <script>
+
 // Mobile nav
 const hamburger = document.getElementById('hamburger');
 const navMobile = document.getElementById('nav-mobile');
@@ -300,6 +421,7 @@ setTimeout(() => {
   document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
 }, 1200);
 
-</script>
+
+  </script>
 </body>
 </html>

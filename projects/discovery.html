@@ -234,28 +234,18 @@ footer span { color: var(--accent); }
 
         <h3>Overview</h3>
         <p>
-          SACC Hoops March Madness is a full-stack web application built for the St. Alphonsa Syro-Malabar Forane
-          Catholic Church's annual basketball tournament in Atlanta, Georgia. The site serves as a central hub for
-          players, team captains, and fans to follow the tournament in real time - from registration all the way
-          through the final championship game. It is designed to feel like a professional sports platform while
-          being tailored specifically to the SACC community.
+          SACC Hoops March Madness is a custom-built platform designed to bring a professional, "ESPN-style" experience to the St. Alphonsa Syro-Malabar Forane Catholic Church's annual basketball tournament. In the past, tracking scores and player stats was a messy process involving paper sheets and fragmented group chats. I built this site to serve as a central home for the community, where every player and fan can see live updates, deep-dive into player statistics, and even participate in tournament predictions right from their phones.
         </p>
         <p>
-          The platform covers the entire tournament lifecycle: players can register and submit payment via Zelle,
-          captains can manage their rosters, and everyone can follow live scores, standings, and player stats as
-          games are played. A fantasy points system (FPTS) adds a competitive layer on top of the real tournament,
-          letting fans track individual player performance across the bracket. This project was built entirely
-          independently - no starter templates, no component libraries - as a real deployed product used by
-          the actual SACC community.
+          The project covers the entire journey of the tournament. It starts with a streamlined registration and payment flow for players and moves into a live draft system for team captains. Once the games begin, the site transforms into a real-time leaderboard. This wasn't just a class assignment; it was a fully deployed product used by hundreds of people in the SACC community, which forced me to focus on reliability and ease of use above all else.
         </p>
 
-        <h3>The Problem It Solves</h3>
+        <h3>The Process</h3>
         <p>
-          Community sports tournaments often rely on group chats, spreadsheets, and word-of-mouth to track
-          standings and schedules. SACC's annual basketball tournament had the same problem - no central place
-          for players to register, fans to follow scores, or captains to manage rosters. I built this platform
-          to replace all of that with a single, live, mobile-friendly web app that anyone in the community can
-          open on their phone during games.
+          The development started with a simple question: "How can I make this as fast as possible for someone standing on the sidelines?" I spent a lot of time on the design, ensuring that even if the gym’s Wi-Fi was slow, the most important information—the score—would load instantly. I chose a "mobile-first" approach because I knew 90% of the users would be checking the site on their phones while watching the games in person. This meant making buttons large enough to tap easily and keeping the interface clean and dark-mode friendly to save battery and look sleek.
+        </p>
+        <p>
+          On the technical side, I had to build a database that could handle a lot of moving parts at once. Every time a basket is scored, several things have to update simultaneously: the game score, the individual player's points, their team's standing, and even the "Fantasy Points" leaderboard. I spent weeks refining how the data flows from the admin's phone to the database and out to every fan's screen. The goal was to create a "live" feeling where the site feels like a living, breathing part of the tournament.
         </p>
 
         <h3>Key Features</h3>
@@ -326,48 +316,28 @@ footer span { color: var(--accent); }
           </div>
         </div>
 
-        <h3>Technical Architecture</h3>
+        <h3>Project Successes & Failures</h3>
         <p>
-          The frontend is built with React 18 and Vite, deployed on Vercel. Supabase handles the PostgreSQL
-          database, authentication-free anonymous sessions, and real-time subscriptions via Postgres Realtime
-          channels. Every piece of live data - scores, picks, votes, rosters - syncs instantly across all
-          connected clients without a page refresh.
+          One of the biggest wins of this project was the "Pick'em" and "MVP Voting" features. Usually, getting people to participate in community polls is hard because signing up for an account is a hassle. I designed a system that recognizes a user’s device without requiring a login. This made participating as easy as clicking a button, which led to a massive spike in engagement. Seeing the community argue over who would win based on the live pick percentages I was displaying was a huge confirmation that the design worked.
         </p>
         <p>
-          The data layer uses a custom hooks pattern in <code>useData.jsx</code>. Each data type (teams,
-          players, games, announcements) has its own hook that fetches on mount and subscribes to database
-          changes for live updates. Each hook instance uses a unique channel name to avoid Supabase
-          subscription conflicts when multiple components mount simultaneously. A fallback dataset ensures
-          the UI renders immediately even before Supabase responds, so there is no loading flash on first visit.
-        </p>
-        <p>
-          Anonymous user sessions are tracked via <code>localStorage</code> IDs for features like voting and
-          Pick'em - no login or account creation required, which was a deliberate choice to keep the barrier
-          to participation as low as possible for casual fans. React Router v6 handles all client-side navigation.
-          Stat visualizations use Recharts, and the entire visual design is built on CSS custom properties
-          for consistent dark-mode-first theming across all pages.
+          However, not everything went perfectly. During the live draft, I learned a tough lesson about how different devices talk to each other. I originally built a draft timer that ran on each person's phone, but because some phones were faster than others, the clocks got out of sync. Some captains thought they had ten seconds left when they actually only had two. I had to quickly rewrite the logic so that one central "master clock" in the database controlled everyone's screen. It was a stressful moment, but it taught me that in live systems, you can never assume two devices are perfectly in sync.
         </p>
 
-        <h3>What I Learned</h3>
+        <h3>ECE Skills Gained</h3>
         <p>
-          This was my first serious project with React and my first time building a real-time data architecture.
-          The biggest technical challenge was managing Supabase Realtime subscriptions at scale - early on,
-          multiple components subscribing to the same channel caused conflicts and duplicate data. The solution
-          was enforcing unique channel names per hook instance, which required understanding how Supabase
-          manages WebSocket connections under the hood.
+          Building this site has been a gateway into the more physical side of Computer Engineering. While most of the work so far has been on the screen, I am now moving into the "Internet of Things" (IoT) space. I am learning how to take the data from my website and send it to a physical microcontroller—a tiny computer—that can then control electrical signals. This involves understanding how to "bridge" two different worlds: the high-level world of web code and the low-level world of electrical pulses and wires.
         </p>
         <p>
-          Building for a real audience - the SACC community actually using this during live games - pushed me
-          to care about things I would have ignored in a class project: load time on mobile networks, graceful
-          fallbacks when the database is slow, and UI decisions that make sense to someone who just wants to
-          check the score quickly. That gap between "it works" and "it works for real people in real conditions"
-          was the most valuable thing this project taught me.
+          I am specifically gaining skills in hardware communication protocols. To get the scoreboard to work, I have to learn exactly how it "listens" for data. This means studying things like serial communication, where I send a specific string of ones and zeros to turn on certain lights on the scoreboard. I’m also learning about signal integrity—making sure that the electrical signal doesn't get "noisy" or corrupted as it travels through the wires in a big, crowded gym. It's a perfect blend of software logic and hardware reality.
+        </p>
+
+        <h3>Next Steps</h3>
+        <p>
+          The most exciting next step is the completion of the physical scoreboard integration. I have an electronic scoreboard and am currently figuring out the best way to hook it up to my laptop. The vision is simple: when an official updates the score on the PandaPulse website, the physical scoreboard hanging in the gym will update instantly. I'll be using an ESP32 microcontroller to act as the "brain" that catches the update from the internet and physically flips the digits on the scoreboard.
         </p>
         <p>
-          The ECE 1100 Discovery Project framework challenged me to not just build something, but to investigate
-          a technical topic at the frontier of what I know. For me, that was real-time web architecture: how do
-          you design a system where data consistency, latency, and user experience all have to be solved
-          simultaneously? This project is my answer to that question.
+          Beyond the hardware, I want to make the site even "smarter" by adding automated features. Right now, I still have to do some manual work to set the playoff brackets. I plan to write an algorithm that looks at all the scores from the regular season and automatically seeds the teams into the bracket based on how well they played. This will make the tournament run even smoother and take the "human error" out of the equation, making the whole experience feel even more like a professional sports league.
         </p>
 
       </div>

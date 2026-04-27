@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <style>
-/* ---- DESIGN TOKENS ---- */
 :root {
   --bg:       #0b0e13;
   --surface:  #12161f;
@@ -25,8 +24,6 @@
   --radius:   6px;
   --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
 }
-
-/* ---- RESET ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.7; overflow-x: hidden; }
@@ -34,13 +31,10 @@ a { color: var(--accent); text-decoration: none; transition: opacity var(--trans
 a:hover { opacity: 0.8; }
 img { max-width: 100%; display: block; }
 ::selection { background: var(--accent); color: #000; }
-
-/* ---- SCROLLBAR ---- */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-/* ---- NAV ---- */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -69,21 +63,7 @@ nav {
   .nav-mobile a { font-family: var(--mono); font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 }
 
-/* ---- LAYOUT ---- */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-section { padding: 6rem 0; }
-.section-label {
-  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.section-label::before { content: '//'; opacity: 0.5; }
-h2.section-title {
-  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--heading); font-weight: 400; line-height: 1.15; margin-bottom: 3rem;
-}
-
-/* ---- BUTTONS ---- */
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.75rem 1.75rem; border-radius: var(--radius);
@@ -94,23 +74,14 @@ h2.section-title {
 .btn-primary:hover { background: transparent; color: var(--accent); opacity: 1; }
 .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
-
-/* ---- TAGS ---- */
 .tag { font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 3px; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
-
-/* ---- FOOTER ---- */
 footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
 footer span { color: var(--accent); }
 
-/* ---- FADE-IN ---- */
 .fade-in { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
 .js-ready .fade-in { opacity: 0; transform: translateY(24px); }
 .js-ready .fade-in.visible { opacity: 1; transform: none; }
-.js-ready .fade-in:nth-child(2) { transition-delay: 0.1s; }
-.js-ready .fade-in:nth-child(3) { transition-delay: 0.2s; }
-.js-ready .fade-in:nth-child(4) { transition-delay: 0.3s; }
 
-/* ---- PROJECT PAGE SHARED STYLES ---- */
 .project-page { padding-top: 100px; padding-bottom: 6rem; }
 .back-link {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -127,40 +98,42 @@ footer span { color: var(--accent); }
 .project-page-meta .tag { font-size: 0.78rem; padding: 0.3rem 0.8rem; }
 .project-page-meta .tag.highlight { background: rgba(79,255,176,0.1); border-color: var(--accent); color: var(--accent); }
 .project-links-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
 .project-body-text { font-size: 1rem; color: var(--text); line-height: 1.9; }
 .project-body-text p { margin-bottom: 1.25rem; }
-.project-body-text h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--heading); font-weight: 400; margin: 2.5rem 0 1rem; }
+.project-body-text h3 { font-family: var(--serif); font-size: 1.5rem; color: var(--heading); font-weight: 400; margin: 3rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
 .project-body-text ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
 .project-body-text ul li { padding-left: 1.25rem; position: relative; font-size: 0.95rem; }
 .project-body-text ul li::before { content: '->'; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); font-size: 0.65rem; top: 5px; }
 
-/* Photo gallery on project pages */
-.photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 2rem 0; }
-.photo-gallery img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; object-fit: cover; }
-.photo-gallery-single img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; max-height: 500px; object-fit: cover; margin: 2rem 0; }
-
-/* Photo placeholder for project pages */
-.photo-placeholder-box {
-  background: var(--surface); border: 2px dashed var(--border); border-radius: var(--radius);
-  padding: 3rem 2rem; text-align: center; margin: 2rem 0; color: var(--muted);
-}
-.photo-placeholder-box .ph-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-.photo-placeholder-box .ph-title { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: var(--text); }
-.photo-placeholder-box .ph-desc { font-size: 0.85rem; line-height: 1.6; }
-.photo-placeholder-box code { font-family: var(--mono); font-size: 0.8rem; background: var(--surface2); padding: 0.15rem 0.4rem; border-radius: 3px; color: var(--accent); }
-
-/* Feature list grid */
-.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-.feature-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
-.feature-item-title { font-size: 0.88rem; color: var(--heading); font-weight: 500; margin-bottom: 0.3rem; }
-.feature-item-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
-
-/* Stat row */
 .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
 .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; text-align: center; }
 .stat-box-val { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); }
 .stat-box-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
 
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.feature-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; transition: border-color var(--transition); }
+.feature-item:hover { border-color: var(--accent); }
+.feature-item-title { font-size: 0.88rem; color: var(--heading); font-weight: 500; margin-bottom: 0.3rem; }
+.feature-item-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+.ss-gallery { display: grid; gap: 1rem; margin: 2rem 0; }
+.ss-gallery.cols-2 { grid-template-columns: 1fr 1fr; }
+.ss-gallery.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.ss-gallery.cols-1 { grid-template-columns: 1fr; }
+.ss-item { display: flex; flex-direction: column; gap: 0.5rem; }
+.ss-item img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; object-fit: cover; display: block; }
+.ss-cap { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-align: center; text-transform: uppercase; letter-spacing: 0.08em; }
+@media (max-width: 750px) { .ss-gallery.cols-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .ss-gallery.cols-2, .ss-gallery.cols-3 { grid-template-columns: 1fr; } }
+
+.role-header {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-family: var(--mono); font-size: 0.72rem; color: var(--accent2);
+  text-transform: uppercase; letter-spacing: 0.15em;
+  margin: 2.5rem 0 1rem;
+}
+.role-header::before { content: ''; flex: 1; height: 1px; background: var(--border); }
 </style>
 </head>
 <body>
@@ -181,11 +154,7 @@ footer span { color: var(--accent); }
   </nav>
   <div class="nav-mobile" id="nav-mobile">
     <a href="../index.html#about" onclick="closeMenu()">About</a>
-    <a href="../index.html#skills" onclick="closeMenu()">Skills</a>
-    <a href="../index.html#experience" onclick="closeMenu()">Experience</a>
     <a href="../index.html#projects" onclick="closeMenu()">Projects</a>
-    <a href="../index.html#goals" onclick="closeMenu()">Goals</a>
-    <a href="../index.html#resume" onclick="closeMenu()">Resume</a>
     <a href="../index.html#contact" onclick="closeMenu()">Contact</a>
   </div>
 
@@ -198,50 +167,36 @@ footer span { color: var(--accent); }
         <div class="project-page-type">CS 2340 &middot; Object-Oriented Design &middot; March 2026</div>
         <h1 class="project-page-title">PandaPulse</h1>
         <div class="project-page-meta">
-          <span class="tag highlight">3rd Place - Both Sections</span>
+          <span class="tag highlight">3rd Place &mdash; Both Sections</span>
           <span class="tag highlight">Final Exam Exempt</span>
           <span class="tag">Django</span>
           <span class="tag">Python</span>
           <span class="tag">SQLite</span>
           <span class="tag">JavaScript</span>
-          <span class="tag">HTML/CSS</span>
+          <span class="tag">HTML / CSS</span>
         </div>
         <div class="project-links-bar">
-          <a href="https://pandapulseadmins.pythonanywhere.com/" target="_blank" class="btn btn-primary">Live Site</a>
+          <a href="https://pandapulseadmins.pythonanywhere.com/" target="_blank" class="btn btn-primary">Live Site -></a>
           <a href="https://github.com/Runningbird20/PandaPulse" target="_blank" class="btn btn-outline">GitHub Repo</a>
         </div>
       </div>
 
       <div class="stat-row fade-in">
-        <div class="stat-box"><div class="stat-box-val">3rd</div><div class="stat-box-label">Place out of both sections</div></div>
-        <div class="stat-box"><div class="stat-box-val">35+</div><div class="stat-box-label">Implemented features</div></div>
+        <div class="stat-box"><div class="stat-box-val">3rd</div><div class="stat-box-label">Place &mdash; both sections</div></div>
+        <div class="stat-box"><div class="stat-box-val">35+</div><div class="stat-box-label">Features implemented</div></div>
         <div class="stat-box"><div class="stat-box-val">3</div><div class="stat-box-label">User roles</div></div>
-        <div class="stat-box"><div class="stat-box-val">Top 5</div><div class="stat-box-label">Final exam exemption</div></div>
+        <div class="stat-box"><div class="stat-box-val">Top 5</div><div class="stat-box-label">Final exam exempt</div></div>
       </div>
 
-      <!--
-        PHOTOS: Add screenshots of PandaPulse here.
-        Example - replace the placeholder below with:
-
-        <div class="photo-gallery">
-          <img src="../images/pandapulse-home.png" alt="PandaPulse homepage" />
-          <img src="../images/pandapulse-jobs.png" alt="Job search page" />
-          <img src="../images/pandapulse-panda.png" alt="Panda Paul chatbot" />
+      <div class="ss-gallery cols-2 fade-in">
+        <div class="ss-item">
+          <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.22.03%E2%80%AFPM.png" alt="PandaPulse landing page" />
+          <div class="ss-cap">Landing page</div>
         </div>
-
-        For a single wide screenshot:
-        <div class="photo-gallery-single">
-          <img src="../images/pandapulse-dashboard.png" alt="PandaPulse dashboard" />
+        <div class="ss-item">
+          <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.22.12%E2%80%AFPM.png" alt="Pulses — short-form video feed" />
+          <div class="ss-cap">Pulses &mdash; short-form video feed</div>
         </div>
-      -->
-      <div class="photo-placeholder-box fade-in">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-title">Add Screenshots Here</div>
-        <p class="ph-desc">
-          Create an <code>images/</code> folder in your repo and add your screenshots there.<br />
-          Then replace this block with <code>&lt;div class="photo-gallery"&gt;</code> containing your <code>&lt;img&gt;</code> tags.<br />
-          See the HTML comment above this box for exact instructions.
-        </p>
       </div>
 
       <div class="project-body-text fade-in">
@@ -249,127 +204,218 @@ footer span { color: var(--accent); }
         <h3>Overview</h3>
         <p>
           PandaPulse is a full-featured job search and hiring platform built in Django for CS 2340 (Objects and Design)
-          at Georgia Tech. The platform functions similarly to LinkedIn - connecting job seekers with employers through
-          structured profiles, job listings, and an application pipeline. It serves three distinct user roles: Job Seekers,
-          Recruiters, and Administrators.
+          at Georgia Tech. The platform connects job seekers with employers through structured profiles, job listings,
+          and an application pipeline — functioning similarly to LinkedIn but built entirely from scratch by our team.
+          It serves three distinct user roles: Job Seekers, Recruiters, and Administrators.
         </p>
         <p>
-          The project placed 3rd out of all submissions across both class sections, earning our team a final exam exemption.
-          Beyond the 15 required user stories, our team designed and implemented over 20 original features that pushed
-          the platform well beyond the baseline requirement.
+          The project placed 3rd out of all submissions across both class sections, earning our team a final exam
+          exemption. Beyond the 15 required user stories, we designed and implemented over 20 original features that
+          pushed the platform well beyond the baseline requirement.
         </p>
 
-        <h3>Required Features (15 User Stories)</h3>
-        <ul>
-          <li>Job Seeker profile creation with headline, skills, education, work experience, and links</li>
-          <li>Job search with filters for title, skills, location, salary range, remote/on-site, and visa sponsorship</li>
-          <li>One-click job application with a personalized tailored note</li>
-          <li>Application status tracking: Applied, Review, Interview, Offer, Closed</li>
-          <li>Privacy controls on seeker profiles</li>
-          <li>Skill-based job recommendations for seekers</li>
-          <li>Interactive map view of job postings</li>
-          <li>Distance-based map filtering from current location</li>
-          <li>Preferred commute radius setting</li>
-          <li>Recruiter job posting and editing</li>
-          <li>Candidate search by skills, location, and projects</li>
-          <li>Kanban-style applicant pipeline for recruiters</li>
-          <li>In-platform messaging between recruiters and candidates</li>
-          <li>Email candidates through the platform</li>
-          <li>Saved candidate searches with new-match notifications</li>
-          <li>Candidate recommendations for recruiter job postings</li>
-          <li>Office location pinned on map for each job posting</li>
-          <li>Applicant location clusters on recruiter map view</li>
-          <li>Admin user and role management</li>
-          <li>Admin job post moderation and removal</li>
-          <li>Admin CSV data export for reporting</li>
-        </ul>
+        <h3>Job Seeker Experience</h3>
 
-        <h3>Original Features We Added</h3>
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.22.21%E2%80%AFPM.png" alt="Job search with filters" />
+            <div class="ss-cap">Job search &amp; filters</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.22.50%E2%80%AFPM.png" alt="Job detail page" />
+            <div class="ss-cap">Job detail view</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.22.59%E2%80%AFPM.png" alt="Apply modal with cover note and resume" />
+            <div class="ss-cap">Application modal</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-2">
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.22.31%E2%80%AFPM.png" alt="Applicant dashboard — profile" />
+            <div class="ss-cap">Applicant dashboard &mdash; dark mode</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.22.40%E2%80%AFPM.png" alt="Applicant dashboard — light mode" />
+            <div class="ss-cap">Applicant dashboard &mdash; light mode</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.42.39%E2%80%AFPM.png" alt="Matched jobs" />
+            <div class="ss-cap">Matched jobs</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.42.50%E2%80%AFPM.png" alt="Interview calendar" />
+            <div class="ss-cap">Interview calendar</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.42.59%E2%80%AFPM.png" alt="Offer comparison tool" />
+            <div class="ss-cap">Offer comparison tool</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.43.07%E2%80%AFPM.png" alt="Messaging inbox" />
+            <div class="ss-cap">Messages inbox</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.43.15%E2%80%AFPM.png" alt="Message thread" />
+            <div class="ss-cap">Message thread</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.43.25%E2%80%AFPM.png" alt="Company search" />
+            <div class="ss-cap">Company search</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-2">
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.43.36%E2%80%AFPM.png" alt="Panda Assistant AI chatbot" />
+            <div class="ss-cap">Panda Assistant &mdash; AI chatbot</div>
+          </div>
+        </div>
+
+        <h3>Recruiter &amp; Admin Experience</h3>
+
+        <div class="ss-gallery cols-2">
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.44.00%E2%80%AFPM.png" alt="Find candidates search" />
+            <div class="ss-cap">Find candidates</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.44.16%E2%80%AFPM.png" alt="Applicant location clusters map" />
+            <div class="ss-cap">Applicant location clusters</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.44.42%E2%80%AFPM.png" alt="Employer dashboard — profile" />
+            <div class="ss-cap">Employer profile</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.44.57%E2%80%AFPM.png" alt="My job listings" />
+            <div class="ss-cap">My job listings</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.45.06%E2%80%AFPM.png" alt="Matched candidates" />
+            <div class="ss-cap">Matched candidates</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.45.26%E2%80%AFPM.png" alt="Archived applicants" />
+            <div class="ss-cap">Archived applicants</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.45.33%E2%80%AFPM.png" alt="More tools — comparison and alerts" />
+            <div class="ss-cap">Recruiter tools</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.45.42%E2%80%AFPM.png" alt="Create job post form" />
+            <div class="ss-cap">Create job post</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-1">
+          <div class="ss-item">
+            <img src="../images/pandapulse/Screenshot%202026-04-27%20at%202.46.27%E2%80%AFPM.png" alt="Hiring pipeline — kanban board" style="max-height:340px;object-fit:cover;object-position:top;" />
+            <div class="ss-cap">Hiring pipeline &mdash; kanban board</div>
+          </div>
+        </div>
+
+        <h3>Original Features</h3>
         <div class="feature-grid">
           <div class="feature-item">
-            <div class="feature-item-title">Panda Paul - AI Chatbot Mascot</div>
-            <div class="feature-item-desc">An integrated panda mascot chatbot that lets logged-in users navigate the site, update profile info, apply to jobs, and message people through natural conversation.</div>
+            <div class="feature-item-title">Panda Paul — AI Chatbot Mascot</div>
+            <div class="feature-item-desc">A panda mascot chatbot that lets logged-in users navigate the site, update profile info, apply to jobs, and message people through natural conversation.</div>
           </div>
           <div class="feature-item">
-            <div class="feature-item-title">Pulses - Short-Form Video Feed</div>
-            <div class="feature-item-desc">Any logged-in user can post short videos to promote themselves or their company. Users can like pulses and posters can delete their own content.</div>
+            <div class="feature-item-title">Pulses — Short-Form Video Feed</div>
+            <div class="feature-item-desc">Any logged-in user can post short videos to promote themselves or their company. Users can like pulses; posters can delete their own content.</div>
           </div>
           <div class="feature-item">
             <div class="feature-item-title">Offer Comparison Tool</div>
-            <div class="feature-item-desc">Applicants can compare multiple job offers side-by-side with custom-weighted categories including salary, location, visa sponsorship, and benefits.</div>
+            <div class="feature-item-desc">Applicants compare job offers side-by-side with custom-weighted categories: salary, location, visa sponsorship, and benefits.</div>
           </div>
           <div class="feature-item">
             <div class="feature-item-title">Interview Calendar System</div>
-            <div class="feature-item-desc">Applicants schedule interviews from time slots set by the employer, fully integrated into the application workflow on both sides.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-item-title">One-Click Follow-Up</div>
-            <div class="feature-item-desc">Applicants can send a polite follow-up message after a set number of days using pre-built professional templates.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-item-title">Skill Endorsements</div>
-            <div class="feature-item-desc">Employers can endorse applicant skills with one click after conducting interviews, adding social proof to candidate profiles.</div>
+            <div class="feature-item-desc">Applicants schedule interviews from employer-set time slots, fully integrated into the workflow on both sides.</div>
           </div>
           <div class="feature-item">
             <div class="feature-item-title">Response-Time SLA Badge</div>
-            <div class="feature-item-desc">Each employer displays a "responds in approximately N days" badge on their job listings so applicants know what to expect.</div>
+            <div class="feature-item-desc">Each employer displays a "responds in ~N days" badge on job listings so applicants can set expectations before applying.</div>
           </div>
           <div class="feature-item">
             <div class="feature-item-title">Resume Auto-Parser</div>
-            <div class="feature-item-desc">Uploaded resumes are automatically parsed into profile fields with skill normalization for better job matching accuracy.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-item-title">Confetti on Application Submit</div>
-            <div class="feature-item-desc">Celebrates job application submissions with confetti and fanfare to make the experience feel rewarding.</div>
+            <div class="feature-item-desc">Uploaded resumes are parsed into profile fields with skill normalization for better job matching accuracy.</div>
           </div>
           <div class="feature-item">
             <div class="feature-item-title">Application Viewed Indicator</div>
-            <div class="feature-item-desc">Applicants can see when an employer has opened and viewed their application in real time.</div>
+            <div class="feature-item-desc">Applicants can see in real time when an employer has opened and viewed their application.</div>
           </div>
           <div class="feature-item">
-            <div class="feature-item-title">Private Notes</div>
-            <div class="feature-item-desc">Both applicants and employers can attach private notes to applications that are only visible to themselves.</div>
+            <div class="feature-item-title">Applicant Comparison Tool</div>
+            <div class="feature-item-desc">Recruiters compare multiple applicants for a role side-by-side and re-rank them against hiring priorities.</div>
           </div>
           <div class="feature-item">
-            <div class="feature-item-title">Rejection Feedback Templates</div>
-            <div class="feature-item-desc">Structured rejection messages with optional personalized notes so candidates always receive meaningful feedback.</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-item-title">Applicant Activity Feed</div>
-            <div class="feature-item-desc">A real-time feed showing applicants exactly what is happening with each of their applications as status changes occur.</div>
+            <div class="feature-item-title">Saved Search Alerts</div>
+            <div class="feature-item-desc">Recruiters save candidate searches and receive alerts when new matching profiles appear.</div>
           </div>
           <div class="feature-item">
             <div class="feature-item-title">Company Culture Pages</div>
-            <div class="feature-item-desc">Company profiles featuring culture descriptions, perks, and an office map gallery so candidates can evaluate fit before applying.</div>
+            <div class="feature-item-desc">Company profiles with culture descriptions, perks, and an office location map so candidates can evaluate fit before applying.</div>
           </div>
           <div class="feature-item">
             <div class="feature-item-title">Dark Mode</div>
             <div class="feature-item-desc">Full site dark/light mode toggle that persists per user across sessions.</div>
           </div>
           <div class="feature-item">
-            <div class="feature-item-title">Account Recovery Flow</div>
-            <div class="feature-item-desc">Forgot username and forgot password buttons that send recovery links to the email address associated with the account.</div>
+            <div class="feature-item-title">Skill Endorsements</div>
+            <div class="feature-item-desc">Employers endorse applicant skills after interviews, adding social proof to candidate profiles.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">One-Click Follow-Up</div>
+            <div class="feature-item-desc">Applicants send a professional follow-up message after a set number of days using pre-built templates.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Rejection Feedback Templates</div>
+            <div class="feature-item-desc">Structured rejection messages with optional personalized notes so candidates always receive meaningful feedback.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Archived Rejected Applicants</div>
+            <div class="feature-item-desc">Employers archive rejected candidates to revisit them if new positions open up, preserving the talent pool.</div>
           </div>
           <div class="feature-item">
             <div class="feature-item-title">Interview Feedback Workflow</div>
-            <div class="feature-item-desc">Employers can leave structured internal feedback and decision rationale for each candidate after interviews.</div>
+            <div class="feature-item-desc">Employers log structured internal feedback and decision rationale for each candidate after interviews.</div>
           </div>
           <div class="feature-item">
-            <div class="feature-item-title">Archived Rejections</div>
-            <div class="feature-item-desc">Employers can archive rejected applicants to revisit them later if new positions open up, preserving the candidate pool.</div>
+            <div class="feature-item-title">Confetti on Application Submit</div>
+            <div class="feature-item-desc">Application submissions are celebrated with confetti and fanfare to make the experience feel rewarding.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Account Recovery Flow</div>
+            <div class="feature-item-desc">Forgot username and password flows that send recovery links to the associated email address.</div>
           </div>
         </div>
 
         <h3>Technical Approach</h3>
         <p>
-          The platform was built entirely in Django, leveraging its ORM, class-based views, and template system throughout.
-          The project emphasized object-oriented design principles - the core focus of CS 2340 - including clean model
-          separation, reusable components, and a well-structured codebase that could scale with additional features.
+          The platform was built entirely in Django, leveraging its ORM, class-based views, and template system
+          throughout. The project emphasized the object-oriented design principles at the core of CS 2340 — clean
+          model separation, reusable components, and a structured codebase built to scale. The map features use
+          Google Maps to pin job locations and cluster applicants geographically.
         </p>
         <p>
-          The map features use an interactive mapping library to pin job locations and cluster applicants geographically.
-          The Pulses video feed, Panda Paul chatbot, and offer comparison tool were all designed and built entirely by our
-          team without external templates or starter code for those components.
+          The Pulses feed, Panda Paul chatbot, and offer comparison tool were all designed and built entirely by our
+          team without external starter code. The dark mode system uses a per-user preference stored in the database
+          and applied via CSS class switching on the root element.
         </p>
 
       </div>
@@ -384,32 +430,19 @@ footer span { color: var(--accent); }
   </footer>
 
   <script>
-// Mobile nav
 const hamburger = document.getElementById('hamburger');
 const navMobile = document.getElementById('nav-mobile');
 if (hamburger) hamburger.addEventListener('click', () => navMobile.classList.toggle('open'));
 function closeMenu() { if (navMobile) navMobile.classList.remove('open'); }
-
-// Enable fade-in animations only once JS is confirmed running
 document.documentElement.classList.add('js-ready');
-
-// Intersection observer for fade-ins
 const fadeEls = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
   });
 }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
 fadeEls.forEach(el => observer.observe(el));
-
-// Hard fallback: show everything after 1.2s in case observer misfires
-setTimeout(() => {
-  document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
-}, 1200);
-
+setTimeout(() => { document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible')); }, 1200);
 </script>
 </body>
 </html>

@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
   <style>
-/* ---- DESIGN TOKENS ---- */
 :root {
   --bg:       #0b0e13;
   --surface:  #12161f;
@@ -25,8 +24,6 @@
   --radius:   6px;
   --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
 }
-
-/* ---- RESET ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.7; overflow-x: hidden; }
@@ -34,13 +31,10 @@ a { color: var(--accent); text-decoration: none; transition: opacity var(--trans
 a:hover { opacity: 0.8; }
 img { max-width: 100%; display: block; }
 ::selection { background: var(--accent); color: #000; }
-
-/* ---- SCROLLBAR ---- */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-/* ---- NAV ---- */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -69,21 +63,7 @@ nav {
   .nav-mobile a { font-family: var(--mono); font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 }
 
-/* ---- LAYOUT ---- */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-section { padding: 6rem 0; }
-.section-label {
-  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.section-label::before { content: '//'; opacity: 0.5; }
-h2.section-title {
-  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--heading); font-weight: 400; line-height: 1.15; margin-bottom: 3rem;
-}
-
-/* ---- BUTTONS ---- */
 .btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.75rem 1.75rem; border-radius: var(--radius);
@@ -94,23 +74,14 @@ h2.section-title {
 .btn-primary:hover { background: transparent; color: var(--accent); opacity: 1; }
 .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
-
-/* ---- TAGS ---- */
 .tag { font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 3px; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
-
-/* ---- FOOTER ---- */
 footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
 footer span { color: var(--accent); }
 
-/* ---- FADE-IN ---- */
 .fade-in { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
 .js-ready .fade-in { opacity: 0; transform: translateY(24px); }
 .js-ready .fade-in.visible { opacity: 1; transform: none; }
-.js-ready .fade-in:nth-child(2) { transition-delay: 0.1s; }
-.js-ready .fade-in:nth-child(3) { transition-delay: 0.2s; }
-.js-ready .fade-in:nth-child(4) { transition-delay: 0.3s; }
 
-/* ---- PROJECT PAGE SHARED STYLES ---- */
 .project-page { padding-top: 100px; padding-bottom: 6rem; }
 .back-link {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -127,40 +98,35 @@ footer span { color: var(--accent); }
 .project-page-meta .tag { font-size: 0.78rem; padding: 0.3rem 0.8rem; }
 .project-page-meta .tag.highlight { background: rgba(79,255,176,0.1); border-color: var(--accent); color: var(--accent); }
 .project-links-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
 .project-body-text { font-size: 1rem; color: var(--text); line-height: 1.9; }
 .project-body-text p { margin-bottom: 1.25rem; }
-.project-body-text h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--heading); font-weight: 400; margin: 2.5rem 0 1rem; }
+.project-body-text h3 { font-family: var(--serif); font-size: 1.5rem; color: var(--heading); font-weight: 400; margin: 3rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
 .project-body-text ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
 .project-body-text ul li { padding-left: 1.25rem; position: relative; font-size: 0.95rem; }
 .project-body-text ul li::before { content: '->'; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); font-size: 0.65rem; top: 5px; }
 
-/* Photo gallery on project pages */
-.photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 2rem 0; }
-.photo-gallery img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; object-fit: cover; }
-.photo-gallery-single img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; max-height: 500px; object-fit: cover; margin: 2rem 0; }
-
-/* Photo placeholder for project pages */
-.photo-placeholder-box {
-  background: var(--surface); border: 2px dashed var(--border); border-radius: var(--radius);
-  padding: 3rem 2rem; text-align: center; margin: 2rem 0; color: var(--muted);
-}
-.photo-placeholder-box .ph-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-.photo-placeholder-box .ph-title { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: var(--text); }
-.photo-placeholder-box .ph-desc { font-size: 0.85rem; line-height: 1.6; }
-.photo-placeholder-box code { font-family: var(--mono); font-size: 0.8rem; background: var(--surface2); padding: 0.15rem 0.4rem; border-radius: 3px; color: var(--accent); }
-
-/* Feature list grid */
-.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-.feature-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
-.feature-item-title { font-size: 0.88rem; color: var(--heading); font-weight: 500; margin-bottom: 0.3rem; }
-.feature-item-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
-
-/* Stat row */
 .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
 .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; text-align: center; }
 .stat-box-val { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); }
 .stat-box-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
 
+.ss-gallery { display: grid; gap: 1rem; margin: 2rem 0; }
+.ss-gallery.cols-2 { grid-template-columns: 1fr 1fr; }
+.ss-gallery.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.ss-item { display: flex; flex-direction: column; gap: 0.5rem; }
+.ss-item img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; object-fit: cover; display: block; }
+.ss-cap { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-align: center; text-transform: uppercase; letter-spacing: 0.08em; }
+@media (max-width: 750px) { .ss-gallery.cols-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .ss-gallery.cols-2, .ss-gallery.cols-3 { grid-template-columns: 1fr; } }
+
+.callout {
+  background: var(--surface); border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.5rem; margin: 1.5rem 0;
+  font-size: 0.95rem; color: var(--text); line-height: 1.8;
+}
+.callout strong { color: var(--accent); font-family: var(--mono); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.3rem; }
 </style>
 </head>
 <body>
@@ -194,14 +160,15 @@ footer span { color: var(--accent); }
         <div class="project-page-type">Full-Stack Web Application &middot; January 2026</div>
         <h1 class="project-page-title">GT Movies Store</h1>
         <div class="project-page-meta">
+          <span class="tag highlight">21 Features</span>
           <span class="tag">Django 5</span>
           <span class="tag">Python</span>
-          <span class="tag">HTML/CSS</span>
           <span class="tag">SQLite</span>
+          <span class="tag">HTML / CSS</span>
           <span class="tag">PythonAnywhere</span>
         </div>
         <div class="project-links-bar">
-          <a href="https://github.com/AzureRaven25/moviesstore" target="_blank" class="btn btn-primary">GitHub Repo</a>
+          <a href="https://github.com/AzureRaven25/moviesstore" target="_blank" class="btn btn-primary">GitHub Repo -></a>
         </div>
       </div>
 
@@ -212,77 +179,122 @@ footer span { color: var(--accent); }
         <div class="stat-box"><div class="stat-box-val">100%</div><div class="stat-box-label">Hand-typed code</div></div>
       </div>
 
-      <!--
-        PHOTOS: Add screenshots of GT Movies Store here.
-        Example:
-
-        <div class="photo-gallery">
-          <img src="../images/gtmovies-home.png" alt="GT Movies Store homepage" />
-          <img src="../images/gtmovies-cart.png" alt="Shopping cart" />
-          <img src="../images/gtmovies-admin.png" alt="Admin panel" />
+      <div class="ss-gallery cols-2 fade-in">
+        <div class="ss-item">
+          <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.50.31%E2%80%AFPM.png" alt="GT Movies Store homepage" />
+          <div class="ss-cap">Homepage</div>
         </div>
-      -->
-      <div class="photo-placeholder-box fade-in">
-        <div class="ph-icon">&#128247;</div>
-        <div class="ph-title">Add Screenshots Here</div>
-        <p class="ph-desc">
-          Create an <code>images/</code> folder in your repo and add your screenshots there.<br />
-          Then replace this block with <code>&lt;div class="photo-gallery"&gt;</code> containing your <code>&lt;img&gt;</code> tags.
-        </p>
+        <div class="ss-item">
+          <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.52.14%E2%80%AFPM.png" alt="Movie catalog list" />
+          <div class="ss-cap">Movie catalog</div>
+        </div>
       </div>
 
       <div class="project-body-text fade-in">
 
         <h3>Overview</h3>
         <p>
-          GT Movies Store is a full-stack web application developed using Django 5, based on the framework presented in
-          "Django 5 for the Impatient" by Daniel Correa and Greg Lim. The application simulates an online movie marketplace
-          where users can browse a curated movie library, manage purchases, and interact through reviews, while administrators
-          maintain full control over platform data and moderation.
-        </p>
-        <p>
-          I approached this project by intentionally typing out all of the code myself rather than copying it from the
-          accompanying GitHub repository. This decision helped me genuinely understand how HTML, CSS, and Python work
-          together within a Django application. By the middle to later stages, I began recognizing recurring patterns and
-          could anticipate upcoming steps before consulting the instructions.
-        </p>
-        <p>
-          The review reporting feature was not covered in the textbook at all - I designed and implemented it independently
-          by applying the Django concepts I had already learned. This was the most technically satisfying part of the project.
+          GT Movies Store is a full-stack web application developed using Django 5, built alongside the textbook
+          <em>Django 5 for the Impatient</em> by Daniel Correa and Greg Lim. The application simulates an online
+          movie marketplace where users can browse a curated library, manage purchases, and interact through reviews,
+          while administrators maintain full control over platform data and moderation.
         </p>
 
-        <h3>21 Implemented Features</h3>
+        <div class="callout">
+          <strong>Deliberate approach</strong>
+          I typed every line of code by hand rather than copying from the book's GitHub repository. By the middle
+          stages I could anticipate upcoming steps without consulting the instructions — the patterns had clicked.
+          The review reporting feature was not covered in the textbook at all; I designed and implemented it
+          independently, which proved I had genuinely internalized the framework.
+        </div>
+
+        <h3>Browsing &amp; Authentication</h3>
+
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.51.54%E2%80%AFPM.png" alt="Movie poster grid" />
+            <div class="ss-cap">Movie poster grid</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.50.58%E2%80%AFPM.png" alt="Login page" />
+            <div class="ss-cap">Login</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.51.05%E2%80%AFPM.png" alt="Sign up page" />
+            <div class="ss-cap">Sign up</div>
+          </div>
+        </div>
+
+        <h3>Movie Detail &amp; Reviews</h3>
+
+        <div class="ss-gallery cols-2">
+          <div class="ss-item">
+            <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.51.37%E2%80%AFPM.png" alt="Movie detail — The Dark Knight" />
+            <div class="ss-cap">Movie detail &mdash; The Dark Knight</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.51.47%E2%80%AFPM.png" alt="Movie detail with user review" />
+            <div class="ss-cap">Movie detail with review</div>
+          </div>
+        </div>
+
+        <h3>Cart &amp; Orders</h3>
+
+        <div class="ss-gallery cols-2">
+          <div class="ss-item">
+            <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.51.26%E2%80%AFPM.png" alt="Shopping cart" />
+            <div class="ss-cap">Shopping cart</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.51.16%E2%80%AFPM.png" alt="Order history" />
+            <div class="ss-cap">Order history</div>
+          </div>
+        </div>
+
+        <h3>About &amp; Admin</h3>
+
+        <div class="ss-gallery cols-2">
+          <div class="ss-item">
+            <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.52.08%E2%80%AFPM.png" alt="About page" />
+            <div class="ss-cap">About page</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/gtmovies/Screenshot%202026-04-27%20at%202.50.49%E2%80%AFPM.png" alt="Django admin panel" />
+            <div class="ss-cap">Django admin panel</div>
+          </div>
+        </div>
+
+        <h3>All 21 Features</h3>
         <ul>
-          <li>View application information through an About page in the navigation bar</li>
+          <li>View application information through an About page</li>
           <li>Register a new account and get redirected to login on completion</li>
-          <li>Log in and see authenticated status reflected in the navigation bar immediately</li>
-          <li>Browse the full movie catalog with images and titles on the Movies page</li>
-          <li>Search movies dynamically by title keyword using a search bar</li>
-          <li>Access the shopping cart at any time through the persistent navigation bar</li>
-          <li>Add movies to cart by selecting a quantity on the movie detail page</li>
-          <li>Purchase movies from the cart - generates a unique order number on checkout</li>
-          <li>Clear the cart entirely using a dedicated Remove All Movies button</li>
-          <li>Create movie reviews as a logged-in user, displayed with username and timestamp</li>
-          <li>Edit only your own reviews with proper ownership control enforcement</li>
-          <li>Delete reviews you have written, removing them from the movie page immediately</li>
-          <li>View all existing reviews without needing to be logged in</li>
-          <li>View full movie detail pages with description, synopsis, price, image, and reviews</li>
-          <li>View complete order history with order numbers, dates, items, quantities, and totals</li>
-          <li>Access the site from any desktop browser - hosted on PythonAnywhere</li>
+          <li>Log in and see authenticated status reflected in the navigation bar</li>
+          <li>Browse the full movie catalog with images and titles</li>
+          <li>Search movies dynamically by title keyword</li>
+          <li>Access the shopping cart at any time through the persistent nav</li>
+          <li>Add movies to cart by selecting a quantity on the detail page</li>
+          <li>Purchase movies from cart — generates a unique order on checkout</li>
+          <li>Clear the cart entirely with a dedicated Remove All button</li>
+          <li>Create movie reviews as a logged-in user, with username and timestamp</li>
+          <li>Edit your own reviews with ownership control enforcement</li>
+          <li>Delete your own reviews immediately</li>
+          <li>View all reviews without needing to be logged in</li>
+          <li>Full movie detail pages with description, price, image, and reviews</li>
+          <li>Complete order history with numbers, dates, items, quantities, and totals</li>
+          <li>Hosted on PythonAnywhere — accessible from any desktop browser</li>
           <li>Responsive layout that adapts to tablets and smartphones</li>
-          <li>Admin: view, create, update, and delete users through the Django admin interface</li>
-          <li>Admin: add, update, and delete movies from the catalog with immediate reflection</li>
-          <li>Admin: create, edit, or delete any review regardless of author for full moderation</li>
-          <li>Report inappropriate reviews - removes them from public view immediately (custom feature built independently)</li>
+          <li>Admin: manage users via the Django admin interface</li>
+          <li>Admin: add, update, and delete movies from the catalog</li>
+          <li>Admin: create, edit, or delete any review for full moderation</li>
+          <li>Report inappropriate reviews — removes them from public view immediately <em>(custom feature, not in textbook)</em></li>
         </ul>
 
         <h3>What I Learned</h3>
         <p>
-          This project was my first substantial Django application. The deliberate choice to type every line by hand,
-          rather than copy from the repository, paid off significantly - by the end I could reason about Django's
-          URL routing, view logic, template inheritance, and ORM without needing to reference the book. The independently
-          implemented reporting feature proved to me that I had genuinely internalized the framework rather than
-          just following steps.
+          This was my first substantial Django application. The choice to hand-type every line paid off — by the end
+          I could reason about Django's URL routing, view logic, template inheritance, and ORM without needing to
+          reference the book. The independently built reporting feature proved I had internalized the framework rather
+          than just followed instructions.
         </p>
 
       </div>
@@ -297,32 +309,19 @@ footer span { color: var(--accent); }
   </footer>
 
   <script>
-// Mobile nav
 const hamburger = document.getElementById('hamburger');
 const navMobile = document.getElementById('nav-mobile');
 if (hamburger) hamburger.addEventListener('click', () => navMobile.classList.toggle('open'));
 function closeMenu() { if (navMobile) navMobile.classList.remove('open'); }
-
-// Enable fade-in animations only once JS is confirmed running
 document.documentElement.classList.add('js-ready');
-
-// Intersection observer for fade-ins
 const fadeEls = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
   });
 }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
 fadeEls.forEach(el => observer.observe(el));
-
-// Hard fallback: show everything after 1.2s in case observer misfires
-setTimeout(() => {
-  document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
-}, 1200);
-
+setTimeout(() => { document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible')); }, 1200);
 </script>
 </body>
 </html>

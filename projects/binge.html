@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>binge. - Jase George</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+/* ---- DESIGN TOKENS ---- */
+:root {
+  --bg:       #0b0e13;
+  --surface:  #12161f;
+  --surface2: #1a2030;
+  --border:   #252d3d;
+  --accent:   #4fffb0;
+  --accent2:  #ffb347;
+  --text:     #e8eaf0;
+  --muted:    #7a8398;
+  --heading:  #ffffff;
+  --mono:     'DM Mono', monospace;
+  --sans:     'DM Sans', sans-serif;
+  --serif:    'DM Serif Display', serif;
+  --radius:   6px;
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ---- RESET ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.7; overflow-x: hidden; }
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: 0.8; }
+img { max-width: 100%; display: block; }
+::selection { background: var(--accent); color: #000; }
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(11,14,19,0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.08em; }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; transition: color var(--transition); }
+.nav-links a:hover { color: var(--accent); opacity: 1; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 1px; }
+.nav-mobile { display: none; }
+@media (max-width: 700px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-mobile.open {
+    display: flex; flex-direction: column; gap: 1.5rem;
+    position: fixed; top: 60px; left: 0; right: 0;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 2rem 1.5rem; z-index: 99;
+  }
+  .nav-mobile a { font-family: var(--mono); font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+}
+
+/* ---- LAYOUT ---- */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+section { padding: 6rem 0; }
+.section-label {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::before { content: '//'; opacity: 0.5; }
+h2.section-title {
+  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--heading); font-weight: 400; line-height: 1.15; margin-bottom: 3rem;
+}
+
+/* ---- BUTTONS ---- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.75rem; border-radius: var(--radius);
+  font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.06em;
+  text-transform: uppercase; transition: all var(--transition); font-weight: 500;
+}
+.btn-primary { background: var(--accent); color: #000; border: 1px solid var(--accent); }
+.btn-primary:hover { background: transparent; color: var(--accent); opacity: 1; }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+
+/* ---- TAGS ---- */
+.tag { font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 3px; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+
+/* ---- FOOTER ---- */
+footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+footer span { color: var(--accent); }
+
+/* ---- FADE-IN ---- */
+.fade-in { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
+.js-ready .fade-in { opacity: 0; transform: translateY(24px); }
+.js-ready .fade-in.visible { opacity: 1; transform: none; }
+.js-ready .fade-in:nth-child(2) { transition-delay: 0.1s; }
+.js-ready .fade-in:nth-child(3) { transition-delay: 0.2s; }
+.js-ready .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+/* ---- PROJECT PAGE SHARED STYLES ---- */
+.project-page { padding-top: 100px; padding-bottom: 6rem; }
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2.5rem;
+  transition: color var(--transition);
+}
+.back-link:hover { color: var(--accent); opacity: 1; }
+.project-page-header { margin-bottom: 3rem; }
+.project-page-type { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.project-page-type::before { content: '//'; opacity: 0.5; }
+.project-page-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--heading); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
+.project-page-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+.project-page-meta .tag { font-size: 0.78rem; padding: 0.3rem 0.8rem; }
+.project-page-meta .tag.highlight { background: rgba(79,255,176,0.1); border-color: var(--accent); color: var(--accent); }
+.project-links-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.project-body-text { font-size: 1rem; color: var(--text); line-height: 1.9; }
+.project-body-text p { margin-bottom: 1.25rem; }
+.project-body-text h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--heading); font-weight: 400; margin: 2.5rem 0 1rem; }
+.project-body-text ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+.project-body-text ul li { padding-left: 1.25rem; position: relative; font-size: 0.95rem; }
+.project-body-text ul li::before { content: '->'; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); font-size: 0.65rem; top: 5px; }
+
+/* Feature list grid */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.feature-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
+.feature-item-title { font-size: 0.88rem; color: var(--heading); font-weight: 500; margin-bottom: 0.3rem; }
+.feature-item-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+/* Stat row */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
+.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; text-align: center; }
+.stat-box-val { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); }
+.stat-box-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+
+/* Screenshot galleries */
+.ss-gallery { display: grid; gap: 1rem; margin: 2rem 0; }
+.ss-gallery.cols-2 { grid-template-columns: 1fr 1fr; }
+.ss-gallery.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.ss-gallery.cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+.ss-item { display: flex; flex-direction: column; gap: 0.5rem; }
+.ss-item img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; object-fit: cover; display: block; }
+.ss-cap { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); text-align: center; text-transform: uppercase; letter-spacing: 0.08em; }
+@media (max-width: 750px) { .ss-gallery.cols-3, .ss-gallery.cols-4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .ss-gallery.cols-2, .ss-gallery.cols-3, .ss-gallery.cols-4 { grid-template-columns: 1fr; } }
+
+/* Tech stack two-col layout */
+.tech-stack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+@media (max-width: 650px) { .tech-stack-grid { grid-template-columns: 1fr; } }
+.tech-stack-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+.tech-stack-card-title { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem; }
+.tech-stack-card p { font-size: 0.88rem; color: var(--text); line-height: 1.7; margin: 0; }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="nav-logo">jg@gatech ~ $</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#skills">Skills</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#goals">Goals</a></li>
+      <li><a href="../index.html#resume">Resume</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile" id="nav-mobile">
+    <a href="../index.html#about" onclick="closeMenu()">About</a>
+    <a href="../index.html#projects" onclick="closeMenu()">Projects</a>
+    <a href="../index.html#contact" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <div class="project-page">
+    <div class="container">
+
+      <a href="../index.html#projects" class="back-link">&lt;- Back to Projects</a>
+
+      <div class="project-page-header fade-in">
+        <div class="project-page-type">Full-Stack Web App &middot; Social Media &middot; 2025</div>
+        <h1 class="project-page-title">binge.</h1>
+        <div class="project-page-meta">
+          <span class="tag highlight">Live</span>
+          <span class="tag highlight">React 19</span>
+          <span class="tag">Supabase</span>
+          <span class="tag">Node.js / Express 5</span>
+          <span class="tag">Groq AI</span>
+          <span class="tag">Vercel</span>
+        </div>
+      </div>
+
+      <div class="project-links-bar fade-in">
+        <a href="https://project-3-phi-drab.vercel.app/" target="_blank" class="btn btn-primary">Live Site -></a>
+      </div>
+
+      <div class="stat-row fade-in">
+        <div class="stat-box"><div class="stat-box-val">3</div><div class="stat-box-label">Media Types</div></div>
+        <div class="stat-box"><div class="stat-box-val">40+</div><div class="stat-box-label">Features Built</div></div>
+        <div class="stat-box"><div class="stat-box-val">2</div><div class="stat-box-label">AI Systems</div></div>
+        <div class="stat-box"><div class="stat-box-val">4</div><div class="stat-box-label">Data Sources</div></div>
+      </div>
+
+      <div class="ss-gallery cols-2 fade-in">
+        <div class="ss-item">
+          <img src="../images/binge/Screenshot%202026-04-27%20at%202.08.33%E2%80%AFPM.png" alt="Landing page" />
+          <div class="ss-cap">Landing page</div>
+        </div>
+        <div class="ss-item">
+          <img src="../images/binge/Screenshot%202026-04-27%20at%202.08.58%E2%80%AFPM.png" alt="Account creation / onboarding" />
+          <div class="ss-cap">Account creation</div>
+        </div>
+      </div>
+
+      <div class="project-body-text fade-in">
+
+        <h3>Overview</h3>
+        <p>
+          binge. is a social media-tracking web app where users build a personal profile around everything they watch
+          and read. You can browse a catalog of movies, TV shows, and books, rate them, track your watchlist status,
+          and discover what your friends are into — all in one place with a clean, dark aesthetic.
+        </p>
+        <p>
+          It sits somewhere between Letterboxd and Reddit: part personal journal, part social network, with a
+          discussion forum layered on top. The social side is central — users follow each other, see trending content,
+          collaborate on ranked lists with live voting, and can even watch things together in synchronized Watch Rooms.
+          An AI chatbot (powered by Groq) is embedded throughout for recommendations, and an auto-moderator keeps the
+          forum clean without manual intervention.
+        </p>
+
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.09.25%E2%80%AFPM.png" alt="Dashboard — stats and annual recap" />
+            <div class="ss-cap">Dashboard — stats &amp; recap</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.09.39%E2%80%AFPM.png" alt="Dashboard — explore library and AI recommendations" />
+            <div class="ss-cap">Explore &amp; AI picks</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.09.47%E2%80%AFPM.png" alt="Dashboard — watchlist and achievements" />
+            <div class="ss-cap">Watchlist &amp; achievements</div>
+          </div>
+        </div>
+
+        <h3>Features</h3>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-item-title">Content Browsing</div>
+            <div class="feature-item-desc">Movies, TV shows, and books with search, filtering, and detail modals. Live TV page with channel browsing and embed player. Global search (Cmd+K) across all media.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Personal Tracking</div>
+            <div class="feature-item-desc">Watchlist with per-item status (Plan to Watch / Watching / Watched). Progress tracking per TV show (season + episode) and book (chapter/page). Star ratings and numeric scores.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Social Graph</div>
+            <div class="feature-item-desc">User profiles with avatar, bio, follower/following counts, and public watchlist. Follow/unfollow, following feed, trending page, and notifications bell.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Collaborative Lists</div>
+            <div class="feature-item-desc">Create named watchlists (public or private), invite collaborators by username, vibe-vote (upvote/downvote) to surface a consensus pick, and share via public URL.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Discussion Forum</div>
+            <div class="feature-item-desc">Sub-forums with custom icons and rules. Posts with flair tags, hashtags, and markdown. Nested comment threads with voting, editing, and collapsing. Spoiler overlays and a report system.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Watch Together</div>
+            <div class="feature-item-desc">Synchronized Watch Rooms where multiple users watch the same content simultaneously, with a live room chat alongside the embedded player.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">AI Features</div>
+            <div class="feature-item-desc">Groq-powered chatbot for recommendations and discovery. Automatic forum moderation that blocks offensive posts before they publish — no manual review needed.</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-item-title">Admin Panel</div>
+            <div class="feature-item-desc">User management (view, search, promote, ban), media request approvals, and an analytics dashboard with usage stats, chat logs, and error tracking.</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-4">
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.10.16%E2%80%AFPM.png" alt="Movies browser" />
+            <div class="ss-cap">Movies browser</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.10.25%E2%80%AFPM.png" alt="TV Shows browser" />
+            <div class="ss-cap">TV shows browser</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.10.35%E2%80%AFPM.png" alt="Books browser" />
+            <div class="ss-cap">Books browser</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.10.01%E2%80%AFPM.png" alt="Live TV with Pluto embed" />
+            <div class="ss-cap">Live TV</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-2">
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.47.35%E2%80%AFPM.png" alt="TV show detail modal with radar rating" />
+            <div class="ss-cap">TV show detail &amp; rating modal</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.47.49%E2%80%AFPM.png" alt="Episode player with season and episode tracker" />
+            <div class="ss-cap">Episode player &amp; progress tracker</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.13.10%E2%80%AFPM.png" alt="User profile — watchlist" />
+            <div class="ss-cap">User profile — watchlist</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.13.49%E2%80%AFPM.png" alt="User profile — ratings" />
+            <div class="ss-cap">User profile — ratings</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.11.09%E2%80%AFPM.png" alt="Following feed" />
+            <div class="ss-cap">Following feed</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.10.49%E2%80%AFPM.png" alt="Forum — community sub-forum" />
+            <div class="ss-cap">Forum</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.10.58%E2%80%AFPM.png" alt="Watch Together room lobby" />
+            <div class="ss-cap">Watch Together</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.14.19%E2%80%AFPM.png" alt="AI Media Assistant chatbot" />
+            <div class="ss-cap">AI media assistant</div>
+          </div>
+        </div>
+
+        <h3>Tech Stack</h3>
+
+        <div class="tech-stack-grid">
+          <div class="tech-stack-card">
+            <div class="tech-stack-card-title">Frontend</div>
+            <p>React 19 (Create React App) with React Router 7 for client-side routing. All UI is custom CSS — no component library — with a consistent dark design system. Communicates with Supabase directly via <code style="font-family:var(--mono);font-size:0.82rem;background:var(--surface2);padding:0.1rem 0.35rem;border-radius:3px;color:var(--accent);">@supabase/supabase-js</code> and falls back to the Express API for features requiring server-side logic.</p>
+          </div>
+          <div class="tech-stack-card">
+            <div class="tech-stack-card-title">Backend</div>
+            <p>Node.js / Express 5 server handling routes that need secrets or server-side processing: Groq AI chat and moderation, forum operations, notifications, admin actions, and watch rooms. Supabase (Postgres + Auth + Row Level Security) is the primary database.</p>
+          </div>
+          <div class="tech-stack-card">
+            <div class="tech-stack-card-title">Data Sources</div>
+            <p>Media catalogs seeded from TMDB, Plex, Internet Archive, and Open Library using custom scraper scripts. Books sourced from Open Library and Internet Archive APIs.</p>
+          </div>
+          <div class="tech-stack-card">
+            <div class="tech-stack-card-title">Deployment</div>
+            <p>Frontend deployed on Vercel. Express server runs as a separate service. Supabase manages authentication, all media data, ratings, watchlists, lists, forum content, and the social graph.</p>
+          </div>
+        </div>
+
+        <h3>Design Decisions</h3>
+        <p>
+          The entire UI is hand-rolled CSS — no Tailwind, no component library. This was a deliberate choice to
+          maintain full control over the dark aesthetic and ensure every interaction felt native to the platform's
+          identity. The design system uses a consistent set of tokens (spacing, color, typography) applied uniformly
+          across 40+ distinct views.
+        </p>
+        <p>
+          The AI moderation system runs as middleware on the Express server, intercepting post and comment creation
+          requests and routing them through Groq before they touch the database. This keeps moderation latency low
+          and completely invisible to the end user — offensive content simply never appears, rather than being
+          flagged after the fact.
+        </p>
+        <p>
+          Supabase Row Level Security policies enforce data access at the database layer, meaning even if the
+          application layer had a bug, private lists and user data would remain protected. The admin panel and
+          developer lab are gated by a role check that Supabase RLS enforces server-side.
+        </p>
+
+        <div class="ss-gallery cols-3">
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.12.20%E2%80%AFPM.png" alt="Admin panel — Control Center" />
+            <div class="ss-cap">Admin — control center</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.12.28%E2%80%AFPM.png" alt="Admin — usage logs and performance analytics" />
+            <div class="ss-cap">Admin — analytics</div>
+          </div>
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.12.52%E2%80%AFPM.png" alt="Developer Lab" />
+            <div class="ss-cap">Developer Lab</div>
+          </div>
+        </div>
+
+        <div class="ss-gallery cols-2">
+          <div class="ss-item">
+            <img src="../images/binge/Screenshot%202026-04-27%20at%202.14.05%E2%80%AFPM.png" alt="Mobile navigation menu" />
+            <div class="ss-cap">Mobile nav</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 <span>Jase V. George</span> &middot; <a href="../index.html">Back to Portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+const hamburger = document.getElementById('hamburger');
+const navMobile = document.getElementById('nav-mobile');
+if (hamburger) hamburger.addEventListener('click', () => navMobile.classList.toggle('open'));
+function closeMenu() { if (navMobile) navMobile.classList.remove('open'); }
+
+document.documentElement.classList.add('js-ready');
+
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+fadeEls.forEach(el => observer.observe(el));
+
+setTimeout(() => {
+  document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+}, 1200);
+</script>
+</body>
+</html>

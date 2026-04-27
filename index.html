@@ -212,13 +212,13 @@ footer span { color: var(--accent); }
     .about-grid { display: grid; grid-template-columns: 280px 1fr 1fr; gap: 3rem; align-items: start; }
     .about-photo-col { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
     .about-photo-frame {
-      width: 220px; height: 260px;
-      border: 2px solid var(--border); border-radius: 10px;
+      width: 220px; height: 220px;
+      border: 2px solid var(--border); border-radius: 50%;
       overflow: hidden; background: var(--surface2);
       display: flex; align-items: center; justify-content: center;
       position: relative;
     }
-    .about-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .about-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; display: block; }
     .about-photo-frame .photo-placeholder {
       display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
       color: var(--muted); text-align: center; padding: 1rem;
@@ -236,7 +236,7 @@ footer span { color: var(--accent); }
     @media (max-width: 900px) {
       .about-grid { grid-template-columns: 1fr 1fr; }
       .about-photo-col { grid-column: 1 / -1; flex-direction: row; justify-content: flex-start; gap: 1.5rem; align-items: flex-end; }
-      .about-photo-frame { width: 160px; height: 190px; }
+      .about-photo-frame { width: 160px; height: 160px; }
     }
     @media (max-width: 600px) {
       .about-grid { grid-template-columns: 1fr; }
@@ -244,7 +244,6 @@ footer span { color: var(--accent); }
     }
 
     /* ---- SKILLS ---- */
-    #skills { }
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
     .skill-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -270,7 +269,6 @@ footer span { color: var(--accent); }
     @media (max-width: 600px) { .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; } }
 
     /* ---- PROJECTS ---- */
-    #projects { }
     .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 
     /* Projects layout: featured on top, three cards below */
@@ -353,7 +351,6 @@ footer span { color: var(--accent); }
     .goal-path { font-size: 0.88rem; color: var(--text); line-height: 1.7; }
 
     /* ---- RESUME ---- */
-    #resume { }
     .resume-inner {
       background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 3rem; display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem;
@@ -457,8 +454,8 @@ footer span { color: var(--accent); }
         <div class="hero-visual">
           <div class="hero-card">
             <div class="card-label">Latest Project</div>
-            <div class="card-value"><span class="dot"></span>PandaPulse</div>
-            <div class="card-sub">Django &middot; Full-Stack Hiring Platform &middot; March 2026</div>
+            <div class="card-value"><span class="dot"></span>Binge.</div>
+            <div class="card-sub">ReactJS &middot; Full-Stack Web App &middot; April 2026</div>
           </div>
           <div class="hero-card">
             <div class="card-label">Current Focus</div>
@@ -479,16 +476,7 @@ footer span { color: var(--accent); }
 
         <div class="about-photo-col fade-in">
           <div class="about-photo-frame">
-            <!--
-              TO ADD YOUR PHOTO:
-              1. Add your photo file to the repo (e.g. photo.jpg)
-              2. Replace the div below with:
-                 <img src="photo.jpg" alt="Jase George" />
-            -->
-            <div class="photo-placeholder">
-              <span>&#128247;</span>
-              <p>Add your photo here.<br>See comment in HTML.</p>
-            </div>
+            <img src="images/personal/profile.png" alt="Jase George" />
           </div>
           <div class="about-photo-name">Jase V. George</div>
           <div class="about-photo-role">CompE @ Georgia Tech</div>
@@ -527,7 +515,7 @@ footer span { color: var(--accent); }
           </div>
           <div class="meta-item">
             <div class="meta-key">Interests</div>
-            <div class="meta-val">Offensive Security &middot; Embedded Systems &middot; CTF Competitions &middot; Robotics</div>
+            <div class="meta-val">Defensive Security &middot; Embedded Systems &middot; CTF Competitions &middot; Robotics</div>
           </div>
         </div>
 
@@ -659,22 +647,41 @@ footer span { color: var(--accent); }
       <h2 class="section-title">Things I've Built</h2>
       <div class="projects-grid">
 
-        <!-- FEATURED: PandaPulse -->
-        <a href="projects/pandapulse.html" class="project-card-featured fade-in">
+        <!-- FEATURED: binge. -->
+        <a href="projects/binge.html" class="project-card-featured fade-in">
           <div class="featured-left">
             <div>
               <div class="featured-badge">&#11088; Featured &middot; Most Recent</div>
-              <div class="featured-title">PandaPulse</div>
-              <div class="featured-sub">CS 2340 &middot; March 2026 &middot; Top 5 / Both Sections &middot; Final Exam Exempt</div>
+              <div class="featured-title">binge.</div>
+              <div class="featured-sub">Full-Stack Web App &middot; Social Media &middot; React 19 &middot; Supabase &middot; Groq AI</div>
               <p class="featured-desc">
-                A full-featured LinkedIn-style job search and hiring platform built in Django for CS 2340 at Georgia Tech.
-                Serves three user roles - Job Seekers, Recruiters, and Administrators - with 15 required features plus
-                over 20 original additions our team designed from scratch. Placed 3rd out of all submissions across both class sections.
+                A social media-tracking platform for movies, TV, and books — part personal journal, part social network.
+                Rate content, track your watchlist, follow friends, collaborate on ranked lists with live voting, and
+                watch things together in synchronized rooms. Powered by React 19, Supabase, and Groq AI for recommendations
+                and auto-moderation.
               </p>
             </div>
             <div class="featured-link-row">
               <span class="btn btn-primary" style="font-size:0.78rem; padding: 0.6rem 1.25rem;">View Full Project -></span>
-              <a href="https://pandapulseadmins.pythonanywhere.com/" target="_blank" onclick="event.stopPropagation()" class="btn btn-outline" style="font-size:0.78rem; padding: 0.6rem 1.25rem;">Live Site</a>
+              <a href="https://project-3-phi-drab.vercel.app/" target="_blank" onclick="event.stopPropagation()" class="btn btn-outline" style="font-size:0.78rem; padding: 0.6rem 1.25rem;">Live Site</a>
+            </div>
+          </div>
+          <div class="featured-right">
+            <div class="featured-stat">
+              <div class="featured-stat-val">78,357</div>
+              <div class="featured-stat-label">Movies in catalog</div>
+            </div>
+            <div class="featured-stat">
+              <div class="featured-stat-val">21,446</div>
+              <div class="featured-stat-label">TV shows</div>
+            </div>
+            <div class="featured-stat">
+              <div class="featured-stat-val">29,788</div>
+              <div class="featured-stat-label">Books</div>
+            </div>
+            <div class="featured-stat">
+              <div class="featured-stat-val">40+</div>
+              <div class="featured-stat-label">Features built</div>
             </div>
           </div>
         </a>
@@ -700,21 +707,21 @@ footer span { color: var(--accent); }
             </div>
           </a>
 
-          <!-- CyberPatriot -->
-          <a href="projects/cyberpatriot.html" class="project-card fade-in">
+          <!-- PandaPulse -->
+          <a href="projects/pandapulse.html" class="project-card fade-in">
             <div class="project-card-header">
-              <div class="project-type">Cybersecurity &middot; Competition</div>
-              <div class="project-title">CyberPatriot National Semifinals</div>
-              <div class="project-date">2022 - 2025</div>
+              <div class="project-type">Full-Stack Web App</div>
+              <div class="project-title">PandaPulse</div>
+              <div class="project-date">March 2026</div>
             </div>
             <div class="project-card-body">
               <p class="project-desc">
-                Led a 5-member team to three consecutive CyberPatriot National Semifinals at the Platinum tier,
-                requiring deep expertise in Linux and Windows system hardening under live competition pressure.
+                A LinkedIn-style job search and hiring platform built in Django for CS 2340 at Georgia Tech.
+                Three user roles, 15 required features plus 20+ original additions. Placed 3rd across both class sections.
               </p>
               <div class="project-footer">
                 <span class="view-more">View Project</span>
-                <span class="tag">Platinum &middot; 3x Nationals</span>
+                <span class="tag">Django &middot; Top 5</span>
               </div>
             </div>
           </a>

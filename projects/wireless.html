@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireless protocol research, Jase George</title>
+  <meta name="description" content="Passive reverse engineering of a 900 MHz accessibility door-button system from captured radio signals, with a software-defined radio and Universal Radio Hacker." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/site.css" />
+</head>
+<body>
+
+  <header class="is-night">
+    <nav class="container site-top" aria-label="Site">
+      <a class="wordmark" href="../index.html">Jase George</a>
+      <ul>
+        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="binge.html">Binge</a></li>
+        <li><a href="wireless.html" aria-current="page">Wireless research</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../Jase_George_Resume.pdf">Résumé (PDF)</a></li>
+      </ul>
+    </nav>
+    <div class="container page-head">
+      <h1>Reading a door button’s radio</h1>
+      <p class="lede">I worked out the wireless protocol behind a set of commercial accessibility door buttons, using nothing but the radio signals they send.</p>
+      <dl class="facts">
+        <div><dt>When</dt><dd>May to June 2026</dd></div>
+        <div><dt>Kind</dt><dd>Independent research</dd></div>
+        <div><dt>Tools</dt><dd>Software-defined radio, Universal Radio Hacker</dd></div>
+        <div><dt>Started with</dt><dd>No datasheet, no source code, no documentation</dd></div>
+      </dl>
+    </div>
+    <div class="container lead-wrap">
+      <div class="signal">
+        <p class="big" aria-hidden="true">908<small> to </small>918<small> MHz</small></p>
+        <dl class="findings">
+          <div><dt>Protocol</dt><dd>Proprietary BEA door activation</dd></div>
+          <div><dt>Modulation</dt><dd>FSK</dd></div>
+          <div><dt>Hopping</dt><dd>3 channels</dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="band is-paper" aria-labelledby="why-h">
+      <div class="container chapter">
+        <div class="side">
+          <h2 id="why-h">Why I looked</h2>
+        </div>
+        <div class="main prose">
+          <p>The push-to-open buttons on several campus buildings have no wire running to the door. I wanted to know how they talk to it.</p>
+          <p>So I treated it as a pure signal-analysis problem. I captured what the buttons send, worked out the protocol from those captures, and stopped once I understood how it worked.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band is-well" aria-labelledby="how-h">
+      <div class="container chapter">
+        <div class="side">
+          <h2 id="how-h">How I did it</h2>
+        </div>
+        <div class="main">
+          <ol class="roles">
+            <li class="role"><time>Step 1</time><div class="who"><h3>Capture</h3></div><div class="did"><p>Recorded the buttons' transmissions over the air with a software-defined radio.</p></div></li>
+            <li class="role"><time>Step 2</time><div class="who"><h3>Find the channels</h3></div><div class="did"><p>Opened the captures in Universal Radio Hacker to find which frequencies were active and how the signal moved between them.</p></div></li>
+            <li class="role"><time>Step 3</time><div class="who"><h3>Demodulate</h3></div><div class="did"><p>Identified the modulation as frequency shift keying and mapped the pattern it hops through across three channels.</p></div></li>
+            <li class="role"><time>Step 4</time><div class="who"><h3>Read the structure</h3></div><div class="did"><p>Worked out that one transmitter talks to many receivers, and the general layout of the data it sends.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="band is-paper" aria-labelledby="found-h">
+      <div class="container chapter">
+        <div class="side">
+          <h2 id="found-h">What I found</h2>
+        </div>
+        <div class="main">
+          <dl class="skills">
+            <div><dt>Protocol</dt><dd>BEA’s proprietary wireless door and access activation protocol</dd></div>
+            <div><dt>Band</dt><dd>The 900 MHz ISM band, roughly 908 to 918 MHz</dd></div>
+            <div><dt>Frequency use</dt><dd>Hops between 3 channels</dd></div>
+            <div><dt>Modulation</dt><dd>Frequency shift keying (FSK)</dd></div>
+            <div><dt>Topology</dt><dd>Point to multipoint, from one button to the door receivers</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="band is-night" aria-labelledby="line-h">
+      <div class="container chapter">
+        <div class="side">
+          <h2 id="line-h">Where I drew the line</h2>
+        </div>
+        <div class="main prose">
+          <p>This was listening only. I never transmitted, replayed or tried to trigger any device, and this write-up leaves out anything that would help someone do that. The point was to learn how a real wireless system works, not to interfere with one.</p>
+          <p class="quiet">What it taught me is RF signal analysis, reverse engineering a protocol from first principles, and working from observation when there is nothing written down.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="container pager">
+      <a href="binge.html">Back, Binge</a>
+      <a href="../index.html#work">All work</a>
+    </div>
+  </main>
+
+  <footer class="is-field contact">
+    <div class="container">
+      <h2>Want the details in person?</h2>
+      <a class="mail" href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a>
+      <ul>
+        <li><a href="https://www.linkedin.com/in/jaseg2026">LinkedIn</a></li>
+        <li><a href="https://github.com/AzureRaven25">GitHub</a></li>
+        <li><a href="../Jase_George_Resume.pdf">Résumé (PDF)</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

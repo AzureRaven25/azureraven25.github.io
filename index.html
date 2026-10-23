@@ -3,953 +3,273 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jase V. George - Computer Engineer</title>
+  <title>Jase George, computer engineering at Georgia Tech</title>
+  <meta name="description" content="Jase George studies computer engineering at Georgia Tech and works on security, from server firmware to web apps. Projects, experience and résumé." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
-  <style>
-/* ---- DESIGN TOKENS ---- */
-:root {
-  --bg:       #0b0e13;
-  --surface:  #12161f;
-  --surface2: #1a2030;
-  --border:   #252d3d;
-  --accent:   #4fffb0;
-  --accent2:  #ffb347;
-  --text:     #e8eaf0;
-  --muted:    #7a8398;
-  --heading:  #ffffff;
-  --mono:     'DM Mono', monospace;
-  --sans:     'DM Sans', sans-serif;
-  --serif:    'DM Serif Display', serif;
-  --radius:   6px;
-  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
-}
-
-/* ---- RESET ---- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.7; overflow-x: hidden; }
-a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
-a:hover { opacity: 0.8; }
-img { max-width: 100%; display: block; }
-::selection { background: var(--accent); color: #000; }
-
-/* ---- SCROLLBAR ---- */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-/* ---- NAV ---- */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 3rem;
-  background: rgba(11,14,19,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.08em; }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; transition: color var(--transition); }
-.nav-links a:hover { color: var(--accent); opacity: 1; }
-.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
-.hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 1px; }
-.nav-mobile { display: none; }
-@media (max-width: 700px) {
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .nav-mobile.open {
-    display: flex; flex-direction: column; gap: 1.5rem;
-    position: fixed; top: 60px; left: 0; right: 0;
-    background: var(--surface); border-bottom: 1px solid var(--border);
-    padding: 2rem 1.5rem; z-index: 99;
-  }
-  .nav-mobile a { font-family: var(--mono); font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-}
-
-/* ---- LAYOUT ---- */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-section { padding: 6rem 0; }
-.section-label {
-  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.section-label::before { content: '//'; opacity: 0.5; }
-h2.section-title {
-  font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--heading); font-weight: 400; line-height: 1.15; margin-bottom: 3rem;
-}
-
-/* ---- BUTTONS ---- */
-.btn {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.75rem 1.75rem; border-radius: var(--radius);
-  font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.06em;
-  text-transform: uppercase; transition: all var(--transition); font-weight: 500;
-}
-.btn-primary { background: var(--accent); color: #000; border: 1px solid var(--accent); }
-.btn-primary:hover { background: transparent; color: var(--accent); opacity: 1; }
-.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-.btn-outline:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
-
-/* ---- TAGS ---- */
-.tag { font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 3px; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
-
-/* ---- FOOTER ---- */
-footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
-footer span { color: var(--accent); }
-
-/* ---- FADE-IN ---- */
-.fade-in { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
-.js-ready .fade-in { opacity: 0; transform: translateY(24px); }
-.js-ready .fade-in.visible { opacity: 1; transform: none; }
-.js-ready .fade-in:nth-child(2) { transition-delay: 0.1s; }
-.js-ready .fade-in:nth-child(3) { transition-delay: 0.2s; }
-.js-ready .fade-in:nth-child(4) { transition-delay: 0.3s; }
-
-/* ---- PROJECT PAGE SHARED STYLES ---- */
-.project-page { padding-top: 100px; padding-bottom: 6rem; }
-.back-link {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
-  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2.5rem;
-  transition: color var(--transition);
-}
-.back-link:hover { color: var(--accent); opacity: 1; }
-.project-page-header { margin-bottom: 3rem; }
-.project-page-type { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
-.project-page-type::before { content: '//'; opacity: 0.5; }
-.project-page-title { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--heading); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
-.project-page-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
-.project-page-meta .tag { font-size: 0.78rem; padding: 0.3rem 0.8rem; }
-.project-page-meta .tag.highlight { background: rgba(79,255,176,0.1); border-color: var(--accent); color: var(--accent); }
-.project-links-bar { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-.project-body-text { font-size: 1rem; color: var(--text); line-height: 1.9; }
-.project-body-text p { margin-bottom: 1.25rem; }
-.project-body-text h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--heading); font-weight: 400; margin: 2.5rem 0 1rem; }
-.project-body-text ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
-.project-body-text ul li { padding-left: 1.25rem; position: relative; font-size: 0.95rem; }
-.project-body-text ul li::before { content: '->'; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); font-size: 0.65rem; top: 5px; }
-
-/* Photo gallery on project pages */
-.photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 2rem 0; }
-.photo-gallery img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; object-fit: cover; }
-.photo-gallery-single img { border-radius: var(--radius); border: 1px solid var(--border); width: 100%; max-height: 500px; object-fit: cover; margin: 2rem 0; }
-
-/* Photo placeholder for project pages */
-.photo-placeholder-box {
-  background: var(--surface); border: 2px dashed var(--border); border-radius: var(--radius);
-  padding: 3rem 2rem; text-align: center; margin: 2rem 0; color: var(--muted);
-}
-.photo-placeholder-box .ph-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-.photo-placeholder-box .ph-title { font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: var(--text); }
-.photo-placeholder-box .ph-desc { font-size: 0.85rem; line-height: 1.6; }
-.photo-placeholder-box code { font-family: var(--mono); font-size: 0.8rem; background: var(--surface2); padding: 0.15rem 0.4rem; border-radius: 3px; color: var(--accent); }
-
-/* Feature list grid */
-.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
-.feature-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
-.feature-item-title { font-size: 0.88rem; color: var(--heading); font-weight: 500; margin-bottom: 0.3rem; }
-.feature-item-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
-
-/* Stat row */
-.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
-.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; text-align: center; }
-.stat-box-val { font-family: var(--serif); font-size: 1.8rem; color: var(--accent); }
-.stat-box-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
-
-</style>
-  <style>
-    /* ---- HERO ---- */
-    #hero {
-      min-height: 100vh;
-      display: grid; place-items: center;
-      padding-top: 80px;
-      background:
-        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(79,255,176,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,179,71,0.04) 0%, transparent 60%),
-        var(--bg);
-    }
-    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .hero-tag {
-      font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--accent);
-      display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;
-    }
-    .hero-tag::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
-    h1.hero-name {
-      font-family: var(--serif); font-size: clamp(3rem, 6vw, 5rem);
-      color: var(--heading); font-weight: 400; line-height: 1.05; margin-bottom: 0.5rem;
-    }
-    h1.hero-name em { font-style: italic; color: var(--accent); }
-    .hero-title { font-family: var(--mono); font-size: 0.9rem; color: var(--muted); margin-bottom: 2rem; letter-spacing: 0.04em; }
-    .hero-desc { font-size: 1.05rem; color: var(--text); line-height: 1.8; margin-bottom: 2.5rem; max-width: 480px; }
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .hero-visual { display: flex; flex-direction: column; gap: 1rem; align-items: flex-end; }
-    .hero-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
-      padding: 1.25rem 1.5rem; width: 100%; max-width: 340px;
-      animation: floatA 6s ease-in-out infinite;
-    }
-    .hero-card:nth-child(2) { animation: floatB 6s ease-in-out infinite; animation-delay: -3s; margin-right: 2rem; }
-    @keyframes floatA { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-8px) } }
-    @keyframes floatB { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(8px) } }
-    .card-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
-    .card-value { font-family: var(--serif); font-size: 1.1rem; color: var(--heading); }
-    .card-sub { font-size: 0.82rem; color: var(--muted); margin-top: 0.25rem; }
-    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 0.5rem; box-shadow: 0 0 8px var(--accent); }
-    .dot.amber { background: var(--accent2); box-shadow: 0 0 8px var(--accent2); }
-    @media (max-width: 800px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-visual { align-items: center; }
-    }
-
-    /* ---- ABOUT ---- */
-    #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .about-grid { display: grid; grid-template-columns: 280px 1fr 1fr; gap: 3rem; align-items: start; }
-    .about-photo-col { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-    .about-photo-frame {
-      width: 220px; height: 220px;
-      border: 2px solid var(--border); border-radius: 50%;
-      overflow: hidden; background: var(--surface2);
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .about-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; display: block; }
-    .about-photo-frame .photo-placeholder {
-      display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
-      color: var(--muted); text-align: center; padding: 1rem;
-    }
-    .about-photo-frame .photo-placeholder span { font-size: 2.5rem; }
-    .about-photo-frame .photo-placeholder p { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; line-height: 1.6; }
-    .about-photo-name { font-family: var(--serif); font-size: 1.1rem; color: var(--heading); text-align: center; }
-    .about-photo-role { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; text-align: center; }
-    .about-text p { color: var(--text); font-size: 1rem; line-height: 1.9; margin-bottom: 1.25rem; }
-    .about-text p:last-child { margin-bottom: 0; }
-    .about-meta { display: flex; flex-direction: column; gap: 1rem; }
-    .meta-item { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
-    .meta-key { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.3rem; }
-    .meta-val { font-size: 0.92rem; color: var(--text); }
-    @media (max-width: 900px) {
-      .about-grid { grid-template-columns: 1fr 1fr; }
-      .about-photo-col { grid-column: 1 / -1; flex-direction: row; justify-content: flex-start; gap: 1.5rem; align-items: flex-end; }
-      .about-photo-frame { width: 160px; height: 160px; }
-    }
-    @media (max-width: 600px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .about-photo-col { flex-direction: column; align-items: center; }
-    }
-
-    /* ---- SKILLS ---- */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-    .skill-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 1.5rem; transition: border-color var(--transition), transform var(--transition);
-    }
-    .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .skill-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
-    .skill-card-title { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tag { font-family: var(--mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 3px; background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
-
-    /* ---- EXPERIENCE ---- */
-    #experience { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .timeline { display: flex; flex-direction: column; }
-    .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
-    .timeline-item:last-child { border-bottom: none; }
-    .timeline-date { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); line-height: 1.6; padding-top: 0.25rem; }
-    .timeline-content h3 { font-size: 1.05rem; color: var(--heading); font-weight: 500; margin-bottom: 0.2rem; }
-    .timeline-content .org { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); margin-bottom: 0.75rem; }
-    .timeline-content ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
-    .timeline-content ul li { font-size: 0.92rem; color: var(--text); padding-left: 1.2rem; position: relative; }
-    .timeline-content ul li::before { content: '->'; position: absolute; left: 0; color: var(--accent); font-size: 0.65rem; top: 5px; font-family: var(--mono); }
-    @media (max-width: 600px) { .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; } }
-
-    /* ---- PROJECTS ---- */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-
-    /* Projects layout: featured on top, three cards below */
-    .projects-grid {
-      display: flex !important;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .projects-sub-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    @media (max-width: 800px) { .projects-sub-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 550px) { .projects-sub-grid { grid-template-columns: 1fr; } }
-
-    /* Featured card - full width, two column interior */
-    .project-card-featured {
-      width: 100%;
-      background: var(--surface); border: 1px solid var(--accent); border-radius: var(--radius);
-      display: grid; grid-template-columns: 1.1fr 0.9fr;
-      overflow: hidden; transition: transform var(--transition), box-shadow var(--transition);
-      text-decoration: none;
-    }
-    .project-card-featured:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(79,255,176,0.1); opacity: 1; }
-    .featured-left {
-      padding: 2.5rem; background: var(--surface2);
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .featured-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em;
-      color: #000; background: var(--accent); padding: 0.3rem 0.7rem; border-radius: 3px;
-      margin-bottom: 1.25rem; width: fit-content;
-    }
-    .featured-title { font-family: var(--serif); font-size: 2.5rem; color: var(--heading); font-weight: 400; line-height: 1.1; margin-bottom: 0.5rem; }
-    .featured-sub { font-family: var(--mono); font-size: 0.75rem; color: var(--accent2); margin-bottom: 1.5rem; }
-    .featured-desc { font-size: 0.97rem; color: var(--text); line-height: 1.85; margin-bottom: 2rem; }
-    .featured-right {
-      padding: 2.5rem; background: var(--bg);
-      display: flex; flex-direction: column; justify-content: center; gap: 1.5rem;
-    }
-    .featured-stat { border-left: 2px solid var(--accent); padding-left: 1.25rem; }
-    .featured-stat-val { font-family: var(--serif); font-size: 1.6rem; color: var(--heading); }
-    .featured-stat-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
-    .featured-link-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
-    @media (max-width: 750px) { .project-card-featured { grid-template-columns: 1fr; } }
-
-    /* Regular project cards */
-    .project-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; transition: border-color var(--transition), transform var(--transition);
-      display: flex; flex-direction: column; text-decoration: none;
-    }
-    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); opacity: 1; }
-    .project-card-header { padding: 1.5rem 1.5rem 1rem; background: var(--surface2); }
-    .project-type { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-    .project-title { font-family: var(--serif); font-size: 1.2rem; color: var(--heading); font-weight: 400; line-height: 1.2; }
-    .project-date { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-top: 0.35rem; }
-    .project-card-body { padding: 1.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
-    .project-desc { font-size: 0.88rem; color: var(--text); line-height: 1.8; flex: 1; margin-bottom: 1.25rem; }
-    .project-footer { display: flex; align-items: center; justify-content: space-between; }
-    .view-more { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
-    .view-more::after { content: ' ->'; }
-
-    /* ---- GOALS ---- */
-    #goals { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .goal-card {
-      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 2rem; position: relative; overflow: hidden;
-      transition: border-color var(--transition), transform var(--transition);
-    }
-    .goal-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .goal-num { font-family: var(--serif); font-size: 5rem; color: var(--surface2); position: absolute; top: -1rem; right: 1rem; line-height: 1; pointer-events: none; }
-    .goal-title { font-size: 1.1rem; font-weight: 500; color: var(--heading); margin-bottom: 0.5rem; }
-    .goal-horizon { font-family: var(--mono); font-size: 0.72rem; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-    .goal-desc { font-size: 0.92rem; color: var(--text); line-height: 1.75; margin-bottom: 1rem; }
-    .goal-path-label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
-    .goal-path { font-size: 0.88rem; color: var(--text); line-height: 1.7; }
-
-    /* ---- RESUME ---- */
-    .resume-inner {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 3rem; display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem;
-    }
-    .resume-left { border-right: 1px solid var(--border); padding-right: 3rem; }
-    .resume-section-title { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 1rem; margin-top: 2rem; }
-    .resume-section-title:first-child { margin-top: 0; }
-    .resume-contact-item { font-size: 0.88rem; color: var(--text); margin-bottom: 0.4rem; }
-    .resume-contact-item a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border); }
-    .resume-contact-item a:hover { color: var(--accent); opacity: 1; }
-    .resume-tag-list { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
-    .resume-tag-list li { font-size: 0.88rem; color: var(--text); padding-left: 1rem; position: relative; }
-    .resume-tag-list li::before { content: '->'; position: absolute; left: 0; color: var(--accent); font-size: 0.65rem; top: 4px; font-family: var(--mono); }
-    .resume-skill-group { margin-bottom: 0.75rem; }
-    .resume-skill-group strong { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); display: block; margin-bottom: 0.25rem; text-transform: uppercase; }
-    .resume-exp-item { margin-bottom: 1.5rem; }
-    .resume-exp-item h4 { font-size: 0.95rem; font-weight: 500; color: var(--heading); }
-    .resume-exp-item .exp-meta { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-bottom: 0.4rem; }
-    .resume-exp-item ul { list-style: none; }
-    .resume-exp-item ul li { font-size: 0.85rem; color: var(--text); padding-left: 1rem; position: relative; margin-bottom: 0.25rem; line-height: 1.6; }
-    .resume-exp-item ul li::before { content: '.'; position: absolute; left: 0; color: var(--accent); font-size: 1.2rem; top: -4px; }
-    .resume-download { text-align: center; margin-top: 2.5rem; }
-    @media (max-width: 750px) {
-      .resume-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .resume-left { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 2rem; }
-    }
-
-    /* ---- CONTACT ---- */
-    #contact { background: var(--surface); border-top: 1px solid var(--border); }
-    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .contact-tagline { font-family: var(--serif); font-size: 2rem; color: var(--heading); font-weight: 400; line-height: 1.3; margin-bottom: 1.5rem; }
-    .contact-tagline em { font-style: italic; color: var(--accent); }
-    .contact-desc { font-size: 0.95rem; color: var(--text); line-height: 1.8; margin-bottom: 2rem; }
-    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
-    .contact-link-item {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1rem 1.25rem; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
-      transition: border-color var(--transition); color: var(--text); text-decoration: none;
-    }
-    .contact-link-item:hover { border-color: var(--accent); opacity: 1; }
-    .contact-link-item .link-icon { font-size: 1.1rem; width: 2rem; text-align: center; }
-    .contact-link-item .link-label { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
-    .contact-link-item .link-value { font-size: 0.88rem; color: var(--text); }
-    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
-    .form-group input, .form-group textarea {
-      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
-      color: var(--text); font-family: var(--sans); font-size: 0.9rem;
-      padding: 0.75rem 1rem; outline: none; transition: border-color var(--transition); resize: vertical;
-    }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); }
-    .form-note { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: 0.5rem; }
-    @media (max-width: 700px) { .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">jg@gatech ~ $</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#goals">Goals</a></li>
-      <li><a href="#resume">Resume</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-  <div class="nav-mobile" id="nav-mobile">
-    <a href="#about" onclick="closeMenu()">About</a>
-    <a href="#skills" onclick="closeMenu()">Skills</a>
-    <a href="#experience" onclick="closeMenu()">Experience</a>
-    <a href="#projects" onclick="closeMenu()">Projects</a>
-    <a href="#goals" onclick="closeMenu()">Goals</a>
-    <a href="#resume" onclick="closeMenu()">Resume</a>
-    <a href="#contact" onclick="closeMenu()">Contact</a>
-  </div>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="container">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <div class="hero-tag">Computer Engineer</div>
-          <h1 class="hero-name">Jase V.<br><em>George</em></h1>
-          <div class="hero-title">CompE @ Georgia Institute of Technology &middot; Cybersecurity &amp; Software Engineering</div>
-          <p class="hero-desc">
-            I build secure, resilient software systems - from low-level firmware protocols to full-stack web applications.
-            My work lives at the intersection of system security and thoughtful software engineering.
-          </p>
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="#contact" class="btn btn-outline">Get in Touch</a>
-          </div>
+  <header class="hero is-field" id="top">
+    <nav class="container site-top" aria-label="Sections">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#binge">Binge</a></li>
+        <li><a href="#wireless">Wireless research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="Jase_George_Resume.pdf">Résumé (PDF)</a>
+    </nav>
+    <div class="container hero-body">
+      <div class="hero-copy">
+        <h1>Jase<br />George</h1>
+        <p class="lede">I break and defend systems, from server firmware to web apps.</p>
+        <div class="actions">
+          <a class="btn" href="Jase_George_Resume.pdf">Download résumé</a>
+          <a class="btn is-plain" href="mailto:jgeorge337@gatech.edu">Email me</a>
         </div>
-        <div class="hero-visual">
-          <div class="hero-card">
-            <div class="card-label">Latest Project</div>
-            <div class="card-value"><span class="dot"></span>Binge.</div>
-            <div class="card-sub">ReactJS &middot; Full-Stack Web App &middot; April 2026</div>
-          </div>
-          <div class="hero-card">
-            <div class="card-label">Current Focus</div>
-            <div class="card-value"><span class="dot amber"></span>Cybersecurity Research</div>
-            <div class="card-sub">Offensive &amp; Defensive Security &middot; System Hardening</div>
-          </div>
-        </div>
+        <p class="status quiet">Computer engineering at Georgia Tech, class of 2028. Looking for a summer 2027 security internship.</p>
       </div>
+      <figure class="hero-shot">
+        <img src="images/binge/oct-2026/tv-home.jpg" width="1600" height="900" alt="Binge running on Apple TV, with a tab bar, a banner for The Apothecary Diaries and a Continue Watching row" fetchpriority="high" />
+        <figcaption>Binge on Apple TV, a native app I wrote in October 2026. It began as a class project in April.</figcaption>
+      </figure>
     </div>
-  </section>
+  </header>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="section-label">About</div>
-      <h2 class="section-title">Engineer. Security Researcher.<br>Problem Solver.</h2>
-      <div class="about-grid">
-
-        <div class="about-photo-col fade-in">
-          <div class="about-photo-frame">
-            <img src="images/personal/profile.png" alt="Jase George" />
-          </div>
-          <div class="about-photo-name">Jase V. George</div>
-          <div class="about-photo-role">CompE @ Georgia Tech</div>
+  <main>
+    <section class="band is-paper" id="work" aria-labelledby="work-h">
+      <div class="container">
+        <div class="head">
+          <h2 id="work-h">Work, newest first</h2>
+          <p class="quiet">Each entry links to screenshots and the details. The two security projects are near the top.</p>
         </div>
-
-        <div class="about-text fade-in">
-          <p>
-            My journey into technology started with a simple curiosity about how things work under the hood,
-            and that curiosity is what ultimately led me to study Computer Engineering at Georgia Tech. I have always
-            believed that the best software is not just functional - it is resilient and thoughtfully built from the ground up.
-          </p>
-          <p>
-            Whether I am hardening a Linux system against vulnerabilities or architecting the backend logic for a full-stack
-            web application, I am driven by the challenge of making complex systems feel seamless and secure for the person
-            on the other side of the screen.
-          </p>
-          <p>
-            For me, engineering is about more than writing code. It is about the discipline of creating tools that people
-            can actually trust. I grew up in Lilburn, GA, and that grounded, community-driven mindset carries into
-            everything I build.
-          </p>
-        </div>
-
-        <div class="about-meta fade-in">
-          <div class="meta-item">
-            <div class="meta-key">Degree</div>
-            <div class="meta-val">B.S. Computer Engineering - Georgia Tech</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-key">Threads</div>
-            <div class="meta-val">Cybersecurity &amp; Information Internetworks</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-key">Location</div>
-            <div class="meta-val">Lilburn, GA 30047 &middot; U.S. Citizen</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-key">Interests</div>
-            <div class="meta-val">Defensive Security &middot; Embedded Systems &middot; CTF Competitions &middot; Robotics</div>
-          </div>
-        </div>
-
+        <table class="ledger">
+          <thead>
+            <tr><th scope="col">When</th><th scope="col">What</th><th scope="col">Kind</th><th scope="col">Details</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="when"><time>Mar 2026 to now</time></td>
+              <td class="what"><h3><a href="projects/binge.html">Binge</a></h3><p>A tracker for movies, shows and books. I hardened its API, then wrote its Apple TV and Fire TV apps.</p></td>
+              <td class="kind">Team project, CS 2340. Best project of 100+ students.</td>
+              <td class="go"><a href="projects/binge.html">Case study</a></td>
+            </tr>
+            <tr>
+              <td class="when"><time>May to Jul 2026</time></td>
+              <td class="what"><h3><a href="#experience">Security lab for iD Tech</a></h3><p>A system that set up vulnerable machines for students and scored how they attacked and defended them.</p></td>
+              <td class="kind">Job, AI and machine learning instructor</td>
+              <td class="go"><a href="#experience">Role</a></td>
+            </tr>
+            <tr>
+              <td class="when"><time>May to Jun 2026</time></td>
+              <td class="what"><h3><a href="projects/wireless.html">Wireless protocol research</a></h3><p>Worked out how campus door-opener buttons talk over 900 MHz, from captured radio signals alone.</p></td>
+              <td class="kind">Independent research</td>
+              <td class="go"><a href="projects/wireless.html">Write-up</a></td>
+            </tr>
+            <tr>
+              <td class="when"><time>Apr 2026</time></td>
+              <td class="what"><h3><a href="projects/discovery.html">SACC Hoops</a></h3><p>Live scores, a snake draft and stats for my church’s basketball tournament, used courtside on phones.</p></td>
+              <td class="kind">ECE 1100 discovery project</td>
+              <td class="go"><a href="projects/discovery.html">Project</a></td>
+            </tr>
+            <tr>
+              <td class="when"><time>Mar 2026</time></td>
+              <td class="what"><h3><a href="projects/pandapulse.html">PandaPulse</a></h3><p>A hiring site in Django with three user roles. Placed third across both class sections.</p></td>
+              <td class="kind">Team project, CS 2340</td>
+              <td class="go"><a href="projects/pandapulse.html">Project</a></td>
+            </tr>
+            <tr>
+              <td class="when"><time>Jan 2026</time></td>
+              <td class="what"><h3><a href="projects/gtmovies.html">GT Movies Store</a></h3><p>My first Django app, with a review-reporting feature I designed myself.</p></td>
+              <td class="kind">Course project</td>
+              <td class="go"><a href="projects/gtmovies.html">Project</a></td>
+            </tr>
+            <tr>
+              <td class="when"><time>May to Jul 2024</time></td>
+              <td class="what"><h3><a href="#experience">Firmware at AMI</a></h3><p>MCTP and PLDM protocol code in C for server hardware, with integrity checks below the OS.</p></td>
+              <td class="kind">Internship</td>
+              <td class="go"><a href="#experience">Role</a></td>
+            </tr>
+            <tr>
+              <td class="when"><time>2022 to 2025</time></td>
+              <td class="what"><h3><a href="projects/cyberpatriot.html">CyberPatriot and CTFs</a></h3><p>Three straight National Semifinals, and 3rd place at Lockheed Martin CyberQuest.</p></td>
+              <td class="kind">Competition team lead</td>
+              <td class="go"><a href="projects/cyberpatriot.html">Project</a></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-label">Technical Skills</div>
-      <h2 class="section-title">What I Work With</h2>
-      <div class="skills-grid">
-        <div class="skill-card fade-in">
-          <div class="skill-card-icon">&#9000;</div>
-          <div class="skill-card-title">Programming Languages</div>
-          <div class="skill-tags">
-            <span class="tag">Python</span><span class="tag">Java</span><span class="tag">C</span>
-            <span class="tag">JavaScript</span><span class="tag">SQL</span><span class="tag">Bash/Shell</span>
-            <span class="tag">MATLAB</span><span class="tag">RISC-V Assembly</span>
-          </div>
+    <section class="band is-well" id="binge" aria-labelledby="binge-h">
+      <div class="container story">
+        <div class="story-copy">
+          <h2 id="binge-h">Binge kept going after the grade</h2>
+          <p>Five of us built it for CS 2340 in April and it won best project. I kept working on it. By October I had written most of the new code, including two native TV apps.</p>
+          <p><a href="projects/binge.html">See every stage, with screenshots</a></p>
         </div>
-        <div class="skill-card fade-in">
-          <div class="skill-card-icon">&#128187;</div>
-          <div class="skill-card-title">Platforms &amp; OS</div>
-          <div class="skill-tags">
-            <span class="tag">Linux (Ubuntu, Fedora, Kali, Debian)</span>
-            <span class="tag">Windows / Windows Server</span><span class="tag">macOS</span>
-          </div>
-        </div>
-        <div class="skill-card fade-in">
-          <div class="skill-card-icon">&#128297;</div>
-          <div class="skill-card-title">Hardware</div>
-          <div class="skill-tags">
-            <span class="tag">Raspberry Pi</span><span class="tag">Arduino (Uno, Nano)</span>
-            <span class="tag">Unitree Go2 Robot</span>
-          </div>
-        </div>
-        <div class="skill-card fade-in">
-          <div class="skill-card-icon">&#128737;</div>
-          <div class="skill-card-title">Security Tools</div>
-          <div class="skill-tags">
-            <span class="tag">Autopsy</span><span class="tag">Ghidra</span>
-            <span class="tag">Metasploit</span><span class="tag">Steghide</span>
-            <span class="tag">Cisco Packet Tracer</span>
-          </div>
-        </div>
-        <div class="skill-card fade-in">
-          <div class="skill-card-icon">&#128295;</div>
-          <div class="skill-card-title">Dev Tools</div>
-          <div class="skill-tags">
-            <span class="tag">Git</span><span class="tag">GitHub</span>
-            <span class="tag">Django</span><span class="tag">PythonAnywhere</span>
-          </div>
-        </div>
-        <div class="skill-card fade-in">
-          <div class="skill-card-icon">&#128221;</div>
-          <div class="skill-card-title">Communication</div>
-          <div class="skill-tags">
-            <span class="tag">Technical Reports</span><span class="tag">Design Proposals</span>
-            <span class="tag">Instruction Manuals</span><span class="tag">Presentations</span>
-          </div>
-        </div>
+        <figure class="story-chart">
+          <svg class="chart" viewBox="0 0 640 300" role="img" aria-labelledby="chart-t chart-d">
+            <title id="chart-t">Binge commits per month, March to October 2026</title>
+            <desc id="chart-d">Mar 6 commits, 0 mine. Apr 300 commits, 111 mine. May 10 commits, 10 mine. Jun 15 commits, 9 mine. Jul 108 commits, 23 mine. Aug 1 commit, 0 mine. Sep 8 commits, 1 mine. Oct 65 commits, 60 mine.</desc>
+            <rect class="bar-team" x="15.0" y="257.2" width="50" height="4.8"/>
+            <text class="val" x="40.0" y="249.2" text-anchor="middle">0/6</text>
+            <text x="40.0" y="286" text-anchor="middle">Mar</text>
+            <rect class="bar-team" x="95.0" y="24.0" width="50" height="238.0"/>
+            <rect class="bar-mine" x="95.0" y="173.9" width="50" height="88.1"/>
+            <text class="val" x="120.0" y="16.0" text-anchor="middle">111/300</text>
+            <text x="120.0" y="286" text-anchor="middle">Apr</text>
+            <rect class="bar-team" x="175.0" y="254.1" width="50" height="7.9"/>
+            <rect class="bar-mine" x="175.0" y="254.1" width="50" height="7.9"/>
+            <text class="val" x="200.0" y="246.1" text-anchor="middle">10/10</text>
+            <text x="200.0" y="286" text-anchor="middle">May</text>
+            <rect class="bar-team" x="255.0" y="250.1" width="50" height="11.9"/>
+            <rect class="bar-mine" x="255.0" y="254.9" width="50" height="7.1"/>
+            <text class="val" x="280.0" y="242.1" text-anchor="middle">9/15</text>
+            <text x="280.0" y="286" text-anchor="middle">Jun</text>
+            <rect class="bar-team" x="335.0" y="176.3" width="50" height="85.7"/>
+            <rect class="bar-mine" x="335.0" y="243.8" width="50" height="18.2"/>
+            <text class="val" x="360.0" y="168.3" text-anchor="middle">23/108</text>
+            <text x="360.0" y="286" text-anchor="middle">Jul</text>
+            <rect class="bar-team" x="415.0" y="260" width="50" height="2"/>
+            <text class="val" x="440.0" y="252" text-anchor="middle">0/1</text>
+            <text x="440.0" y="286" text-anchor="middle">Aug</text>
+            <rect class="bar-team" x="495.0" y="255.7" width="50" height="6.3"/>
+            <rect class="bar-mine" x="495.0" y="260" width="50" height="2"/>
+            <text class="val" x="520.0" y="247.7" text-anchor="middle">1/8</text>
+            <text x="520.0" y="286" text-anchor="middle">Sep</text>
+            <rect class="bar-team" x="575.0" y="210.4" width="50" height="51.6"/>
+            <rect class="bar-mine" x="575.0" y="214.4" width="50" height="47.6"/>
+            <text class="val" x="600.0" y="202.4" text-anchor="middle">60/65</text>
+            <text x="600.0" y="286" text-anchor="middle">Oct</text>
+            <line class="axis" x1="0" x2="640" y1="262" y2="262"/>
+          </svg>
+          <figcaption class="key"><span><i class="k-mine"></i>My commits</span><span><i class="k-team"></i>The rest of the team</span><span>Counted from the main branch, March to October 2026</span></figcaption>
+        </figure>
+        <ol class="stages">
+          <li class="stage">
+            <img src="images/binge/apr-2026/dashboard-stats-and-annual-recap.png" alt="The April 2026 Binge dashboard with watch stats and a yearly recap" loading="lazy" />
+            <time>Mar to Apr 2026</time>
+            <h3>The class project</h3>
+            <p>A social tracker with a forum and watch rooms. I built the AI chatbot, the episode tracker and the security fixes.</p>
+          </li>
+          <li class="stage">
+            <div class="phone-pair">
+              <img src="images/binge/oct-2026/phone-home.jpg" alt="Binge home screen on a phone" loading="lazy" />
+              <img src="images/binge/oct-2026/phone-title.jpg" alt="A show's page on a phone" loading="lazy" />
+            </div>
+            <time>May to Sep 2026</time>
+            <h3>Phones and profiles</h3>
+            <p>Over the summer we rebuilt it for phones, added household profiles with a kids filter, and wrote end-to-end tests.</p>
+          </li>
+          <li class="stage">
+            <img src="images/binge/oct-2026/web-ask.jpg" alt="Ask binge. answering the search a slow burn thriller set on a boat with seven film picks" loading="lazy" />
+            <time>Oct 2026</time>
+            <h3>Apple TV and Fire TV</h3>
+            <p>I rebuilt the site like a streaming service and wrote native TV apps in Swift and Kotlin, about 17,000 lines.</p>
+          </li>
+        </ol>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-label">Work Experience</div>
-      <h2 class="section-title">Where I've Contributed</h2>
-      <div class="timeline">
-        <div class="timeline-item fade-in">
-          <div class="timeline-date">Aug 2022 - May 2025</div>
-          <div class="timeline-content">
-            <h3>Cybersecurity Head &amp; Chief of Competitions</h3>
-            <div class="org">GSMST Computer Science Club &middot; Lawrenceville, GA</div>
-            <ul>
-              <li>Led a 5-member team to three consecutive CyberPatriot National Semifinals (Platinum) along with top placements in CTFs including PicoCTF, LineCTF, GA TSA Cybersecurity CTF, and Lockheed Martin CyberQuest.</li>
-              <li>Implemented system hardening across Ubuntu, Fedora, and Windows 10/Server environments, with emphasis on Linux security.</li>
-              <li>Delivered weekly cybersecurity instruction to 30+ students on vulnerability identification, exploitation, and mitigation.</li>
-            </ul>
-          </div>
+    <section class="band is-night" id="wireless" aria-labelledby="wireless-h">
+      <div class="container signal">
+        <p class="big" aria-hidden="true">908<small> to </small>918<small> MHz</small></p>
+        <div class="copy">
+          <h2 id="wireless-h">Reading a door button’s radio</h2>
+          <p>The accessibility buttons on several campus buildings open their doors over the air. With a software-defined radio and Universal Radio Hacker I worked out their protocol from captures alone. I only listened. I never transmitted or replayed anything.</p>
+          <p><a href="projects/wireless.html">Read the write-up</a></p>
         </div>
-        <div class="timeline-item fade-in">
-          <div class="timeline-date">Aug 2024 - May 2025</div>
-          <div class="timeline-content">
-            <h3>Student Intern &amp; Curriculum Designer</h3>
-            <div class="org">GSMST Computer Science Department &middot; Lawrenceville, GA</div>
-            <ul>
-              <li>Developed AI-focused curriculum for new computer science classes, including web scraping and Raspberry Pi projects.</li>
-              <li>Assisted faculty with hardware setup, Linux troubleshooting, and support for machine learning-based class projects.</li>
-              <li>Optimized hardware performance of the Unitree Go2 robot through sensor calibration, control system tuning, and troubleshooting.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item fade-in">
-          <div class="timeline-date">May 2024 - Aug 2024</div>
-          <div class="timeline-content">
-            <h3>Software Engineering Intern</h3>
-            <div class="org">American Megatrends (AMI) &middot; Remote</div>
-            <ul>
-              <li>Researched system control protocols and developed algorithms using MCTP and PLDM for efficient data transmission and platform management.</li>
-              <li>Implemented error-detection methods to ensure data integrity and reliable transmission in low-level system communication.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item fade-in">
-          <div class="timeline-date">Jun 2023 - Jul 2023</div>
-          <div class="timeline-content">
-            <h3>Summer Student Intern</h3>
-            <div class="org">Joseph Maxwell Cleland Atlanta VA Medical Center &middot; Decatur, GA</div>
-            <ul>
-              <li>Provided comprehensive support to the Medical Media Department in a secretarial capacity.</li>
-              <li>Collaborated with the Operating Room Charge Nurse to facilitate communication among medical staff.</li>
-              <li>Organized surgery schedules, tracked OR status, and updated documentation for the Chief Nurse using Microsoft Office.</li>
-            </ul>
-          </div>
-        </div>
+        <dl class="findings">
+          <div><dt>Modulation</dt><dd>FSK</dd></div>
+          <div><dt>Hopping</dt><dd>3 channels</dd></div>
+          <div><dt>Topology</dt><dd>One transmitter, many receivers</dd></div>
+        </dl>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-label">Technical Projects</div>
-      <h2 class="section-title">Things I've Built</h2>
-      <div class="projects-grid">
-
-        <!-- FEATURED: binge. -->
-        <a href="projects/binge.html" class="project-card-featured fade-in">
-          <div class="featured-left">
-            <div>
-              <div class="featured-badge">&#11088; Featured &middot; Most Recent</div>
-              <div class="featured-title">binge.</div>
-              <div class="featured-sub">Full-Stack Web App &middot; Social Media &middot; React 19 &middot; Supabase &middot; Groq AI</div>
-              <p class="featured-desc">
-                A social media-tracking platform for movies, TV, and books — part personal journal, part social network.
-                Rate content, track your watchlist, follow friends, collaborate on ranked lists with live voting, and
-                watch things together in synchronized rooms. Powered by React 19, Supabase, and Groq AI for recommendations
-                and auto-moderation.
-              </p>
-            </div>
-            <div class="featured-link-row">
-              <span class="btn btn-primary" style="font-size:0.78rem; padding: 0.6rem 1.25rem;">View Full Project -></span>
-              <a href="https://project-3-phi-drab.vercel.app/" target="_blank" onclick="event.stopPropagation()" class="btn btn-outline" style="font-size:0.78rem; padding: 0.6rem 1.25rem;">Live Site</a>
-            </div>
-          </div>
-          <div class="featured-right">
-            <div class="featured-stat">
-              <div class="featured-stat-val">78,357</div>
-              <div class="featured-stat-label">Movies in catalog</div>
-            </div>
-            <div class="featured-stat">
-              <div class="featured-stat-val">21,446</div>
-              <div class="featured-stat-label">TV shows</div>
-            </div>
-            <div class="featured-stat">
-              <div class="featured-stat-val">29,788</div>
-              <div class="featured-stat-label">Books</div>
-            </div>
-            <div class="featured-stat">
-              <div class="featured-stat-val">40+</div>
-              <div class="featured-stat-label">Features built</div>
-            </div>
-          </div>
-        </a>
-
-        <div class="projects-sub-grid">
-
-          <!-- GT Movies Store -->
-          <a href="projects/gtmovies.html" class="project-card fade-in">
-            <div class="project-card-header">
-              <div class="project-type">Full-Stack Web App</div>
-              <div class="project-title">GT Movies Store</div>
-              <div class="project-date">January 2026</div>
-            </div>
-            <div class="project-card-body">
-              <p class="project-desc">
-                A full-stack movie marketplace built with Django 5. Features 21 implemented user stories including
-                browsing, purchasing, reviews, and a custom report system designed independently from the source material.
-              </p>
-              <div class="project-footer">
-                <span class="view-more">View Project</span>
-                <span class="tag">Django 5 &middot; Python</span>
-              </div>
-            </div>
-          </a>
-
-          <!-- PandaPulse -->
-          <a href="projects/pandapulse.html" class="project-card fade-in">
-            <div class="project-card-header">
-              <div class="project-type">Full-Stack Web App</div>
-              <div class="project-title">PandaPulse</div>
-              <div class="project-date">March 2026</div>
-            </div>
-            <div class="project-card-body">
-              <p class="project-desc">
-                A LinkedIn-style job search and hiring platform built in Django for CS 2340 at Georgia Tech.
-                Three user roles, 15 required features plus 20+ original additions. Placed 3rd across both class sections.
-              </p>
-              <div class="project-footer">
-                <span class="view-more">View Project</span>
-                <span class="tag">Django &middot; Top 5</span>
-              </div>
-            </div>
-          </a>
-
-          <!-- ECE 1100 Discovery -->
-          <a href="projects/discovery.html" class="project-card fade-in">
-            <div class="project-card-header">
-              <div class="project-type">ECE 1100 &middot; Discovery Project</div>
-              <div class="project-title">ECE 1100 Discovery Project</div>
-              <div class="project-date">April 2026</div>
-            </div>
-            <div class="project-card-body">
-              <p class="project-desc">
-                The culminating project for ECE 1100 at Georgia Tech - an investigation into a topic at the frontier
-                of electrical and computer engineering, synthesizing research and presenting findings professionally.
-              </p>
-              <div class="project-footer">
-                <span class="view-more">View Project</span>
-                <span class="tag">Georgia Tech &middot; ECE 1100</span>
-              </div>
-            </div>
-          </a>
-
-        </div><!-- end projects-sub-grid -->
-
-      </div><!-- end projects-grid -->
-    </div>
-  </section>
-
-  <!-- CAREER GOALS -->
-  <section id="goals">
-    <div class="container">
-      <div class="section-label">Career Goals</div>
-      <h2 class="section-title">Where I'm Headed</h2>
-      <div class="goals-grid">
-        <div class="goal-card fade-in">
-          <div class="goal-num">01</div>
-          <div class="goal-horizon">0 to 5 Years</div>
-          <div class="goal-title">Cybersecurity Specialist</div>
-          <p class="goal-desc">Transition into a professional cybersecurity role within five years, exploring offensive, defensive, or hardware security tracks.</p>
-          <div class="goal-path-label">The Path</div>
-          <div class="goal-path">Leveraging the Cybersecurity and Information Internetworks threads at Georgia Tech to master secure systems and network protocols. Pursuing internships in security-focused roles.</div>
+    <section class="band is-paper" id="experience" aria-labelledby="exp-h">
+      <div class="container">
+        <div class="head">
+          <h2 id="exp-h">Experience</h2>
+          <p class="quiet">The full list, with dates, is on the <a href="Jase_George_Resume.pdf">résumé</a>.</p>
         </div>
-        <div class="goal-card fade-in">
-          <div class="goal-num">02</div>
-          <div class="goal-horizon">5 to 10 Years</div>
-          <div class="goal-title">Technical Lead &amp; Security Architect</div>
-          <p class="goal-desc">Evolve into a Technical Lead or Security Architect role, heading major security initiatives and guiding engineering teams.</p>
-          <div class="goal-path-label">The Path</div>
-          <div class="goal-path">Building leadership experience through student organizations at Georgia Tech, then progressively taking on larger scopes in industry or research - from individual contributor to team lead.</div>
-        </div>
-        <div class="goal-card fade-in">
-          <div class="goal-num">03</div>
-          <div class="goal-horizon">Long-Term</div>
-          <div class="goal-title">Specialized Security Operations</div>
-          <p class="goal-desc">Gain real-world experience at the highest level, including potential roles in government or specialized offensive analysis.</p>
-          <div class="goal-path-label">The Path</div>
-          <div class="goal-path">Pursuing elite opportunities such as the NSA Cybersecurity Co-op and Validin internship to obtain security clearances and develop advanced technical skills in offensive security and intelligence.</div>
-        </div>
+        <ol class="roles">
+          <li class="role">
+            <time>May to Jul 2026</time>
+            <div class="who"><h3>AI and machine learning instructor</h3><p>iD Tech Camps, Atlanta</p></div>
+            <div class="did">
+              <p>Built a system that set up vulnerable machines and scored students on how they exploited and defended them.</p>
+              <p>Taught cybersecurity to more than 60 students, walking through real attacks and the fixes that stop them.</p>
+            </div>
+          </li>
+          <li class="role">
+            <time>May to Jul 2024</time>
+            <div class="who"><h3>Firmware and software engineering intern</h3><p>American Megatrends (AMI), remote</p></div>
+            <div class="did">
+              <p>Wrote and audited MCTP and PLDM protocol code in C for server hardware, adding integrity checks that run below the operating system.</p>
+              <p>Tested the protocol against the hardware specs and traced edge cases and failure paths in low-level code.</p>
+            </div>
+          </li>
+          <li class="role">
+            <time>Aug 2022 to May 2025</time>
+            <div class="who"><h3>Cybersecurity head and chief of competitions</h3><p>GSMST computer science club, Lawrenceville</p></div>
+            <div class="did">
+              <p>Led a 30-member club and its top team to three CyberPatriot National Semifinals, hardening live systems and answering intrusions.</p>
+              <p>Wrote Python, Bash and PowerShell scripts that found misconfigurations faster. <a href="projects/cyberpatriot.html">More on the competitions</a></p>
+            </div>
+          </li>
+        </ol>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- RESUME -->
-  <section id="resume">
-    <div class="container">
-      <div class="section-label">Resume</div>
-      <h2 class="section-title">Credentials at a Glance</h2>
-      <div class="resume-inner">
-        <div class="resume-left">
-          <div class="resume-section-title">Contact</div>
-          <div class="resume-contact-item">Lilburn, GA 30047</div>
-          <div class="resume-contact-item"><a href="tel:6784620842">(678) 462-0842</a></div>
-          <div class="resume-contact-item"><a href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a></div>
-          <div class="resume-contact-item"><a href="https://www.linkedin.com/in/jaseg2026" target="_blank">linkedin.com/in/jaseg2026</a></div>
-          <div class="resume-section-title">Education</div>
-          <div class="resume-skill-group"><strong>Degree</strong>B.S. Computer Engineering</div>
-          <div class="resume-skill-group"><strong>Institution</strong>Georgia Institute of Technology</div>
-          <div class="resume-skill-group"><strong>Threads</strong>Cybersecurity &middot; Information Internetworks</div>
-          <div class="resume-section-title">Languages</div>
-          <ul class="resume-tag-list">
-            <li>Java, Python, SQL</li>
-            <li>Bash/Shell, MATLAB, C</li>
-            <li>RISC-V Assembly, JavaScript</li>
-          </ul>
-          <div class="resume-section-title">Platforms</div>
-          <ul class="resume-tag-list">
-            <li>Linux (Ubuntu, Fedora, Kali, Debian)</li>
-            <li>Windows, Windows Server, macOS</li>
-          </ul>
-          <div class="resume-section-title">Security Tools</div>
-          <ul class="resume-tag-list">
-            <li>Autopsy, Ghidra, Metasploit, Steghide</li>
-            <li>Git, GitHub, Cisco Packet Tracer</li>
-          </ul>
-          <div class="resume-section-title">Hardware</div>
-          <ul class="resume-tag-list">
-            <li>Raspberry Pi, Arduino (Uno, Nano)</li>
-            <li>Unitree Go2 Quadruped Robot</li>
-          </ul>
-        </div>
-        <div class="resume-right">
-          <div class="resume-section-title">Work Experience</div>
-          <div class="resume-exp-item">
-            <h4>Cybersecurity Head &amp; Chief of Competitions</h4>
-            <div class="exp-meta">GSMST Computer Science Club &middot; Aug 2022 - May 2025</div>
-            <ul>
-              <li>Led team to 3x CyberPatriot National Semifinals (Platinum tier)</li>
-              <li>System hardening across Ubuntu, Fedora, Windows 10/Server</li>
-              <li>Taught weekly cybersecurity to 30+ students</li>
-            </ul>
+    <section class="band is-well" aria-labelledby="school-h">
+      <div class="container split">
+        <div class="school">
+          <h2 id="school-h">School</h2>
+          <div>
+            <h3>Georgia Tech</h3>
+            <p>B.S. computer engineering, cybersecurity and information internetworks threads. Expected May 2028. Dean’s List. Member of GreyHat.</p>
           </div>
-          <div class="resume-exp-item">
-            <h4>Student Intern &amp; Curriculum Designer</h4>
-            <div class="exp-meta">GSMST CS Department &middot; Aug 2024 - May 2025</div>
-            <ul>
-              <li>Developed AI-focused CS curriculum (web scraping, Raspberry Pi)</li>
-              <li>Tuned Unitree Go2 robot: sensor calibration &amp; control systems</li>
-              <li>Supported ML-based class projects and Linux troubleshooting</li>
-            </ul>
-          </div>
-          <div class="resume-exp-item">
-            <h4>Software Engineering Intern</h4>
-            <div class="exp-meta">American Megatrends (AMI) &middot; May - Aug 2024 &middot; Remote</div>
-            <ul>
-              <li>Developed MCTP/PLDM algorithms for platform data management</li>
-              <li>Implemented error-detection for low-level system communication</li>
-            </ul>
-          </div>
-          <div class="resume-exp-item">
-            <h4>Summer Student Intern</h4>
-            <div class="exp-meta">Atlanta VA Medical Center &middot; Jun - Jul 2023</div>
-            <ul>
-              <li>Supported Medical Media Department; facilitated OR communications</li>
-              <li>Maintained surgery schedules and documentation in Microsoft Office</li>
-            </ul>
-          </div>
-          <div class="resume-download">
-            <a href="https://ae420a60-236c-44ef-8e6d-af5dae8e6ee0.filesusr.com/ugd/d019eb_937db510440843658dcb8a02de3a3400.pdf"
-               target="_blank" class="btn btn-primary">Download Full Resume (PDF)</a>
+          <p class="gpa">3.61 <span>GPA</span></p>
+          <div>
+            <h3>Gwinnett Technical College</h3>
+            <p>Dual enrollment in the cyber crime specialist program, 2023 to 2024. 4.00 GPA.</p>
           </div>
         </div>
+        <dl class="skills" aria-label="Skills">
+          <div><dt>Security</dt><dd>Vulnerability assessment, penetration testing, web and binary exploitation, system hardening, incident response, secure code review</dd></div>
+          <div><dt>Reverse engineering</dt><dd>Ghidra, firmware in C, MCTP and PLDM, RF analysis with SDR and Universal Radio Hacker, RISC-V assembly</dd></div>
+          <div><dt>Networks and systems</dt><dd>TCP/IP, Wireshark, Linux and Windows hardening, digital forensics, virtualization</dd></div>
+          <div><dt>Code</dt><dd>C, Python, Java, JavaScript, Swift, Kotlin, Bash, PowerShell, SQL, Git</dd></div>
+          <div><dt>Certifications</dt><dd>Google Cybersecurity Certificate. Security+ in progress.</dd></div>
+        </dl>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- CONTACT -->
-  <section id="contact">
+  <footer class="is-field contact" id="contact">
     <div class="container">
-      <div class="contact-inner">
+      <div class="contact-me">
+        <img class="headshot" src="images/personal/headshot.jpg" width="369" height="369" alt="Jase George" loading="lazy" />
         <div>
-          <div class="section-label">Contact</div>
-          <div class="contact-tagline">Let's build something <em>secure</em> together.</div>
-          <p class="contact-desc">Open to internship opportunities, research collaborations, and conversations with fellow engineers and security professionals.</p>
-          <div class="contact-links">
-            <a href="mailto:jgeorge337@gatech.edu" class="contact-link-item">
-              <div class="link-icon">&#9993;</div>
-              <div><div class="link-label">Email</div><div class="link-value">jgeorge337@gatech.edu</div></div>
-            </a>
-            <a href="https://www.linkedin.com/in/jaseg2026" target="_blank" class="contact-link-item">
-              <div class="link-icon">&#128279;</div>
-              <div><div class="link-label">LinkedIn</div><div class="link-value">linkedin.com/in/jaseg2026</div></div>
-            </a>
-            <a href="tel:6784620842" class="contact-link-item">
-              <div class="link-icon">&#128222;</div>
-              <div><div class="link-label">Phone</div><div class="link-value">(678) 462-0842</div></div>
-            </a>
-            <a href="https://github.com/AzureRaven25" target="_blank" class="contact-link-item">
-              <div class="link-icon">&#128187;</div>
-              <div><div class="link-label">GitHub</div><div class="link-value">github.com/AzureRaven25</div></div>
-            </a>
-          </div>
-        </div>
-        <div class="contact-form">
-          <div class="form-group">
-            <label for="c-name">Name</label>
-            <input type="text" id="c-name" placeholder="Your name" />
-          </div>
-          <div class="form-group">
-            <label for="c-email">Email</label>
-            <input type="email" id="c-email" placeholder="you@example.com" />
-          </div>
-          <div class="form-group">
-            <label for="c-msg">Message</label>
-            <textarea id="c-msg" rows="5" placeholder="What's on your mind?"></textarea>
-          </div>
-          <a href="mailto:jgeorge337@gatech.edu" class="btn btn-primary" id="send-btn" style="text-align:center; justify-content:center;">Send via Email</a>
-          <div class="form-note">Opens your email client &middot; jgeorge337@gatech.edu</div>
+          <h2>The fastest way to reach me</h2>
+          <a class="mail" href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      &copy; 2026 <span>Jase V. George</span> &middot; Computer Engineering @ Georgia Tech &middot; Built for GitHub Pages
+      <ul>
+        <li><a href="https://www.linkedin.com/in/jaseg2026">LinkedIn</a></li>
+        <li><a href="https://github.com/AzureRaven25">GitHub</a></li>
+        <li><a href="tel:+16784620842">(678) 462-0842</a></li>
+        <li><a href="Jase_George_Resume.pdf">Résumé (PDF)</a></li>
+      </ul>
+      <p class="small quiet">Jase George, Atlanta, 2026. U.S. citizen.</p>
     </div>
   </footer>
 
-  <script>
-// Mobile nav
-const hamburger = document.getElementById('hamburger');
-const navMobile = document.getElementById('nav-mobile');
-if (hamburger) hamburger.addEventListener('click', () => navMobile.classList.toggle('open'));
-function closeMenu() { if (navMobile) navMobile.classList.remove('open'); }
-
-// Enable fade-in animations only once JS is confirmed running
-document.documentElement.classList.add('js-ready');
-
-// Intersection observer for fade-ins
-const fadeEls = document.querySelectorAll('.fade-in');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
-fadeEls.forEach(el => observer.observe(el));
-
-// Hard fallback: show everything after 1.2s in case observer misfires
-setTimeout(() => {
-  document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
-}, 1200);
-
-</script>
-  <script>
-    document.getElementById('send-btn').addEventListener('click', function(e) {
-      const name = document.getE
-    })
+</body>
+</html>

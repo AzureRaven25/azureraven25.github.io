@@ -4,115 +4,149 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jase George, computer engineering at Georgia Tech</title>
-  <meta name="description" content="Jase George studies computer engineering at Georgia Tech and works on security, from server firmware to web apps. Projects, experience and résumé." />
+  <meta name="description" content="Jase George studies computer engineering at Georgia Tech and works on security, from server firmware and radio protocols to web apps. Projects, experience and résumé." />
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/site.css" />
+  <script src="assets/site.js" defer></script>
 </head>
 <body>
 
-  <header class="hero is-field" id="top">
-    <nav class="container site-top" aria-label="Sections">
+  <nav class="nav" aria-label="Site">
+    <div class="container">
+      <a class="wordmark" href="#top">Jase George</a>
       <ul>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#binge">Binge</a></li>
-        <li><a href="#wireless">Wireless research</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#goals">Goals</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li class="keep"><a class="btn is-small" href="Jase_George_Resume.pdf">Résumé</a></li>
       </ul>
-      <a href="Jase_George_Resume.pdf">Résumé (PDF)</a>
-    </nav>
-    <div class="container hero-body">
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <canvas data-fsk="JASE GEORGE" aria-hidden="true"></canvas>
+    <div class="container hero-inner">
+      <h1>Jase George</h1>
       <div class="hero-copy">
-        <h1>Jase<br />George</h1>
-        <p class="lede">I break and defend systems, from server firmware to web apps.</p>
+        <p class="lede">I break and defend systems, from server firmware and radio protocols to the web apps on top.</p>
         <div class="actions">
-          <a class="btn" href="Jase_George_Resume.pdf">Download résumé</a>
-          <a class="btn is-plain" href="mailto:jgeorge337@gatech.edu">Email me</a>
+          <a class="btn" href="#work">See the work<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn is-ghost" href="Jase_George_Resume.pdf">Download résumé</a>
         </div>
-        <p class="status quiet">Computer engineering at Georgia Tech, class of 2028. Looking for a summer 2027 security internship.</p>
+        <p class="status">Computer engineering at Georgia Tech, class of 2028. Looking for a summer 2027 security internship.</p>
       </div>
-      <figure class="hero-shot">
-        <img src="images/binge/oct-2026/tv-home.jpg" width="1600" height="900" alt="Binge running on Apple TV, with a tab bar, a banner for The Apothecary Diaries and a Continue Watching row" fetchpriority="high" />
-        <figcaption>Binge on Apple TV, a native app I wrote in October 2026. It began as a class project in April.</figcaption>
-      </figure>
+      <div class="bits">
+        <p>The orange line is my name in binary, sent with frequency shift keying. That is the modulation I found inside a campus door button’s radio.</p>
+        <p class="stream" aria-label="JASE GEORGE in 8-bit ASCII"><span class="gap"><b>0</b><b>1</b><b>0</b><b>0</b><b>1</b><b>0</b><b>1</b><b>0</b></span><span class="gap"><b>0</b><b>1</b><b>0</b><b>0</b><b>0</b><b>0</b><b>0</b><b>1</b></span><span class="gap"><b>0</b><b>1</b><b>0</b><b>1</b><b>0</b><b>0</b><b>1</b><b>1</b></span><span class="gap"><b>0</b><b>1</b><b>0</b><b>0</b><b>0</b><b>1</b><b>0</b><b>1</b></span><span class="gap"><b>0</b><b>0</b><b>1</b><b>0</b><b>0</b><b>0</b><b>0</b><b>0</b></span><span class="gap"><b>0</b><b>1</b><b>0</b><b>0</b><b>0</b><b>1</b><b>1</b><b>1</b></span><span class="gap"><b>0</b><b>1</b><b>0</b><b>0</b><b>0</b><b>1</b><b>0</b><b>1</b></span><span class="gap"><b>0</b><b>1</b><b>0</b><b>0</b><b>1</b><b>1</b><b>1</b><b>1</b></span><span class="gap"><b>0</b><b>1</b><b>0</b><b>1</b><b>0</b><b>0</b><b>1</b><b>0</b></span><span class="gap"><b>0</b><b>1</b><b>0</b><b>0</b><b>0</b><b>1</b><b>1</b><b>1</b></span><span class="gap"><b>0</b><b>1</b><b>0</b><b>0</b><b>0</b><b>1</b><b>0</b><b>1</b></span></p>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="band is-paper" id="work" aria-labelledby="work-h">
+    <section class="band" id="about" aria-labelledby="about-h">
       <div class="container">
-        <div class="head">
-          <h2 id="work-h">Work, newest first</h2>
-          <p class="quiet">Each entry links to screenshots and the details. The two security projects are near the top.</p>
+        <div class="sec-head reveal">
+          <h2 id="about-h">Engineer, security researcher, problem solver</h2>
         </div>
-        <table class="ledger">
-          <thead>
-            <tr><th scope="col">When</th><th scope="col">What</th><th scope="col">Kind</th><th scope="col">Details</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="when"><time>Mar 2026 to now</time></td>
-              <td class="what"><h3><a href="projects/binge.html">Binge</a></h3><p>A tracker for movies, shows and books. I hardened its API, then wrote its Apple TV and Fire TV apps.</p></td>
-              <td class="kind">Team project, CS 2340. Best project of 100+ students.</td>
-              <td class="go"><a href="projects/binge.html">Case study</a></td>
-            </tr>
-            <tr>
-              <td class="when"><time>May to Jul 2026</time></td>
-              <td class="what"><h3><a href="#experience">Security lab for iD Tech</a></h3><p>A system that set up vulnerable machines for students and scored how they attacked and defended them.</p></td>
-              <td class="kind">Job, AI and machine learning instructor</td>
-              <td class="go"><a href="#experience">Role</a></td>
-            </tr>
-            <tr>
-              <td class="when"><time>May to Jun 2026</time></td>
-              <td class="what"><h3><a href="projects/wireless.html">Wireless protocol research</a></h3><p>Worked out how campus door-opener buttons talk over 900 MHz, from captured radio signals alone.</p></td>
-              <td class="kind">Independent research</td>
-              <td class="go"><a href="projects/wireless.html">Write-up</a></td>
-            </tr>
-            <tr>
-              <td class="when"><time>Apr 2026</time></td>
-              <td class="what"><h3><a href="projects/discovery.html">SACC Hoops</a></h3><p>Live scores, a snake draft and stats for my church’s basketball tournament, used courtside on phones.</p></td>
-              <td class="kind">ECE 1100 discovery project</td>
-              <td class="go"><a href="projects/discovery.html">Project</a></td>
-            </tr>
-            <tr>
-              <td class="when"><time>Mar 2026</time></td>
-              <td class="what"><h3><a href="projects/pandapulse.html">PandaPulse</a></h3><p>A hiring site in Django with three user roles. Placed third across both class sections.</p></td>
-              <td class="kind">Team project, CS 2340</td>
-              <td class="go"><a href="projects/pandapulse.html">Project</a></td>
-            </tr>
-            <tr>
-              <td class="when"><time>Jan 2026</time></td>
-              <td class="what"><h3><a href="projects/gtmovies.html">GT Movies Store</a></h3><p>My first Django app, with a review-reporting feature I designed myself.</p></td>
-              <td class="kind">Course project</td>
-              <td class="go"><a href="projects/gtmovies.html">Project</a></td>
-            </tr>
-            <tr>
-              <td class="when"><time>May to Jul 2024</time></td>
-              <td class="what"><h3><a href="#experience">Firmware at AMI</a></h3><p>MCTP and PLDM protocol code in C for server hardware, with integrity checks below the OS.</p></td>
-              <td class="kind">Internship</td>
-              <td class="go"><a href="#experience">Role</a></td>
-            </tr>
-            <tr>
-              <td class="when"><time>2022 to 2025</time></td>
-              <td class="what"><h3><a href="projects/cyberpatriot.html">CyberPatriot and CTFs</a></h3><p>Three straight National Semifinals, and 3rd place at Lockheed Martin CyberQuest.</p></td>
-              <td class="kind">Competition team lead</td>
-              <td class="go"><a href="projects/cyberpatriot.html">Project</a></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="about reveal">
+          <figure class="about-photo"><img src="images/personal/headshot.jpg" width="369" height="369" alt="Jase George" loading="lazy" /></figure>
+          <div class="about-text">
+            <p>I got into technology because I wanted to know how things work underneath. That curiosity is what brought me to computer engineering at Georgia Tech.</p>
+            <p>I think good software should hold up when something goes wrong, not just on a good day. Some days that means hardening a Linux machine against an attack. Other days it means building the backend of a web app. Either way, I want the result to feel simple and safe for the person on the other side of the screen.</p>
+            <p>To me, engineering is the discipline of building tools people can actually trust. I grew up in Lilburn, Georgia, and the community there shapes how I work.</p>
+          </div>
+          <dl class="about-facts">
+            <div><dt>Degree</dt><dd>B.S. computer engineering, Georgia Tech, May 2028</dd></div>
+            <div><dt>Threads</dt><dd>Cybersecurity, and information internetworks</dd></div>
+            <div><dt>Home</dt><dd>Lilburn, Georgia. U.S. citizen.</dd></div>
+            <div><dt>Interests</dt><dd>Defensive security, embedded systems, radio, CTFs and robotics</dd></div>
+          </dl>
+        </div>
       </div>
     </section>
 
-    <section class="band is-well" id="binge" aria-labelledby="binge-h">
+    <section class="band is-deep" id="work" aria-labelledby="work-h">
+      <div class="container">
+        <div class="sec-head reveal">
+          <h2 id="work-h">Things I’ve built and broken</h2>
+          <p class="lede">Every card opens a full write-up with screenshots, what I did, and what I learned.</p>
+        </div>
+        <ul class="cards">
+          <li class="card is-wide reveal">
+            <img src="images/binge/oct-2026/tv-home.jpg" alt="" loading="lazy" />
+            <div class="card-body">
+              <time>Mar 2026 to now</time>
+              <h3><a href="projects/binge.html">Binge</a></h3>
+              <p>A tracker for movies, shows and books that won best project out of 100+ students, then grew into native Apple TV and Fire TV apps.</p>
+              <ul class="tags"><li>React</li><li>Supabase</li><li>Swift</li><li>Kotlin</li><li>API security</li></ul>
+              <span class="more">Read the case study<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </li>
+          <li class="card is-type reveal">
+            <div class="card-body">
+              <p class="figure" aria-hidden="true">908<small> to </small>918<small> MHz</small></p>
+              <time>May to Jun 2026</time>
+              <h3><a href="projects/wireless.html">Wireless protocol research</a></h3>
+              <p>How campus door buttons talk over the air, worked out from captured signals alone.</p>
+              <span class="more">Read the write-up<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </li>
+          <li class="card is-half reveal">
+            <img src="images/discovery/home.png" alt="" loading="lazy" />
+            <div class="card-body">
+              <time>Apr 2026</time>
+              <h3><a href="projects/discovery.html">SACC Hoops</a></h3>
+              <p>Live scores, a snake draft and stat leaderboards for my church’s basketball tournament, used courtside on phones.</p>
+              <ul class="tags"><li>React</li><li>Supabase Realtime</li><li>ECE 1100</li></ul>
+              <span class="more">See the project<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </li>
+          <li class="card is-half reveal">
+            <img src="images/pandapulse/pandapulse-landing-page.png" alt="" loading="lazy" />
+            <div class="card-body">
+              <time>Mar 2026</time>
+              <h3><a href="projects/pandapulse.html">PandaPulse</a></h3>
+              <p>A hiring platform in Django with three user roles and 20+ features we invented. Placed 3rd across both class sections.</p>
+              <ul class="tags"><li>Django</li><li>Python</li><li>CS 2340</li></ul>
+              <span class="more">See the project<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </li>
+          <li class="card reveal">
+            <img src="images/gtmovies/gt-movies-store-homepage.png" alt="" loading="lazy" />
+            <div class="card-body">
+              <time>Jan 2026</time>
+              <h3><a href="projects/gtmovies.html">GT Movies Store</a></h3>
+              <p>My first Django app, 21 features, written line by line, plus a reporting feature I designed myself.</p>
+              <span class="more">See the project<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </li>
+          <li class="card is-wide is-type reveal">
+            <div class="card-body">
+              <p class="figure" aria-hidden="true">3<small> National Semifinals in a row</small></p>
+              <time>2022 to 2025</time>
+              <h3><a href="projects/cyberpatriot.html">CyberPatriot and CTFs</a></h3>
+              <p>Led my high school’s team to the Platinum tier three years straight, and took 3rd at Lockheed Martin CyberQuest.</p>
+              <span class="more">See the competitions<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band" id="binge" aria-labelledby="binge-h">
       <div class="container story">
-        <div class="story-copy">
+        <div class="story-copy reveal">
           <h2 id="binge-h">Binge kept going after the grade</h2>
-          <p>Five of us built it for CS 2340 in April and it won best project. I kept working on it. By October I had written most of the new code, including two native TV apps.</p>
+          <p>Five of us built it for CS 2340 in April and it won best project. I kept working on it. By October I had written most of the new code, including two native TV apps and the security fixes for its API.</p>
           <p><a href="projects/binge.html">See every stage, with screenshots</a></p>
         </div>
-        <figure class="story-chart">
+        <figure class="story-chart reveal">
           <svg class="chart" viewBox="0 0 640 300" role="img" aria-labelledby="chart-t chart-d">
             <title id="chart-t">Binge commits per month, March to October 2026</title>
             <desc id="chart-d">Mar 6 commits, 0 mine. Apr 300 commits, 111 mine. May 10 commits, 10 mine. Jun 15 commits, 9 mine. Jul 108 commits, 23 mine. Aug 1 commit, 0 mine. Sep 8 commits, 1 mine. Oct 65 commits, 60 mine.</desc>
@@ -148,116 +182,213 @@
             <text x="600.0" y="286" text-anchor="middle">Oct</text>
             <line class="axis" x1="0" x2="640" y1="262" y2="262"/>
           </svg>
-          <figcaption class="key"><span><i class="k-mine"></i>My commits</span><span><i class="k-team"></i>The rest of the team</span><span>Counted from the main branch, March to October 2026</span></figcaption>
+          <figcaption class="key"><span><i class="k-mine"></i>My commits</span><span><i class="k-team"></i>The rest of the team</span><span>Main branch, March to October 2026</span></figcaption>
         </figure>
+        <dl class="stats reveal">
+          <div><dt>Movies in the catalog</dt><dd>78,357</dd></div>
+          <div><dt>TV shows</dt><dd>21,446</dd></div>
+          <div><dt>Books</dt><dd>29,788</dd></div>
+          <div><dt>Lines in the two TV apps</dt><dd>17,000</dd></div>
+        </dl>
         <ol class="stages">
-          <li class="stage">
+          <li class="stage reveal">
             <img src="images/binge/apr-2026/dashboard-stats-and-annual-recap.png" alt="The April 2026 Binge dashboard with watch stats and a yearly recap" loading="lazy" />
             <time>Mar to Apr 2026</time>
             <h3>The class project</h3>
-            <p>A social tracker with a forum and watch rooms. I built the AI chatbot, the episode tracker and the security fixes.</p>
+            <p>A social tracker with a forum and watch rooms. I built the AI chatbot, the episode tracker, live TV and the security fixes.</p>
           </li>
-          <li class="stage">
+          <li class="stage reveal">
             <div class="phone-pair">
               <img src="images/binge/oct-2026/phone-home.jpg" alt="Binge home screen on a phone" loading="lazy" />
-              <img src="images/binge/oct-2026/phone-title.jpg" alt="A show's page on a phone" loading="lazy" />
+              <img src="images/binge/oct-2026/phone-title.jpg" alt="A show’s page on a phone" loading="lazy" />
             </div>
             <time>May to Sep 2026</time>
             <h3>Phones and profiles</h3>
             <p>Over the summer we rebuilt it for phones, added household profiles with a kids filter, and wrote end-to-end tests.</p>
           </li>
-          <li class="stage">
-            <img src="images/binge/oct-2026/web-ask.jpg" alt="Ask binge. answering the search a slow burn thriller set on a boat with seven film picks" loading="lazy" />
+          <li class="stage reveal">
+            <img src="images/binge/oct-2026/tv-title.jpg" alt="The Squid Game title page in the Binge Apple TV app" loading="lazy" />
             <time>Oct 2026</time>
             <h3>Apple TV and Fire TV</h3>
-            <p>I rebuilt the site like a streaming service and wrote native TV apps in Swift and Kotlin, about 17,000 lines.</p>
+            <p>I rebuilt the site like a streaming service and wrote native TV apps in Swift and Kotlin.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="band is-night" id="wireless" aria-labelledby="wireless-h">
+    <section class="band is-wash" id="wireless" aria-labelledby="wireless-h">
       <div class="container signal">
-        <p class="big" aria-hidden="true">908<small> to </small>918<small> MHz</small></p>
-        <div class="copy">
+        <p class="big reveal" aria-hidden="true">908<small> to </small>918<small> MHz</small></p>
+        <div class="copy reveal">
           <h2 id="wireless-h">Reading a door button’s radio</h2>
-          <p>The accessibility buttons on several campus buildings open their doors over the air. With a software-defined radio and Universal Radio Hacker I worked out their protocol from captures alone. I only listened. I never transmitted or replayed anything.</p>
-          <p><a href="projects/wireless.html">Read the write-up</a></p>
+          <p>The accessibility buttons on several campus buildings open their doors over the air. With a software-defined radio and Universal Radio Hacker I worked out their protocol from captures alone, with no datasheet. I only listened. I never transmitted or replayed anything.</p>
+          <p><a class="btn is-ghost" href="projects/wireless.html">Read the write-up<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
         </div>
-        <dl class="findings">
+        <dl class="findings reveal">
+          <div><dt>Band</dt><dd>900 MHz ISM</dd></div>
           <div><dt>Modulation</dt><dd>FSK</dd></div>
           <div><dt>Hopping</dt><dd>3 channels</dd></div>
-          <div><dt>Topology</dt><dd>One transmitter, many receivers</dd></div>
+          <div><dt>Topology</dt><dd>Point to multipoint</dd></div>
         </dl>
       </div>
     </section>
 
-    <section class="band is-paper" id="experience" aria-labelledby="exp-h">
+    <section class="band is-bone" id="experience" aria-labelledby="exp-h">
       <div class="container">
-        <div class="head">
-          <h2 id="exp-h">Experience</h2>
-          <p class="quiet">The full list, with dates, is on the <a href="Jase_George_Resume.pdf">résumé</a>.</p>
+        <div class="sec-head reveal">
+          <h2 id="exp-h">Where I’ve worked</h2>
+          <p>Five roles, newest first. The short version is on the <a href="Jase_George_Resume.pdf">résumé</a>.</p>
         </div>
         <ol class="roles">
-          <li class="role">
+          <li class="role reveal">
             <time>May to Jul 2026</time>
             <div class="who"><h3>AI and machine learning instructor</h3><p>iD Tech Camps, Atlanta</p></div>
-            <div class="did">
-              <p>Built a system that set up vulnerable machines and scored students on how they exploited and defended them.</p>
-              <p>Taught cybersecurity to more than 60 students, walking through real attacks and the fixes that stop them.</p>
-            </div>
+            <ul class="did">
+              <li>Built an automated security assessment system that set up vulnerable machines and scored students on how they exploited and defended them.</li>
+              <li>Taught cybersecurity to more than 60 students, walking through real attack techniques and the fixes that stop them.</li>
+            </ul>
           </li>
-          <li class="role">
+          <li class="role reveal">
             <time>May to Jul 2024</time>
             <div class="who"><h3>Firmware and software engineering intern</h3><p>American Megatrends (AMI), remote</p></div>
-            <div class="did">
-              <p>Wrote and audited MCTP and PLDM protocol code in C for server hardware, adding integrity checks that run below the operating system.</p>
-              <p>Tested the protocol against the hardware specs and traced edge cases and failure paths in low-level code.</p>
-            </div>
+            <ul class="did">
+              <li>Wrote and audited firmware and communication protocols in C for server hardware, using MCTP and PLDM, with integrity checks that run below the operating system.</li>
+              <li>Researched system control protocols and built algorithms for moving platform management data efficiently.</li>
+              <li>Added error detection so low-level messages arrive intact, then tested the protocol against the hardware specs and traced edge cases and failure paths.</li>
+            </ul>
           </li>
-          <li class="role">
+          <li class="role reveal">
+            <time>Aug 2024 to May 2025</time>
+            <div class="who"><h3>Student intern and curriculum designer</h3><p>GSMST computer science department, Lawrenceville</p></div>
+            <ul class="did">
+              <li>Wrote AI-focused lessons for new computer science classes, including web scraping and Raspberry Pi projects.</li>
+              <li>Helped teachers with hardware setup, Linux troubleshooting and machine learning class projects.</li>
+              <li>Tuned the school’s Unitree Go2 robot dog, calibrating its sensors and adjusting its control system.</li>
+            </ul>
+          </li>
+          <li class="role reveal">
             <time>Aug 2022 to May 2025</time>
             <div class="who"><h3>Cybersecurity head and chief of competitions</h3><p>GSMST computer science club, Lawrenceville</p></div>
-            <div class="did">
-              <p>Led a 30-member club and its top team to three CyberPatriot National Semifinals, hardening live systems and answering intrusions.</p>
-              <p>Wrote Python, Bash and PowerShell scripts that found misconfigurations faster. <a href="projects/cyberpatriot.html">More on the competitions</a></p>
-            </div>
+            <ul class="did">
+              <li>Led the club’s top five-person team to three straight CyberPatriot National Semifinals at the Platinum tier.</li>
+              <li>Placed in national CTFs, including 3rd at Lockheed Martin CyberQuest, and competed in PicoCTF, LINE CTF and the Georgia TSA Cybersecurity CTF.</li>
+              <li>Hardened and monitored Ubuntu, Fedora, Windows 10 and Windows Server machines and answered intrusions, with Python, Bash and PowerShell scripts that found misconfigurations faster.</li>
+              <li>Taught weekly security sessions to 30+ students on finding, exploiting and fixing vulnerabilities. <a href="projects/cyberpatriot.html">More on the competitions</a></li>
+            </ul>
+          </li>
+          <li class="role reveal">
+            <time>Jun to Jul 2023</time>
+            <div class="who"><h3>Summer student intern</h3><p>Joseph Maxwell Cleland Atlanta VA Medical Center, Decatur</p></div>
+            <ul class="did">
+              <li>Supported the Medical Media department with day-to-day office work.</li>
+              <li>Worked with the operating room charge nurse to keep medical staff in touch.</li>
+              <li>Organized surgery schedules, tracked operating room status and kept the chief nurse’s documents current in Microsoft Office.</li>
+            </ul>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="band is-well" aria-labelledby="school-h">
-      <div class="container split">
-        <div class="school">
+    <section class="band is-bone is-tight" id="skills" aria-labelledby="skills-h">
+      <div class="container">
+        <div class="sec-head reveal">
+          <h2 id="skills-h">What I work with</h2>
+        </div>
+        <dl class="skill-grid reveal">
+          <div><dt>Security</dt><dd>Vulnerability assessment, penetration testing, web and binary exploitation, system hardening and monitoring, incident response, secure code review, digital forensics</dd></div>
+          <div><dt>Reverse engineering and radio</dt><dd>Ghidra, firmware in C, MCTP and PLDM, software-defined radio, Universal Radio Hacker, RISC-V assembly</dd></div>
+          <div><dt>Languages</dt><dd>C, Python, Java, JavaScript, SQL, Swift, Kotlin, Bash, PowerShell, MATLAB</dd></div>
+          <div><dt>Security tools</dt><dd>Wireshark, Metasploit, Autopsy, Steghide, Cisco Packet Tracer</dd></div>
+          <div><dt>Platforms</dt><dd>Linux (Ubuntu, Fedora, Kali, Debian), Windows and Windows Server, macOS, tvOS, Android TV</dd></div>
+          <div><dt>Hardware</dt><dd>Raspberry Pi, Arduino Uno and Nano, the Unitree Go2 robot, SDR receivers</dd></div>
+          <div><dt>Building software</dt><dd>Git and GitHub, React, Django, Express, Supabase, Vercel, PythonAnywhere, Xcode, Playwright, CI/CD</dd></div>
+          <div><dt>Writing and speaking</dt><dd>Technical reports, design proposals, instruction manuals, presentations</dd></div>
+          <div><dt>Certifications</dt><dd>Google Cybersecurity Certificate. CompTIA Security+ in progress.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="band is-raised" id="school" aria-labelledby="school-h">
+      <div class="container">
+        <div class="sec-head reveal">
           <h2 id="school-h">School</h2>
+        </div>
+        <div class="school reveal">
           <div>
-            <h3>Georgia Tech</h3>
-            <p>B.S. computer engineering, cybersecurity and information internetworks threads. Expected May 2028. Dean’s List. Member of GreyHat.</p>
+            <h3>Georgia Institute of Technology</h3>
+            <p class="gpa">3.61 GPA</p>
+            <p>B.S. computer engineering, cybersecurity and information internetworks threads, August 2025 to May 2028. Dean’s List. Member of GreyHat, the campus security club.</p>
           </div>
-          <p class="gpa">3.61 <span>GPA</span></p>
+          <div>
+            <h3>Coursework</h3>
+            <p>Data structures and algorithms, computer communications, objects and design, programming for hardware and software systems, and ECE 1100.</p>
+          </div>
           <div>
             <h3>Gwinnett Technical College</h3>
-            <p>Dual enrollment in the cyber crime specialist program, 2023 to 2024. 4.00 GPA.</p>
+            <p class="gpa">4.00 GPA</p>
+            <p>Dual enrollment in the cyber crime specialist program, 2023 to 2024. Information security fundamentals, computer forensics, and hardware installation and maintenance.</p>
           </div>
         </div>
-        <dl class="skills" aria-label="Skills">
-          <div><dt>Security</dt><dd>Vulnerability assessment, penetration testing, web and binary exploitation, system hardening, incident response, secure code review</dd></div>
-          <div><dt>Reverse engineering</dt><dd>Ghidra, firmware in C, MCTP and PLDM, RF analysis with SDR and Universal Radio Hacker, RISC-V assembly</dd></div>
-          <div><dt>Networks and systems</dt><dd>TCP/IP, Wireshark, Linux and Windows hardening, digital forensics, virtualization</dd></div>
-          <div><dt>Code</dt><dd>C, Python, Java, JavaScript, Swift, Kotlin, Bash, PowerShell, SQL, Git</dd></div>
-          <div><dt>Certifications</dt><dd>Google Cybersecurity Certificate. Security+ in progress.</dd></div>
-        </dl>
+      </div>
+    </section>
+
+    <section class="band is-deep" id="goals" aria-labelledby="goals-h">
+      <div class="container">
+        <div class="sec-head reveal">
+          <h2 id="goals-h">Where I’m headed</h2>
+          <p class="lede">Three steps, and how I plan to get to each one.</p>
+        </div>
+        <ol class="goals">
+          <li class="goal reveal">
+            <span class="when">The next five years</span>
+            <h3>Security engineer</h3>
+            <p>Move into a full-time security role, in offensive, defensive or hardware security.</p>
+            <h4>How</h4>
+            <p>Use my cybersecurity and networking threads at Georgia Tech to go deep on secure systems and network protocols, and take security internships along the way.</p>
+          </li>
+          <li class="goal reveal">
+            <span class="when">Five to ten years</span>
+            <h3>Technical lead and security architect</h3>
+            <p>Lead major security projects and guide an engineering team.</p>
+            <h4>How</h4>
+            <p>Build leadership through student organizations now, then take on bigger scope at work, from individual contributor to team lead.</p>
+          </li>
+          <li class="goal reveal">
+            <span class="when">Long term</span>
+            <h3>Specialized security operations</h3>
+            <p>Work at the highest level, possibly in government or in specialized offensive analysis.</p>
+            <h4>How</h4>
+            <p>Go after programs like the NSA cybersecurity co-op and the Validin internship that build clearances and advanced offensive and intelligence skills.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="band is-bone" id="resume" aria-labelledby="resume-h">
+      <div class="container resume">
+        <div class="resume-copy reveal">
+          <h2 id="resume-h">The one-page version</h2>
+          <p>Everything above, on one page for your files.</p>
+          <div class="actions">
+            <a class="btn" href="Jase_George_Resume.pdf" download>Download the PDF</a>
+            <a class="btn is-ghost" href="Jase_George_Resume.pdf">Open in a new tab</a>
+          </div>
+        </div>
+        <div class="resume-frame reveal">
+          <object data="Jase_George_Resume.pdf#view=FitH" type="application/pdf" aria-label="Jase George’s résumé">
+            <p>Your browser cannot show the PDF here. <a href="Jase_George_Resume.pdf">Download the résumé</a> instead.</p>
+          </object>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="is-field contact" id="contact">
+  <footer class="contact" id="contact">
     <div class="container">
       <div class="contact-me">
         <img class="headshot" src="images/personal/headshot.jpg" width="369" height="369" alt="Jase George" loading="lazy" />
         <div>
-          <h2>The fastest way to reach me</h2>
+          <h2>Let’s build something secure together</h2>
           <a class="mail" href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a>
         </div>
       </div>
@@ -267,7 +398,7 @@
         <li><a href="tel:+16784620842">(678) 462-0842</a></li>
         <li><a href="Jase_George_Resume.pdf">Résumé (PDF)</a></li>
       </ul>
-      <p class="small quiet">Jase George, Atlanta, 2026. U.S. citizen.</p>
+      <p class="small">Open to internships, research and conversations with engineers and security people. Jase George, Atlanta, 2026.</p>
     </div>
   </footer>
 

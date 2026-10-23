@@ -5,25 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wireless protocol research, Jase George</title>
   <meta name="description" content="Passive reverse engineering of a 900 MHz accessibility door-button system from captured radio signals, with a software-defined radio and Universal Radio Hacker." />
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/site.css" />
+  <script src="../assets/site.js" defer></script>
 </head>
 <body>
 
-  <header class="is-night">
-    <nav class="container site-top" aria-label="Site">
+  <nav class="nav" aria-label="Site">
+    <div class="container">
       <a class="wordmark" href="../index.html">Jase George</a>
       <ul>
-        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#work">Projects</a></li>
         <li><a href="binge.html">Binge</a></li>
-        <li><a href="wireless.html" aria-current="page">Wireless research</a></li>
+        <li><a href="wireless.html" aria-current="page">Wireless</a></li>
         <li><a href="../index.html#experience">Experience</a></li>
-        <li><a href="../Jase_George_Resume.pdf">Résumé (PDF)</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li class="keep"><a class="btn is-small" href="../Jase_George_Resume.pdf">Résumé</a></li>
       </ul>
-    </nav>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <canvas data-fsk="FSK" aria-hidden="true"></canvas>
     <div class="container page-head">
+      <p class="crumb"><a href="../index.html#work">Projects</a></p>
       <h1>Reading a door button’s radio</h1>
       <p class="lede">I worked out the wireless protocol behind a set of commercial accessibility door buttons, using nothing but the radio signals they send.</p>
       <dl class="facts">
@@ -35,81 +43,82 @@
     </div>
     <div class="container lead-wrap">
       <div class="signal">
-        <p class="big" aria-hidden="true">908<small> to </small>918<small> MHz</small></p>
-        <dl class="findings">
+        <p class="big reveal" aria-hidden="true">908<small> to </small>918<small> MHz</small></p>
+        <dl class="findings reveal">
           <div><dt>Protocol</dt><dd>Proprietary BEA door activation</dd></div>
           <div><dt>Modulation</dt><dd>FSK</dd></div>
           <div><dt>Hopping</dt><dd>3 channels</dd></div>
+          <div><dt>Topology</dt><dd>Point to multipoint</dd></div>
         </dl>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="band is-paper" aria-labelledby="why-h">
+    <section class="band" aria-labelledby="why-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="why-h">Why I looked</h2>
         </div>
-        <div class="main prose">
-          <p>The push-to-open buttons on several campus buildings have no wire running to the door. I wanted to know how they talk to it.</p>
-          <p>So I treated it as a pure signal-analysis problem. I captured what the buttons send, worked out the protocol from those captures, and stopped once I understood how it worked.</p>
+        <div class="main prose reveal">
+          <p>The push-to-open accessibility buttons on several campus buildings have no wire running to the door. I wanted to know how they talk to it.</p>
+          <p>So I set out to understand the protocol purely from the radio signals the buttons send. With open-source RF tools and a software-defined radio I captured and studied the transmissions, and worked out the key properties of the protocol with no datasheet or source code to start from.</p>
+          <p>I treated it strictly as a signal-analysis exercise and stopped once I had characterized how the protocol worked, without transmitting, replaying or interacting with any receiver.</p>
         </div>
       </div>
     </section>
 
-    <section class="band is-well" aria-labelledby="how-h">
+    <section class="band is-raised" aria-labelledby="how-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="how-h">How I did it</h2>
         </div>
-        <div class="main">
-          <ol class="roles">
-            <li class="role"><time>Step 1</time><div class="who"><h3>Capture</h3></div><div class="did"><p>Recorded the buttons' transmissions over the air with a software-defined radio.</p></div></li>
-            <li class="role"><time>Step 2</time><div class="who"><h3>Find the channels</h3></div><div class="did"><p>Opened the captures in Universal Radio Hacker to find which frequencies were active and how the signal moved between them.</p></div></li>
-            <li class="role"><time>Step 3</time><div class="who"><h3>Demodulate</h3></div><div class="did"><p>Identified the modulation as frequency shift keying and mapped the pattern it hops through across three channels.</p></div></li>
-            <li class="role"><time>Step 4</time><div class="who"><h3>Read the structure</h3></div><div class="did"><p>Worked out that one transmitter talks to many receivers, and the general layout of the data it sends.</p></div></li>
-          </ol>
-        </div>
+        <ol class="steps main reveal">
+          <li><div><h3>Capture</h3><p>Recorded the buttons’ over-the-air transmissions with a software-defined radio.</p></div></li>
+          <li><div><h3>Find the channels</h3><p>Opened the captures in Universal Radio Hacker to find which frequencies were active and how the signal moved across them.</p></div></li>
+          <li><div><h3>Demodulate</h3><p>Identified the modulation as frequency shift keying and mapped the pattern it hops through across three channels.</p></div></li>
+          <li><div><h3>Read the structure</h3><p>Worked out the point-to-multipoint topology, one button to the door receivers, and the general structure of the data being sent.</p></div></li>
+        </ol>
       </div>
     </section>
 
-    <section class="band is-paper" aria-labelledby="found-h">
+    <section class="band is-bone" aria-labelledby="found-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="found-h">What I found</h2>
         </div>
-        <div class="main">
-          <dl class="skills">
+        <div class="main reveal">
+          <dl class="dl">
             <div><dt>Protocol</dt><dd>BEA’s proprietary wireless door and access activation protocol</dd></div>
             <div><dt>Band</dt><dd>The 900 MHz ISM band, roughly 908 to 918 MHz</dd></div>
             <div><dt>Frequency use</dt><dd>Hops between 3 channels</dd></div>
             <div><dt>Modulation</dt><dd>Frequency shift keying (FSK)</dd></div>
-            <div><dt>Topology</dt><dd>Point to multipoint, from one button to the door receivers</dd></div>
+            <div><dt>Topology</dt><dd>Point to multipoint, from one transmitter to the receivers</dd></div>
           </dl>
         </div>
       </div>
     </section>
 
-    <section class="band is-night" aria-labelledby="line-h">
+    <section class="band is-deep" aria-labelledby="line-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="line-h">Where I drew the line</h2>
         </div>
-        <div class="main prose">
-          <p>This was listening only. I never transmitted, replayed or tried to trigger any device, and this write-up leaves out anything that would help someone do that. The point was to learn how a real wireless system works, not to interfere with one.</p>
-          <p class="quiet">What it taught me is RF signal analysis, reverse engineering a protocol from first principles, and working from observation when there is nothing written down.</p>
+        <div class="main prose reveal">
+          <p>I kept this project to passive analysis and characterization only. I did not transmit, replay or try to trigger any device, and this write-up leaves out anything that would help someone do that. The goal was to learn how a real wireless system works, not to interfere with one.</p>
+          <h3>What it taught me</h3>
+          <p>RF and wireless signal analysis, reverse engineering a protocol from first principles, working with a software-defined radio, and working from observation alone when there is nothing written down.</p>
         </div>
       </div>
     </section>
 
     <div class="container pager">
       <a href="binge.html">Back, Binge</a>
-      <a href="../index.html#work">All work</a>
+      <a href="discovery.html">Next, SACC Hoops<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </main>
 
-  <footer class="is-field contact">
+  <footer class="contact">
     <div class="container">
       <h2>Want the details in person?</h2>
       <a class="mail" href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a>

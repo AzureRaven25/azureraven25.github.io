@@ -5,116 +5,144 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SACC Hoops, Jase George</title>
   <meta name="description" content="SACC Hoops, a live scoring, stats and draft site for a church basketball tournament, built with React and Supabase for ECE 1100 at Georgia Tech." />
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/site.css" />
+  <script src="../assets/site.js" defer></script>
 </head>
 <body>
 
-  <header>
-    <nav class="container site-top" aria-label="Site">
+  <nav class="nav" aria-label="Site">
+    <div class="container">
       <a class="wordmark" href="../index.html">Jase George</a>
       <ul>
-        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#work">Projects</a></li>
         <li><a href="binge.html">Binge</a></li>
-        <li><a href="wireless.html">Wireless research</a></li>
+        <li><a href="wireless.html">Wireless</a></li>
         <li><a href="../index.html#experience">Experience</a></li>
-        <li><a href="../Jase_George_Resume.pdf">Résumé (PDF)</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li class="keep"><a class="btn is-small" href="../Jase_George_Resume.pdf">Résumé</a></li>
       </ul>
-    </nav>
+    </div>
+  </nav>
+
+  <header class="page-hero">
     <div class="container page-head">
+      <p class="crumb"><a href="../index.html#work">Projects</a></p>
       <h1>SACC Hoops</h1>
       <p class="lede">Live scores, stats and a draft board for the St. Alphonsa church basketball tournament, built to be opened on a phone courtside.</p>
       <div class="actions">
-        <a class="btn" href="https://sacc-march-madness.vercel.app">Open the live site</a>
-        <a class="btn is-plain" href="https://github.com/AzureRaven25/SACC-March-Madness">Code on GitHub</a>
+        <a class="btn" href="https://sacc-march-madness.vercel.app">Open the live site<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn is-ghost" href="https://github.com/AzureRaven25/SACC-March-Madness">Code on GitHub</a>
       </div>
       <dl class="facts">
         <div><dt>When</dt><dd>April 2026</dd></div>
         <div><dt>Course</dt><dd>ECE 1100 discovery project, Georgia Tech</dd></div>
-        <div><dt>Built with</dt><dd>React 18, Vite, Supabase Realtime, Recharts, Vercel</dd></div>
+        <div><dt>Built with</dt><dd>React 18, Vite, React Router 6, Supabase Realtime, Recharts, Vercel</dd></div>
+        <div><dt>Scope</dt><dd>20+ features with live sync across every phone</dd></div>
         <div><dt>Used by</dt><dd>Players, captains and fans during the real tournament</dd></div>
       </dl>
     </div>
     <div class="container lead-wrap">
-      <figure class="shot is-lead">
+      <figure class="shot is-lead reveal">
         <img src="../images/discovery/home.png" alt="The SACC Hoops home page with a live score ticker" fetchpriority="high" />
       </figure>
     </div>
   </header>
 
   <main>
-    <section class="band is-well" aria-labelledby="why-h">
+    <section class="band" aria-labelledby="why-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="why-h">Why it exists</h2>
         </div>
-        <div class="main prose">
-          <p>The tournament used to run on paper score sheets and scattered group chats. I built one place for it. Players register and pay online, captains draft teams live, and once games start every score and stat updates on everyone’s phone without a refresh.</p>
+        <div class="main prose reveal">
+          <p>SACC Hoops gives the St. Alphonsa Syro-Malabar Forane Catholic Church’s yearly basketball tournament the feel of a real sports broadcast. Scores and player stats used to live on paper sheets and in scattered group chats. I built one home for it, where every player and fan can follow live updates, dig into stats and make predictions from their phone.</p>
+          <p>It covers the whole tournament. It starts with registration and payment for players, moves to a live draft for team captains, and once games begin it turns into a real-time leaderboard.</p>
         </div>
         <ul class="gallery is-three full">
-          <li><figure class="shot"><img src="../images/discovery/draft.png" alt="The snake draft board" loading="lazy" /><figcaption>Snake draft board</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/discovery/stats.png" alt="The player stats leaderboard" loading="lazy" /><figcaption>Stat leaderboards</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/discovery/teams.png" alt="A team roster with stats" loading="lazy" /><figcaption>Team pages</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/discovery/rank.png" alt="Power rankings" loading="lazy" /><figcaption>Power rankings</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/discovery/schedule.png" alt="The game schedule" loading="lazy" /><figcaption>Schedule</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/discovery/chat.png" alt="The AI commissioner chat" loading="lazy" /><figcaption>AI commissioner chat</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/discovery/draft.png" alt="The snake draft board" loading="lazy" /><figcaption>Snake draft board</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/discovery/stats.png" alt="The player stats leaderboard" loading="lazy" /><figcaption>Stat leaderboards</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/discovery/teams.png" alt="A team roster with stats" loading="lazy" /><figcaption>Team pages</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/discovery/rank.png" alt="Power rankings" loading="lazy" /><figcaption>Power rankings</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/discovery/schedule.png" alt="The game schedule" loading="lazy" /><figcaption>Schedule</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/discovery/chat.png" alt="The AI commissioner chat" loading="lazy" /><figcaption>AI commissioner chat</figcaption></figure></li>
+          <li class="reveal is-wide"><figure class="shot"><img src="../images/discovery/docs.png" alt="The project documentation and architecture page" loading="lazy" /><figcaption>Documentation and architecture</figcaption></figure></li>
         </ul>
       </div>
     </section>
 
-    <section class="band is-paper" aria-labelledby="clock-h">
+    <section class="band is-bone" aria-labelledby="feat-h">
       <div class="container chapter">
-        <div class="side">
-          <h2 id="clock-h">The draft clock that lied</h2>
-        </div>
-        <div class="main prose">
-          <p>My first draft timer ran on each captain’s phone. Phones drift, so during the live draft some screens showed ten seconds left when there were really two.</p>
-          <p>I rewrote it so a single clock in the database is the only source of truth and every phone just displays it. That was my first real lesson in how devices disagree about time.</p>
-          <p>The same Realtime setup drives the score ticker, the bracket that advances itself, one-vote-per-device MVP polls and anonymous pick’em predictions.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="band is-well" aria-labelledby="feat-h">
-      <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="feat-h">Everything it does</h2>
         </div>
-        <div class="main">
-          <ul class="list-cols">
-            <li><strong>Live score ticker</strong><span>Across the top of every page.</span></li>
-            <li><strong>Playoff bracket</strong><span>Advances as the admin enters scores.</span></li>
-            <li><strong>Fantasy points</strong><span>PTS + 1.2 REB + 1.5 AST + 3 STL + 3 BLK minus turnovers.</span></li>
-            <li><strong>Player profiles</strong><span>Radar charts and stat bars in Recharts.</span></li>
-            <li><strong>Pick’em and MVP voting</strong><span>No login, one vote per device.</span></li>
-            <li><strong>Registration</strong><span>With Zelle payment and waiver tracking.</span></li>
-            <li><strong>GroupMe sync</strong><span>Announcements reach the group chat people already use.</span></li>
-            <li><strong>Admin panel</strong><span>Games, players, teams and announcements in one place.</span></li>
-          </ul>
+        <ul class="features full reveal">
+          <li><strong>Live score ticker</strong><span>Scrolls across the top of every page with live and recent scores, updated through Supabase Realtime.</span></li>
+          <li><strong>Playoff bracket</strong><span>Advances itself and shows live game status as the admin enters scores.</span></li>
+          <li><strong>Team pages</strong><span>Rosters, per-player stats, team colors and records. Captains manage their own roster.</span></li>
+          <li><strong>Fantasy points</strong><span>PTS + 1.2 REB + 1.5 AST + 3 STL + 3 BLK minus turnovers, ranking every player in the tournament.</span></li>
+          <li><strong>Stat leaderboards</strong><span>Sortable tables for fantasy points, points, rebounds, assists and steals. Click any column to re-sort.</span></li>
+          <li><strong>Player profiles</strong><span>Radar charts and stat bars in Recharts for every player.</span></li>
+          <li><strong>Power rankings</strong><span>Weekly rankings with up, down and same arrows to show momentum.</span></li>
+          <li><strong>Pick’em predictions</strong><span>Fans pick upcoming games and see live pick percentages, with no login, tracked by an anonymous browser session.</span></li>
+          <li><strong>MVP voting</strong><span>One anonymous vote per session, with results updating live.</span></li>
+          <li><strong>Snake draft board</strong><span>A pick timer and live roster updates for captains choosing players.</span></li>
+          <li><strong>Online registration</strong><span>Player sign-up with Zelle payment and waiver tracking that feeds the admin panel.</span></li>
+          <li><strong>Admin panel</strong><span>Games, players, teams and commissioner announcements from one dashboard.</span></li>
+          <li><strong>Player and team of the week</strong><span>Spotlights on the home page for the best performances of the last round.</span></li>
+          <li><strong>Game schedule</strong><span>Courts, tip-off times, rounds and live status for every game.</span></li>
+          <li><strong>GroupMe sync</strong><span>Commissioner announcements reach the group chat the community already uses.</span></li>
+          <li><strong>Mobile first</strong><span>A bottom navigation bar, built to be opened on a phone during games.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band is-deep" aria-labelledby="clock-h">
+      <div class="container chapter">
+        <div class="side reveal">
+          <h2 id="clock-h">What worked and what broke</h2>
+        </div>
+        <div class="main prose reveal">
+          <p>The core features were a big win, especially the real-time voting and the snake draft board. Getting a web app to update instantly on many devices without anyone refreshing was a major technical step for me. I also built a way to recognize a device so polls allow one vote each and predictions stay anonymous, which makes the site feel interactive and professional.</p>
+          <p>Not everything went right. During the live draft I learned how differently devices keep time. My first draft timer ran on each captain’s phone, and because some phones were faster than others the clocks drifted apart. Some screens showed ten seconds left when there were really two. I rewrote it so one master clock in the database controls every screen.</p>
         </div>
       </div>
     </section>
 
-    <section class="band is-paper" aria-labelledby="next-h">
+    <section class="band" aria-labelledby="skills-h">
       <div class="container chapter">
-        <div class="side">
-          <h2 id="next-h">Next, a real scoreboard</h2>
+        <div class="side reveal">
+          <h2 id="skills-h">ECE skills I gained</h2>
         </div>
-        <div class="main prose">
-          <p>I have a physical electronic scoreboard, and the plan is an ESP32 between it and the site, so a score entered online flips the digits on the board. That means serial communication, driving the display, and keeping the signal clean. After that, the bracket should seed itself from regular-season results.</p>
+        <div class="main prose reveal">
+          <p>This project grew my software engineering a lot. I learned to build an interactive front end in React and to manage real-time data flowing between a website and a cloud database. Securing that data and managing different levels of access gave me a much better picture of how professional web apps are put together, and those are the interfaces modern hardware needs.</p>
+          <p>Next comes hardware. Connecting the site to a physical scoreboard will teach me to use a microcontroller as the bridge between code and electronics, handle serial communication, send the right pulses to light the display, and manage power and signal integrity so the board updates reliably.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band is-raised" aria-labelledby="next-h">
+      <div class="container chapter">
+        <div class="side reveal">
+          <h2 id="next-h">Next steps</h2>
+        </div>
+        <div class="main prose reveal">
+          <p>The most exciting step is the physical scoreboard. I have an electronic scoreboard and I am working out the best way to connect it. When an official updates a score on the website, the board on the scorer’s table should change instantly. The plan is an ESP32 that catches the update from the internet and flips the digits.</p>
+          <p>I also want the site to do more on its own. Right now I seed the playoff bracket by hand. I plan to write an algorithm that looks at every regular-season result and seeds the teams automatically, which takes human error out and makes the tournament run more like a real league.</p>
         </div>
       </div>
     </section>
 
     <div class="container pager">
-      <a href="../index.html#work">Back to all work</a>
-      <a href="cyberpatriot.html">Next, CyberPatriot and CTFs</a>
+      <a href="wireless.html">Back, wireless research</a>
+      <a href="pandapulse.html">Next, PandaPulse<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </main>
 
-  <footer class="is-field contact">
+  <footer class="contact">
     <div class="container">
       <h2>Get in touch</h2>
       <a class="mail" href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a>

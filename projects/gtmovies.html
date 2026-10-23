@@ -5,86 +5,137 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GT Movies Store, Jase George</title>
   <meta name="description" content="GT Movies Store, a Django 5 movie shop with 21 features, written line by line and extended with a review-reporting feature of my own design." />
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/site.css" />
+  <script src="../assets/site.js" defer></script>
 </head>
 <body>
 
-  <header>
-    <nav class="container site-top" aria-label="Site">
+  <nav class="nav" aria-label="Site">
+    <div class="container">
       <a class="wordmark" href="../index.html">Jase George</a>
       <ul>
-        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#work">Projects</a></li>
         <li><a href="binge.html">Binge</a></li>
-        <li><a href="wireless.html">Wireless research</a></li>
+        <li><a href="wireless.html">Wireless</a></li>
         <li><a href="../index.html#experience">Experience</a></li>
-        <li><a href="../Jase_George_Resume.pdf">Résumé (PDF)</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li class="keep"><a class="btn is-small" href="../Jase_George_Resume.pdf">Résumé</a></li>
       </ul>
-    </nav>
+    </div>
+  </nav>
+
+  <header class="page-hero">
     <div class="container page-head">
+      <p class="crumb"><a href="../index.html#work">Projects</a></p>
       <h1>GT Movies Store</h1>
       <p class="lede">An online movie shop in Django 5. I typed every line myself instead of copying the book’s repository, then added a feature the book never covers.</p>
       <div class="actions">
-        <a class="btn" href="https://github.com/AzureRaven25/moviesstore">Read the code on GitHub</a>
+        <a class="btn" href="https://github.com/AzureRaven25/moviesstore">Read the code on GitHub<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <dl class="facts">
         <div><dt>When</dt><dd>January 2026</dd></div>
-        <div><dt>Built with</dt><dd>Django 5, Python, SQLite, hosted on PythonAnywhere</dd></div>
+        <div><dt>Built with</dt><dd>Django 5, Python, SQLite, HTML and CSS, hosted on PythonAnywhere</dd></div>
         <div><dt>Based on</dt><dd>Django 5 for the Impatient, by Daniel Correa and Greg Lim</dd></div>
-        <div><dt>Scope</dt><dd>21 features, 3 kinds of user</dd></div>
+        <div><dt>Scope</dt><dd>21 features, 3 kinds of user, every line typed by hand</dd></div>
       </dl>
     </div>
     <div class="container lead-wrap">
-      <figure class="shot is-lead">
+      <figure class="shot is-lead reveal">
         <img src="../images/gtmovies/gt-movies-store-homepage.png" alt="The GT Movies Store home page" fetchpriority="high" />
       </figure>
     </div>
   </header>
 
   <main>
-    <section class="band is-well" aria-labelledby="mine-h">
+    <section class="band" aria-labelledby="what-h">
       <div class="container chapter">
-        <div class="side">
-          <h2 id="mine-h">The part that was mine</h2>
+        <div class="side reveal">
+          <h2 id="what-h">What it is</h2>
         </div>
-        <div class="main prose">
-          <p>The book has no way to deal with a bad review. I designed and built one. Anyone can report a review, and it leaves public view right away.</p>
-          <p>By the middle chapters I could guess the next step before reading it. Writing a feature with no instructions was how I checked that the framework had actually sunk in.</p>
+        <div class="main prose reveal">
+          <p>GT Movies Store works like an online movie marketplace. People browse a curated library, buy movies and write reviews, while administrators keep full control of the data and the moderation.</p>
+          <p>I built it alongside the textbook, but I typed every line by hand rather than copying from its GitHub repository. By the middle chapters I could guess the next step before reading it.</p>
+          <p>The review reporting feature is not in the book at all. I designed and built it myself. Anyone can report a review, and it leaves public view right away. Writing a feature with no instructions was how I checked that the framework had actually sunk in.</p>
         </div>
       </div>
     </section>
 
-    <section class="band is-paper" aria-labelledby="shots-h">
+    <section class="band is-raised" aria-labelledby="shots-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="shots-h">The shop</h2>
         </div>
-        <div class="main prose">
-          <p>Browse and search the catalog, read and write reviews, fill a cart, check out, and look back at past orders. Admins manage users, movies and reviews from the Django admin.</p>
+        <div class="main prose reveal">
+          <p>Browsing and signing in, movie pages and reviews, the cart and orders, and the about page and admin.</p>
         </div>
         <ul class="gallery is-three full">
-          <li><figure class="shot"><img src="../images/gtmovies/movie-poster-grid.png" alt="The movie poster grid" loading="lazy" /><figcaption>Catalog</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/gtmovies/movie-detail-the-dark-knight.png" alt="The Dark Knight detail page" loading="lazy" /><figcaption>Movie page</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/gtmovies/movie-detail-with-user-review.png" alt="A movie page with a user review" loading="lazy" /><figcaption>Reviews</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/gtmovies/shopping-cart.png" alt="The shopping cart" loading="lazy" /><figcaption>Cart</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/gtmovies/order-history.png" alt="Order history" loading="lazy" /><figcaption>Order history</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/gtmovies/django-admin-panel.png" alt="The Django admin" loading="lazy" /><figcaption>Admin</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/gtmovies/movie-catalog-list.png" alt="The movie list view" loading="lazy" /><figcaption>List view</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/gtmovies/login-page.png" alt="The login page" loading="lazy" /><figcaption>Log in</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/gtmovies/about-page.png" alt="The about page" loading="lazy" /><figcaption>About</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/movie-poster-grid.png" alt="The movie poster grid" loading="lazy" /><figcaption>Poster grid</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/movie-catalog-list.png" alt="The movie catalog list" loading="lazy" /><figcaption>Catalog</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/login-page.png" alt="The login page" loading="lazy" /><figcaption>Log in</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/sign-up-page.png" alt="The sign up page" loading="lazy" /><figcaption>Sign up</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/movie-detail-the-dark-knight.png" alt="The Dark Knight detail page" loading="lazy" /><figcaption>Movie page, The Dark Knight</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/movie-detail-with-user-review.png" alt="A movie page with a user review" loading="lazy" /><figcaption>Movie page with a review</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/shopping-cart.png" alt="The shopping cart" loading="lazy" /><figcaption>Cart</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/order-history.png" alt="Order history" loading="lazy" /><figcaption>Order history</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/about-page.png" alt="The about page" loading="lazy" /><figcaption>About</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/gtmovies/django-admin-panel.png" alt="The Django admin" loading="lazy" /><figcaption>Django admin</figcaption></figure></li>
         </ul>
       </div>
     </section>
 
+    <section class="band is-bone" aria-labelledby="all-h">
+      <div class="container chapter">
+        <div class="side reveal">
+          <h2 id="all-h">All 21 features</h2>
+        </div>
+        <ol class="features full reveal">
+          <li><strong>About page</strong><span>Information about the app.</span></li>
+          <li><strong>Sign up</strong><span>Create an account and land on the login page when done.</span></li>
+          <li><strong>Log in</strong><span>Your signed-in status shows in the navigation bar.</span></li>
+          <li><strong>Catalog</strong><span>Browse every movie with its image and title.</span></li>
+          <li><strong>Search</strong><span>Find movies by a keyword in the title.</span></li>
+          <li><strong>Cart in the nav</strong><span>Reach the cart from any page.</span></li>
+          <li><strong>Add to cart</strong><span>Pick a quantity on the movie page.</span></li>
+          <li><strong>Checkout</strong><span>Buying from the cart creates a unique order.</span></li>
+          <li><strong>Remove all</strong><span>Clear the cart in one click.</span></li>
+          <li><strong>Write reviews</strong><span>Signed-in users review movies, with their username and a timestamp.</span></li>
+          <li><strong>Edit reviews</strong><span>Only the author can edit their own review.</span></li>
+          <li><strong>Delete reviews</strong><span>Authors can delete their own review right away.</span></li>
+          <li><strong>Read reviews</strong><span>Anyone can read reviews without signing in.</span></li>
+          <li><strong>Movie pages</strong><span>Description, price, image and reviews.</span></li>
+          <li><strong>Order history</strong><span>Order numbers, dates, items, quantities and totals.</span></li>
+          <li><strong>Hosted</strong><span>Live on PythonAnywhere for any desktop browser.</span></li>
+          <li><strong>Responsive</strong><span>The layout adapts to tablets and phones.</span></li>
+          <li><strong>Admin, users</strong><span>Manage users through the Django admin.</span></li>
+          <li><strong>Admin, movies</strong><span>Add, update and delete movies.</span></li>
+          <li><strong>Admin, reviews</strong><span>Create, edit or delete any review.</span></li>
+          <li><strong>Report a review</strong><span>Hides it from public view immediately. My own feature, not in the book.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="band is-deep" aria-labelledby="learn-h">
+      <div class="container chapter">
+        <div class="side reveal">
+          <h2 id="learn-h">What I learned</h2>
+        </div>
+        <div class="main prose reveal">
+          <p>This was my first real Django application. Typing every line paid off. By the end I could reason about URL routing, views, template inheritance and the ORM without opening the book, and building the reporting feature on my own showed I understood the framework rather than just following steps.</p>
+        </div>
+      </div>
+    </section>
+
     <div class="container pager">
-      <a href="../index.html#work">Back to all work</a>
-      <a href="discovery.html">Next, SACC Hoops</a>
+      <a href="pandapulse.html">Back, PandaPulse</a>
+      <a href="cyberpatriot.html">Next, CyberPatriot and CTFs<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </main>
 
-  <footer class="is-field contact">
+  <footer class="contact">
     <div class="container">
       <h2>Get in touch</h2>
       <a class="mail" href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a>

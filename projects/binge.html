@@ -5,101 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Binge, a case study by Jase George</title>
   <meta name="description" content="How Binge grew from a CS 2340 class project into a streaming tracker with native Apple TV and Fire TV apps, told in three stages with screenshots." />
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/site.css" />
+  <script src="../assets/site.js" defer></script>
 </head>
 <body>
 
-  <header class="is-field">
-    <nav class="container site-top" aria-label="Site">
+  <nav class="nav" aria-label="Site">
+    <div class="container">
       <a class="wordmark" href="../index.html">Jase George</a>
       <ul>
-        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#work">Projects</a></li>
         <li><a href="binge.html" aria-current="page">Binge</a></li>
-        <li><a href="wireless.html">Wireless research</a></li>
+        <li><a href="wireless.html">Wireless</a></li>
         <li><a href="../index.html#experience">Experience</a></li>
-        <li><a href="../Jase_George_Resume.pdf">Résumé (PDF)</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li class="keep"><a class="btn is-small" href="../Jase_George_Resume.pdf">Résumé</a></li>
       </ul>
-    </nav>
+    </div>
+  </nav>
+
+  <header class="page-hero">
     <div class="container page-head">
+      <p class="crumb"><a href="../index.html#work">Projects</a></p>
       <h1>Binge</h1>
       <p class="lede">A tracker for movies, shows and books that started as a class project and became a streaming app with its own Apple TV and Fire TV apps.</p>
       <div class="actions">
-        <a class="btn" href="https://binge-26.vercel.app">Open the live site</a>
-        <a class="btn is-plain" href="#stage-1">Jump to the April version</a>
+        <a class="btn" href="https://binge-26.vercel.app">Open the live site<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn is-ghost" href="#stage-1">Jump to the April version</a>
       </div>
       <dl class="facts">
         <div><dt>When</dt><dd>March 2026 to now</dd></div>
         <div><dt>Team</dt><dd>Five students, CS 2340 at Georgia Tech</dd></div>
         <div><dt>My part</dt><dd>214 of the 513 commits on main, both TV apps, the API hardening</dd></div>
-        <div><dt>Built with</dt><dd>React 19, Express, Supabase, Swift for tvOS, Kotlin with Compose for TV</dd></div>
+        <div><dt>Built with</dt><dd>React 19, Express 5, Supabase, Groq, Swift for tvOS, Kotlin with Compose for TV, Vercel</dd></div>
         <div><dt>Result</dt><dd>Best project out of more than 100 students</dd></div>
       </dl>
     </div>
     <div class="container lead-wrap">
-      <figure class="shot is-lead">
-        <img src="../images/binge/oct-2026/web-home.jpg" width="1600" height="1000" alt="The Binge home page in October 2026, with a Squid Game banner and a Continue Watching row" fetchpriority="high" />
-        <figcaption>The home page in October 2026, signed in as the admin test account.</figcaption>
+      <figure class="shot is-lead reveal">
+        <img src="../images/binge/oct-2026/tv-home.jpg" width="1600" height="900" alt="The Binge Apple TV home screen with a tab bar, a banner for The Apothecary Diaries and a Continue Watching row" fetchpriority="high" />
+        <figcaption>The Apple TV app in October 2026, signed in as the admin test account.</figcaption>
       </figure>
     </div>
   </header>
 
   <main>
-    <section class="band is-paper" aria-labelledby="s3-h">
+    <section class="band" aria-labelledby="s3-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <time>October 2026</time>
           <h2 id="s3-h">Stage 3, a streaming app on three screens</h2>
         </div>
-        <div class="main prose">
-          <p>In October I rebuilt the site to feel like a streaming service. Home is now rows picked from your ratings, each one saying why it was picked. Search takes plain sentences, so you can ask for a slow burn thriller set on a boat and get Dead Calm and All Is Lost.</p>
+        <div class="main prose reveal">
+          <p>In October I rebuilt the site to feel like a streaming service. Home is now rows picked from your ratings, and each one says why it was picked. Search takes plain sentences, so you can ask for a slow burn thriller set on a boat and get Dead Calm and All Is Lost.</p>
           <p>Then I wrote two native TV apps. The Apple TV app is SwiftUI and the Fire TV app is Kotlin with Compose for TV. Together they are about 17,000 lines across 70 files. They share the website’s accounts, lists and progress, and both are built for a remote.</p>
+          <p>Other October additions include an episode rating heatmap, outside ratings from IMDb, Rotten Tomatoes and Metacritic, franchise watch order, a release calendar, close-game alerts for teams you follow, and Wrapped, a yearly recap printed as a movie ticket.</p>
         </div>
         <ul class="gallery full">
-          <li><figure class="shot"><img src="../images/binge/oct-2026/web-ask.jpg" alt="Ask binge. returning seven film picks for a slow burn thriller set on a boat, each with a one-line reason" loading="lazy" /><figcaption>Ask binge. turns a sentence into picks, with a reason for each.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/web-title.jpg" alt="The Squid Game title page with episodes, cast, ratings and a rating panel" loading="lazy" /><figcaption>A title page with episodes, outside ratings and your own rating.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/web-rows.jpg" alt="Home rows titled Top Picks for admin and Because you loved My Little Pony" loading="lazy" /><figcaption>Rows built from what you watched and how you rated it.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/web-wrapped.jpg" alt="A yearly recap styled as a movie ticket reading ADMIN'S 2026, A year at the binge. cinema" loading="lazy" /><figcaption>Wrapped, the year in review, printed as a movie ticket.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/web-admin.jpg" alt="The admin overview with user, rating and error counts and two bar charts of daily activity" loading="lazy" /><figcaption>The admin overview, with live users, ratings and errors.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/web-books.jpg" alt="The Books page with Atomic Habits in the banner and a Trending This Week row" loading="lazy" /><figcaption>Books, linked to free legal sources and your local library.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/web-home.jpg" alt="The Binge web home page with a Squid Game banner and a Continue Watching row" loading="lazy" /><figcaption>The web home page, rebuilt like a streaming service.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/web-ask.jpg" alt="Ask binge. returning seven film picks for a slow burn thriller set on a boat, each with a one-line reason" loading="lazy" /><figcaption>Ask binge. turns a sentence into picks, with a reason for each.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/web-title.jpg" alt="The Squid Game title page with episodes, cast, ratings and a rating panel" loading="lazy" /><figcaption>A title page with episodes, outside ratings and your own rating.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/web-rows.jpg" alt="Home rows titled Top Picks for admin and Because you loved My Little Pony" loading="lazy" /><figcaption>Rows built from what you watched and how you rated it.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/web-wrapped.jpg" alt="A yearly recap styled as a movie ticket reading ADMIN’S 2026, A year at the binge. cinema" loading="lazy" /><figcaption>Wrapped, the year in review, printed as a movie ticket.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/web-admin.jpg" alt="The admin overview with user, rating and error counts and two bar charts of daily activity" loading="lazy" /><figcaption>The admin overview, with live users, ratings and errors.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/web-books.jpg" alt="The Books page with Atomic Habits in the banner and a Trending This Week row" loading="lazy" /><figcaption>Books, linked to free legal sources and your local library.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/web-profile.jpg" alt="A profile page with minutes watched, ratings and taste tags" loading="lazy" /><figcaption>A profile with watch time and taste tags.</figcaption></figure></li>
         </ul>
       </div>
     </section>
 
-    <section class="band is-night" id="tv" aria-labelledby="tv-h">
+    <section class="band is-deep" id="tv" aria-labelledby="tv-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="tv-h">On the TV</h2>
           <p class="quiet">Captured in the Apple TV simulator, October 2026.</p>
         </div>
-        <div class="main prose">
-          <p>The TV apps are not the website in a frame. Each one has its own player that starts several video servers at once and keeps whichever plays first. On one movie the fastest server started in 1.8 seconds and the slowest took 26, so racing them means you only wait for the fastest. They recover from stalled servers, sync progress back to the site, and draw their own subtitles.</p>
+        <div class="main prose reveal">
+          <p>The TV apps are not the website in a frame. Each one has its own player that starts several video servers at once and keeps whichever plays first. On one movie the fastest server started in 1.8 seconds and the slowest took 26, so racing them means you only wait for the fastest.</p>
+          <p>They recover from stalled servers, sync progress back to the site, draw their own subtitles, and add TV-only touches like a Top Shelf row on the Apple TV home screen, skip intro, a sleep timer and picture in picture for live games.</p>
         </div>
         <ul class="gallery full">
-          <li><figure class="shot"><img src="../images/binge/oct-2026/tv-home.jpg" width="1600" height="900" alt="The Apple TV home screen with a tab bar, a banner for The Apothecary Diaries and a Continue Watching row" loading="lazy" /><figcaption>Home on Apple TV, with a tab bar built for the Siri remote.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/tv-title.jpg" width="1600" height="900" alt="The Squid Game title page on Apple TV with Resume S1:E1, My List and Rate buttons and season tabs" loading="lazy" /><figcaption>A title page that picks up where you left off on the website.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/tv-movies.jpg" width="1600" height="900" alt="The Movies tab on Apple TV with a Spider-Man banner and a Popular Now row" loading="lazy" /><figcaption>Movies, from the same live lists as the site.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/tv-library.jpg" width="1600" height="900" alt="My List and Ratings on Apple TV with six saved titles" loading="lazy" /><figcaption>My List and ratings, shared with the website and the Fire TV app.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/tv-home.jpg" width="1600" height="900" alt="The Apple TV home screen" loading="lazy" /><figcaption>Home, with a tab bar built for the Siri remote.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/tv-title.jpg" width="1600" height="900" alt="The Squid Game title page on Apple TV with Resume S1:E1, My List and Rate buttons and season tabs" loading="lazy" /><figcaption>A title page that picks up where you left off on the website.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/tv-movies.jpg" width="1600" height="900" alt="The Movies tab on Apple TV with a Spider-Man banner and a Popular Now row" loading="lazy" /><figcaption>Movies, from the same live lists as the site.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/tv-library.jpg" width="1600" height="900" alt="My List and Ratings on Apple TV with six saved titles" loading="lazy" /><figcaption>My List and ratings, shared with the website and the Fire TV app.</figcaption></figure></li>
         </ul>
       </div>
     </section>
 
-    <section class="band is-well" id="security" aria-labelledby="sec-h">
+    <section class="band is-bone" id="security" aria-labelledby="sec-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <time>April 2026</time>
           <h2 id="sec-h">What I fixed in the API</h2>
         </div>
-        <div class="main prose">
+        <div class="main prose reveal">
           <p>Before the final demo I went through the Express API the way an attacker would and closed what I found. All of it shipped in one pull request.</p>
           <ul>
             <li>Login and signup were open to password guessing. I capped them at 10 tries per 15 minutes per address, and chat and forum posts at 30 a minute.</li>
             <li>Profile links accepted <code>javascript:</code> and <code>data:</code> URLs, a stored XSS waiting to happen. Those schemes are now rejected, and usernames and emails are checked against strict patterns.</li>
             <li>The avatar field took up to 3 MB of text and request bodies up to 5 MB. I cut them to 500 characters and 1 MB.</li>
             <li>The server sent no security headers. Helmet now adds HSTS, frame and content-type protections.</li>
-            <li>Private lists and profiles sit behind Supabase row level security, so a bug in the app still cannot read someone else’s data.</li>
+            <li>Private lists and profiles sit behind Supabase row level security, so a bug in the app still cannot read someone else’s data. The admin panel is gated by a role check the database enforces.</li>
           </ul>
           <p>One thing I would change. The rate limiter keeps its counts in memory, which does nothing on Vercel’s serverless functions. It turns itself off there and leans on Vercel’s own protection, but a shared store would make it real.</p>
           <p>I also connected the April chatbot to the catalog with retrieval-augmented generation and looked at how prompts can be used to abuse a setup like that.</p>
@@ -107,68 +118,97 @@
       </div>
     </section>
 
-    <section class="band is-paper" aria-labelledby="s2-h">
+    <section class="band" aria-labelledby="s2-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <time>May to September 2026</time>
           <h2 id="s2-h">Stage 2, phones and profiles</h2>
         </div>
-        <div class="main prose">
-          <p>After the semester a few of us kept going. We rebuilt every page for phones with a bottom tab bar and pull to refresh, added household profiles with a kids filter, and wrote end-to-end tests in Playwright.</p>
+        <div class="main prose reveal">
+          <p>After the semester a few of us kept going. We rebuilt every page for phones with a bottom tab bar and pull to refresh, added household profiles with a kids filter, made manga readable, added more sports sources, and wrote end-to-end tests in Playwright.</p>
           <p>The team also cut the forum, the watch rooms and the first chatbot, and replaced the AI picks with a matching algorithm that runs on your own ratings. The site got smaller and faster.</p>
         </div>
         <ul class="gallery is-phones full">
-          <li><figure class="shot"><img src="../images/binge/oct-2026/phone-home.jpg" alt="Binge home screen on a phone with a bottom tab bar" loading="lazy" /><figcaption>Home on a phone.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/phone-title.jpg" alt="A show's page on a phone with a Play button pinned to the bottom" loading="lazy" /><figcaption>A title page.</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/oct-2026/phone-profile.jpg" alt="A profile on a phone with minutes watched and taste tags" loading="lazy" /><figcaption>A profile.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/phone-home.jpg" alt="Binge home screen on a phone with a bottom tab bar" loading="lazy" /><figcaption>Home on a phone.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/phone-title.jpg" alt="A show’s page on a phone with a Play button pinned to the bottom" loading="lazy" /><figcaption>A title page.</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/oct-2026/phone-profile.jpg" alt="A profile on a phone with minutes watched and taste tags" loading="lazy" /><figcaption>A profile.</figcaption></figure></li>
         </ul>
       </div>
     </section>
 
-    <section class="band is-well" id="stage-1" aria-labelledby="s1-h">
+    <section class="band is-raised" id="stage-1" aria-labelledby="s1-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <time>March to April 2026</time>
           <h2 id="s1-h">Stage 1, the class project</h2>
-          <p class="quiet">These are the screenshots from the version we turned in.</p>
+          <p class="quiet">This is the version we turned in, with its original screenshots and write-up.</p>
         </div>
-        <div class="main prose">
-          <p>The first Binge sat somewhere between Letterboxd and Reddit. You rated movies, shows and books, tracked what you were watching, followed friends, built shared lists with voting, and argued in a forum. Watch rooms let people watch the same thing together with a chat on the side.</p>
-          <p>My parts were the Groq chatbot, the season and episode tracker, live TV, an in-browser book reader, and the security pass above. The UI was all hand-written CSS with no component library.</p>
+        <div class="main prose reveal">
+          <p>Binge started as a social tracker where you build a profile around everything you watch and read. You could browse movies, TV shows and books, rate them, track your watchlist, and see what your friends were into.</p>
+          <p>It sat somewhere between Letterboxd and Reddit, part personal journal and part social network, with a discussion forum on top. People followed each other, saw what was trending, built ranked lists together with live voting, and watched things together in synchronized watch rooms. A Groq chatbot gave recommendations, and an auto-moderator kept the forum clean without anyone reviewing posts by hand.</p>
+          <p>My parts were the chatbot, the season and episode tracker, live TV, an in-browser book reader, and the security pass above.</p>
+        </div>
+        <div class="full reveal">
+          <h3>What it could do</h3>
+          <ul class="features">
+            <li><strong>Browsing</strong><span>Movies, TV shows and books with search, filters and detail windows. A live TV page with channels. Global search on Cmd+K across everything.</span></li>
+            <li><strong>Personal tracking</strong><span>A watchlist with Plan to Watch, Watching and Watched. Season and episode progress for shows, chapter and page for books. Star ratings and scores.</span></li>
+            <li><strong>Social graph</strong><span>Profiles with an avatar, bio, follower counts and a public watchlist. Follow and unfollow, a following feed, a trending page and notifications.</span></li>
+            <li><strong>Shared lists</strong><span>Public or private named lists, collaborators invited by username, up and down voting to find the group’s pick, and a public link to share.</span></li>
+            <li><strong>Forum</strong><span>Sub-forums with icons and rules, posts with flair, hashtags and markdown, nested comments with voting, spoiler covers and a report button.</span></li>
+            <li><strong>Watch rooms</strong><span>Several people watching the same thing at the same time, with a live chat beside the player.</span></li>
+            <li><strong>AI</strong><span>A Groq chatbot for recommendations, and moderation that blocked offensive posts before they were published.</span></li>
+            <li><strong>Admin panel</strong><span>User management with search, promote and ban, media request approvals, and usage, chat log and error analytics.</span></li>
+          </ul>
+        </div>
+        <div class="full reveal">
+          <h3>How it was built</h3>
+          <dl class="dl">
+            <div><dt>Front end</dt><dd>React 19 with React Router 7 and hand-written CSS, no component library. It talked to Supabase directly and fell back to the Express API for anything that needed a secret or server-side work.</dd></div>
+            <div><dt>Back end</dt><dd>Express 5 for the Groq chat and moderation, forum actions, notifications, admin actions and watch rooms. Supabase handled Postgres, sign-in and row level security.</dd></div>
+            <div><dt>Data</dt><dd>Catalogs seeded from TMDB, Plex, the Internet Archive and Open Library with scraper scripts we wrote. In April that came to 78,357 movies, 21,446 shows and 29,788 books.</dd></div>
+            <div><dt>Hosting</dt><dd>The front end on Vercel and the Express server as its own service.</dd></div>
+          </dl>
+        </div>
+        <div class="full prose reveal">
+          <h3>Decisions worth explaining</h3>
+          <p>Moderation ran as middleware on the Express server. Every new post and comment went through Groq before it reached the database, so offensive content never appeared at all instead of being flagged afterward.</p>
+          <p>Row level security in Supabase meant private lists and user data stayed protected even if the app had a bug, and the admin pages were gated by a role check the database enforced.</p>
+          <p>The whole UI was our own CSS so we had full control of the dark look across more than 40 views.</p>
         </div>
         <ul class="gallery is-three full">
-          <li><figure class="shot"><img src="../images/binge/apr-2026/landing-page.png" alt="The April landing page" loading="lazy" /><figcaption>Landing page</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/dashboard-stats-and-annual-recap.png" alt="Dashboard with stats and a yearly recap" loading="lazy" /><figcaption>Dashboard, stats and recap</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/dashboard-explore-library-and-ai-recomme.png" alt="Dashboard with the library and AI picks" loading="lazy" /><figcaption>Library and AI picks</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/dashboard-watchlist-and-achievements.png" alt="Dashboard with the watchlist and achievements" loading="lazy" /><figcaption>Watchlist and achievements</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/movies-browser.png" alt="Movies browser" loading="lazy" /><figcaption>Movies</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/tv-shows-browser.png" alt="TV shows browser" loading="lazy" /><figcaption>TV shows</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/books-browser.png" alt="Books browser" loading="lazy" /><figcaption>Books</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/live-tv-with-pluto-embed.png" alt="Live TV page with a channel guide" loading="lazy" /><figcaption>Live TV</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/tv-show-detail-modal-with-radar-rating.png" alt="A show's detail window with a radar-chart rating" loading="lazy" /><figcaption>Show details and rating</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/episode-player-with-season-and-episode-t.png" alt="Episode player with the season and episode tracker" loading="lazy" /><figcaption>Episode tracker</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/user-profile-watchlist.png" alt="A user profile showing the watchlist" loading="lazy" /><figcaption>Profile, watchlist</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/user-profile-ratings.png" alt="A user profile showing ratings" loading="lazy" /><figcaption>Profile, ratings</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/following-feed.png" alt="The following feed" loading="lazy" /><figcaption>Following feed</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/forum-community-sub-forum.png" alt="A forum community page" loading="lazy" /><figcaption>Forum</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/watch-together-room-lobby.png" alt="The watch room lobby" loading="lazy" /><figcaption>Watch rooms</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/ai-media-assistant-chatbot.png" alt="The AI media assistant chatbot" loading="lazy" /><figcaption>The chatbot</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/admin-panel-control-center.png" alt="Admin control center" loading="lazy" /><figcaption>Admin control center</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/admin-usage-logs-and-performance-analyti.png" alt="Admin usage logs and performance charts" loading="lazy" /><figcaption>Admin analytics</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/developer-lab.png" alt="The developer lab page" loading="lazy" /><figcaption>Developer lab</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/account-creation-onboarding.png" alt="Account creation" loading="lazy" /><figcaption>Sign up</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/binge/apr-2026/mobile-navigation-menu.png" alt="The April mobile menu" loading="lazy" /><figcaption>The April mobile menu</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/landing-page.png" alt="The April landing page" loading="lazy" /><figcaption>Landing page</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/dashboard-stats-and-annual-recap.png" alt="Dashboard with stats and a yearly recap" loading="lazy" /><figcaption>Dashboard, stats and recap</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/dashboard-explore-library-and-ai-recomme.png" alt="Dashboard with the library and AI picks" loading="lazy" /><figcaption>Library and AI picks</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/dashboard-watchlist-and-achievements.png" alt="Dashboard with the watchlist and achievements" loading="lazy" /><figcaption>Watchlist and achievements</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/movies-browser.png" alt="Movies browser" loading="lazy" /><figcaption>Movies</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/tv-shows-browser.png" alt="TV shows browser" loading="lazy" /><figcaption>TV shows</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/books-browser.png" alt="Books browser" loading="lazy" /><figcaption>Books</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/live-tv-with-pluto-embed.png" alt="Live TV page with a channel guide" loading="lazy" /><figcaption>Live TV</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/tv-show-detail-modal-with-radar-rating.png" alt="A show’s detail window with a radar-chart rating" loading="lazy" /><figcaption>Show details and rating</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/episode-player-with-season-and-episode-t.png" alt="Episode player with the season and episode tracker" loading="lazy" /><figcaption>Episode tracker</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/user-profile-watchlist.png" alt="A user profile showing the watchlist" loading="lazy" /><figcaption>Profile, watchlist</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/user-profile-ratings.png" alt="A user profile showing ratings" loading="lazy" /><figcaption>Profile, ratings</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/following-feed.png" alt="The following feed" loading="lazy" /><figcaption>Following feed</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/forum-community-sub-forum.png" alt="A forum community page" loading="lazy" /><figcaption>Forum</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/watch-together-room-lobby.png" alt="The watch room lobby" loading="lazy" /><figcaption>Watch rooms</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/ai-media-assistant-chatbot.png" alt="The AI media assistant chatbot" loading="lazy" /><figcaption>The chatbot</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/admin-panel-control-center.png" alt="Admin control center" loading="lazy" /><figcaption>Admin control center</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/admin-usage-logs-and-performance-analyti.png" alt="Admin usage logs and performance charts" loading="lazy" /><figcaption>Admin analytics</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/developer-lab.png" alt="The developer lab page" loading="lazy" /><figcaption>Developer lab</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/account-creation-onboarding.png" alt="Account creation" loading="lazy" /><figcaption>Sign up</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/binge/apr-2026/mobile-navigation-menu.png" alt="The April mobile menu" loading="lazy" /><figcaption>The April mobile menu</figcaption></figure></li>
         </ul>
       </div>
     </section>
 
     <div class="container pager">
-      <a href="../index.html#work">Back to all work</a>
-      <a href="wireless.html">Next, wireless protocol research</a>
+      <a href="../index.html#work">Back to all projects</a>
+      <a href="wireless.html">Next, wireless protocol research<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </main>
 
-  <footer class="is-field contact">
+  <footer class="contact">
     <div class="container">
       <h2>Questions about Binge?</h2>
       <a class="mail" href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a>

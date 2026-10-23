@@ -5,120 +5,161 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PandaPulse, Jase George</title>
   <meta name="description" content="PandaPulse, a Django hiring platform with three user roles built for CS 2340 at Georgia Tech. Placed third across both class sections." />
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/site.css" />
+  <script src="../assets/site.js" defer></script>
 </head>
 <body>
 
-  <header>
-    <nav class="container site-top" aria-label="Site">
+  <nav class="nav" aria-label="Site">
+    <div class="container">
       <a class="wordmark" href="../index.html">Jase George</a>
       <ul>
-        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#work">Projects</a></li>
         <li><a href="binge.html">Binge</a></li>
-        <li><a href="wireless.html">Wireless research</a></li>
+        <li><a href="wireless.html">Wireless</a></li>
         <li><a href="../index.html#experience">Experience</a></li>
-        <li><a href="../Jase_George_Resume.pdf">Résumé (PDF)</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li class="keep"><a class="btn is-small" href="../Jase_George_Resume.pdf">Résumé</a></li>
       </ul>
-    </nav>
+    </div>
+  </nav>
+
+  <header class="page-hero">
     <div class="container page-head">
+      <p class="crumb"><a href="../index.html#work">Projects</a></p>
       <h1>PandaPulse</h1>
-      <p class="lede">A hiring site in the spirit of LinkedIn, built from scratch in Django by our team for CS 2340.</p>
+      <p class="lede">A hiring platform in the spirit of LinkedIn, built from scratch in Django by our team for CS 2340.</p>
       <div class="actions">
-        <a class="btn" href="https://github.com/Runningbird20/PandaPulse">Read the code on GitHub</a>
+        <a class="btn" href="https://github.com/Runningbird20/PandaPulse">Read the code on GitHub<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
       <dl class="facts">
         <div><dt>When</dt><dd>March 2026</dd></div>
-        <div><dt>Course</dt><dd>CS 2340, Objects and Design</dd></div>
-        <div><dt>Built with</dt><dd>Django, Python, SQLite, JavaScript</dd></div>
-        <div><dt>Scope</dt><dd>15 required features and more than 20 of our own</dd></div>
+        <div><dt>Course</dt><dd>CS 2340, Objects and Design, Georgia Tech</dd></div>
+        <div><dt>Built with</dt><dd>Django, Python, SQLite, JavaScript, HTML and CSS, Google Maps</dd></div>
+        <div><dt>Scope</dt><dd>15 required features, more than 20 of our own, 3 user roles</dd></div>
         <div><dt>Result</dt><dd>3rd of all teams across both sections, which exempted us from the final exam</dd></div>
       </dl>
     </div>
     <div class="container lead-wrap">
-      <figure class="shot is-lead">
+      <figure class="shot is-lead reveal">
         <img src="../images/pandapulse/pandapulse-landing-page.png" alt="The PandaPulse landing page" fetchpriority="high" />
       </figure>
     </div>
   </header>
 
   <main>
-    <section class="band is-well" aria-labelledby="seek-h">
+    <section class="band" aria-labelledby="what-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
+          <h2 id="what-h">What it is</h2>
+        </div>
+        <div class="main prose reveal">
+          <p>PandaPulse connects job seekers with employers through structured profiles, job listings and an application pipeline. It serves three kinds of user, job seekers, recruiters and administrators, each with their own tools.</p>
+          <p>It placed 3rd out of every submission across both class sections, which exempted our team from the final exam. Beyond the 15 required user stories we designed and built more than 20 features of our own.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band is-raised" aria-labelledby="seek-h">
+      <div class="container chapter">
+        <div class="side reveal">
           <h2 id="seek-h">For job seekers</h2>
         </div>
-        <div class="main prose">
-          <p>Seekers search and filter jobs, apply with a note and a résumé that gets parsed into their profile, book interviews from the employer’s open slots, and compare offers side by side with their own weights for salary, location, visa sponsorship and benefits.</p>
+        <div class="main prose reveal">
+          <p>Seekers search and filter jobs, apply with a note and a résumé that gets parsed into their profile, book interviews from the employer’s open slots, message employers, and compare offers side by side with their own weights for salary, location, visa sponsorship and benefits.</p>
         </div>
         <ul class="gallery is-three full">
-          <li><figure class="shot"><img src="../images/pandapulse/job-search-with-filters.png" alt="Job search with filters" loading="lazy" /><figcaption>Job search</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/apply-modal-with-cover-note-and-resume.png" alt="The apply window with a cover note and résumé" loading="lazy" /><figcaption>Applying</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/offer-comparison-tool.png" alt="The offer comparison tool" loading="lazy" /><figcaption>Offer comparison</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/interview-calendar.png" alt="The interview calendar" loading="lazy" /><figcaption>Interview calendar</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/matched-jobs.png" alt="Matched jobs" loading="lazy" /><figcaption>Matched jobs</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/pulses-short-form-video-feed.png" alt="Pulses, a short video feed" loading="lazy" /><figcaption>Pulses, short videos</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/applicant-dashboard-profile.png" alt="Applicant dashboard in dark mode" loading="lazy" /><figcaption>Applicant dashboard, dark</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/applicant-dashboard-light-mode.png" alt="Applicant dashboard in light mode" loading="lazy" /><figcaption>Applicant dashboard, light</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/panda-assistant-ai-chatbot.png" alt="Panda Paul, the AI assistant" loading="lazy" /><figcaption>Panda Paul, the assistant</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/job-detail-page.png" alt="A job detail page" loading="lazy" /><figcaption>Job detail</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/messaging-inbox.png" alt="The messages inbox" loading="lazy" /><figcaption>Messages</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/company-search.png" alt="Company search" loading="lazy" /><figcaption>Company search</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/job-search-with-filters.png" alt="Job search with filters" loading="lazy" /><figcaption>Job search and filters</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/job-detail-page.png" alt="A job detail page" loading="lazy" /><figcaption>Job detail</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/apply-modal-with-cover-note-and-resume.png" alt="The apply window with a cover note and résumé" loading="lazy" /><figcaption>Applying</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/applicant-dashboard-profile.png" alt="Applicant dashboard in dark mode" loading="lazy" /><figcaption>Applicant dashboard, dark</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/applicant-dashboard-light-mode.png" alt="Applicant dashboard in light mode" loading="lazy" /><figcaption>Applicant dashboard, light</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/matched-jobs.png" alt="Matched jobs" loading="lazy" /><figcaption>Matched jobs</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/interview-calendar.png" alt="The interview calendar" loading="lazy" /><figcaption>Interview calendar</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/offer-comparison-tool.png" alt="The offer comparison tool" loading="lazy" /><figcaption>Offer comparison</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/messaging-inbox.png" alt="The messages inbox" loading="lazy" /><figcaption>Messages</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/message-thread.png" alt="A message thread" loading="lazy" /><figcaption>A message thread</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/company-search.png" alt="Company search" loading="lazy" /><figcaption>Company search</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/panda-assistant-ai-chatbot.png" alt="Panda Paul, the AI assistant" loading="lazy" /><figcaption>Panda Paul, the assistant</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/pulses-short-form-video-feed.png" alt="Pulses, a short video feed" loading="lazy" /><figcaption>Pulses, short videos</figcaption></figure></li>
         </ul>
       </div>
     </section>
 
-    <section class="band is-paper" aria-labelledby="hire-h">
+    <section class="band" aria-labelledby="hire-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="hire-h">For recruiters and admins</h2>
         </div>
-        <div class="main prose">
-          <p>Recruiters post jobs, move applicants across a kanban pipeline, compare candidates, save searches that alert them to new matches, and see where applicants live on a clustered map.</p>
+        <div class="main prose reveal">
+          <p>Recruiters post jobs, move applicants across a kanban pipeline, compare candidates, save searches that alert them to new matches, archive candidates for later, and see where applicants live on a clustered map.</p>
         </div>
         <ul class="gallery is-three full">
-          <li><figure class="shot"><img src="../images/pandapulse/hiring-pipeline-kanban-board.png" alt="The hiring pipeline as a kanban board" loading="lazy" /><figcaption>Hiring pipeline</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/find-candidates-search.png" alt="Candidate search" loading="lazy" /><figcaption>Finding candidates</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/applicant-location-clusters-map.png" alt="A map clustering applicants by location" loading="lazy" /><figcaption>Applicants on a map</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/create-job-post-form.png" alt="The job post form" loading="lazy" /><figcaption>Posting a job</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/matched-candidates.png" alt="Matched candidates" loading="lazy" /><figcaption>Matched candidates</figcaption></figure></li>
-          <li><figure class="shot"><img src="../images/pandapulse/more-tools-comparison-and-alerts.png" alt="Comparison and saved-search alert tools" loading="lazy" /><figcaption>Comparison and alerts</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/hiring-pipeline-kanban-board.png" alt="The hiring pipeline as a kanban board" loading="lazy" /><figcaption>Hiring pipeline</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/find-candidates-search.png" alt="Candidate search" loading="lazy" /><figcaption>Finding candidates</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/applicant-location-clusters-map.png" alt="A map clustering applicants by location" loading="lazy" /><figcaption>Applicants on a map</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/employer-dashboard-profile.png" alt="The employer profile" loading="lazy" /><figcaption>Employer profile</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/my-job-listings.png" alt="My job listings" loading="lazy" /><figcaption>Job listings</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/matched-candidates.png" alt="Matched candidates" loading="lazy" /><figcaption>Matched candidates</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/archived-applicants.png" alt="Archived applicants" loading="lazy" /><figcaption>Archived applicants</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/more-tools-comparison-and-alerts.png" alt="Comparison and saved-search alert tools" loading="lazy" /><figcaption>Comparison and alerts</figcaption></figure></li>
+          <li class="reveal"><figure class="shot"><img src="../images/pandapulse/create-job-post-form.png" alt="The job post form" loading="lazy" /><figcaption>Posting a job</figcaption></figure></li>
         </ul>
       </div>
     </section>
 
-    <section class="band is-well" aria-labelledby="ours-h">
+    <section class="band is-bone" aria-labelledby="ours-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="ours-h">What we added on our own</h2>
-          <p class="quiet">None of these were in the assignment.</p>
+          <p>None of these were in the assignment.</p>
         </div>
-        <div class="main"><ul class="list-cols">
-          <li><strong>Panda Paul</strong><span>A chatbot that can update your profile, apply to jobs and send messages for you.</span></li>
-          <li><strong>Pulses</strong><span>Short videos people and companies post to promote themselves.</span></li>
-          <li><strong>Offer comparison</strong><span>Weighted side-by-side comparison of job offers.</span></li>
-          <li><strong>Interview calendar</strong><span>Seekers pick from slots the employer sets.</span></li>
-          <li><strong>Response-time badge</strong><span>Each employer shows how many days they usually take to reply.</span></li>
-          <li><strong>Résumé parser</strong><span>Fills profile fields from an uploaded résumé and normalizes skills.</span></li>
-          <li><strong>Viewed indicator</strong><span>Applicants see when an employer opens their application.</span></li>
-          <li><strong>Saved search alerts</strong><span>Recruiters hear about new matching candidates.</span></li>
-          <li><strong>Skill endorsements</strong><span>Employers endorse skills after an interview.</span></li>
-          <li><strong>Rejection templates</strong><span>Every rejected candidate gets real feedback.</span></li>
-          <li><strong>Applicant archive</strong><span>Rejected candidates can be revisited when a new role opens.</span></li>
-          <li><strong>Dark mode</strong><span>Saved per user in the database.</span></li>
-        </ul></div>
+        <ul class="features full reveal">
+          <li><strong>Panda Paul, the chatbot mascot</strong><span>Signed-in users can move around the site, update their profile, apply to jobs and message people by talking to it.</span></li>
+          <li><strong>Pulses</strong><span>Short videos anyone can post to promote themselves or their company, with likes, and posters can delete their own.</span></li>
+          <li><strong>Offer comparison</strong><span>Side-by-side job offers with custom weights for salary, location, visa sponsorship and benefits.</span></li>
+          <li><strong>Interview calendar</strong><span>Seekers book from slots the employer sets, wired into the workflow on both sides.</span></li>
+          <li><strong>Response-time badge</strong><span>Each employer shows how many days they usually take to reply, right on the listing.</span></li>
+          <li><strong>Résumé parser</strong><span>Fills profile fields from an uploaded résumé and normalizes skills so matching works better.</span></li>
+          <li><strong>Viewed indicator</strong><span>Applicants see the moment an employer opens their application.</span></li>
+          <li><strong>Applicant comparison</strong><span>Recruiters compare several applicants for a role and re-rank them against their priorities.</span></li>
+          <li><strong>Saved search alerts</strong><span>Recruiters save a candidate search and hear when new matches appear.</span></li>
+          <li><strong>Company culture pages</strong><span>Culture, perks and an office map so candidates can judge the fit before applying.</span></li>
+          <li><strong>Dark mode</strong><span>A site-wide toggle saved per user.</span></li>
+          <li><strong>Skill endorsements</strong><span>Employers endorse skills after an interview, adding proof to a profile.</span></li>
+          <li><strong>One-click follow-up</strong><span>After a set number of days, applicants send a polite follow-up from a template.</span></li>
+          <li><strong>Rejection feedback templates</strong><span>Structured rejections with an optional personal note, so every candidate hears something real.</span></li>
+          <li><strong>Applicant archive</strong><span>Rejected candidates are kept so they can be revisited when a new role opens.</span></li>
+          <li><strong>Interview feedback</strong><span>Employers log structured notes and the reason for each decision after an interview.</span></li>
+          <li><strong>Confetti on submit</strong><span>Sending an application gets a small celebration.</span></li>
+          <li><strong>Account recovery</strong><span>Forgot-username and forgot-password flows that email a recovery link.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="band is-deep" aria-labelledby="tech-h">
+      <div class="container chapter">
+        <div class="side reveal">
+          <h2 id="tech-h">How it was built</h2>
+        </div>
+        <div class="main prose reveal">
+          <p>Everything is Django, using its ORM, class-based views and templates throughout. The course is about object-oriented design, so we kept the models cleanly separated and the components reusable.</p>
+          <p>The maps use Google Maps to pin job locations and cluster applicants by area. Pulses, Panda Paul and the offer comparison tool were built by our team with no starter code. Dark mode is a preference saved per user in the database and applied by switching a class on the page’s root element.</p>
+        </div>
       </div>
     </section>
 
     <div class="container pager">
-      <a href="../index.html#work">Back to all work</a>
-      <a href="gtmovies.html">Next, GT Movies Store</a>
+      <a href="discovery.html">Back, SACC Hoops</a>
+      <a href="gtmovies.html">Next, GT Movies Store<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </main>
 
-  <footer class="is-field contact">
+  <footer class="contact">
     <div class="container">
       <h2>Get in touch</h2>
       <a class="mail" href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a>

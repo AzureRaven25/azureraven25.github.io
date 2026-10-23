@@ -4,97 +4,120 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CyberPatriot and CTFs, Jase George</title>
-  <meta name="description" content="Three straight CyberPatriot National Semifinals at the Platinum tier, 3rd place at Lockheed Martin CyberQuest, and weekly security teaching for a 30-member club." />
+  <meta name="description" content="Three straight CyberPatriot National Semifinals at the Platinum tier, 3rd place at Lockheed Martin CyberQuest, and weekly security teaching for 30+ students." />
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Funnel+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/site.css" />
+  <script src="../assets/site.js" defer></script>
 </head>
 <body>
 
-  <header class="is-night">
-    <nav class="container site-top" aria-label="Site">
+  <nav class="nav" aria-label="Site">
+    <div class="container">
       <a class="wordmark" href="../index.html">Jase George</a>
       <ul>
-        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#work">Projects</a></li>
         <li><a href="binge.html">Binge</a></li>
-        <li><a href="wireless.html">Wireless research</a></li>
+        <li><a href="wireless.html">Wireless</a></li>
         <li><a href="../index.html#experience">Experience</a></li>
-        <li><a href="../Jase_George_Resume.pdf">Résumé (PDF)</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li class="keep"><a class="btn is-small" href="../Jase_George_Resume.pdf">Résumé</a></li>
       </ul>
-    </nav>
+    </div>
+  </nav>
+
+  <header class="page-hero">
     <div class="container page-head">
+      <p class="crumb"><a href="../index.html#work">Projects</a></p>
       <h1>CyberPatriot and CTFs</h1>
       <p class="lede">Three years leading my high school’s security team, fixing broken machines against the clock.</p>
       <dl class="facts">
         <div><dt>When</dt><dd>August 2022 to May 2025</dd></div>
         <div><dt>Role</dt><dd>Cybersecurity head and chief of competitions, GSMST computer science club</dd></div>
-        <div><dt>Result</dt><dd>National Semifinals three years running, Platinum tier</dd></div>
-        <div><dt>Also</dt><dd>3rd place at Lockheed Martin CyberQuest</dd></div>
+        <div><dt>Team</dt><dd>Led a five-person competition team</dd></div>
+        <div><dt>Teaching</dt><dd>30+ students every week</dd></div>
       </dl>
     </div>
     <div class="container lead-wrap">
-      <div class="signal">
-        <p class="big" aria-hidden="true">3<small> straight National Semifinals</small></p>
-      </div>
+      <dl class="stats reveal">
+        <div><dt>National Semifinals in a row</dt><dd>3</dd></div>
+        <div><dt>Tier reached each year</dt><dd>Platinum</dd></div>
+        <div><dt>Lockheed Martin CyberQuest</dt><dd>3rd</dd></div>
+        <div><dt>Students taught weekly</dt><dd>30+</dd></div>
+      </dl>
     </div>
   </header>
 
   <main>
-    <section class="band is-paper" aria-labelledby="how-h">
+    <section class="band" aria-labelledby="what-h">
       <div class="container chapter">
-        <div class="side">
-          <h2 id="how-h">How a round works</h2>
+        <div class="side reveal">
+          <h2 id="what-h">The competition</h2>
         </div>
-        <div class="main prose">
-          <p>Each round hands the team virtual machines running Ubuntu, Fedora, Windows 10 and Windows Server, each one broken on purpose. Unauthorized users, weak passwords, services that should be off, open firewalls, malware that hides itself. Points come in live as you find and fix each problem before time runs out.</p>
-          <p>Platinum is the top regular tier, and staying there takes strong scores in every qualifying round. We reached the National Semifinals three years in a row.</p>
+        <div class="main prose reveal">
+          <p>CyberPatriot is the National Youth Cyber Education Program’s main competition. Teams of students race to find and fix security problems in operating system images under a strict time limit.</p>
+          <p>As cybersecurity head and chief of competitions for the GSMST computer science club, I led our team to three straight National Semifinals at the Platinum tier, the highest regular tier before the national finals.</p>
         </div>
       </div>
     </section>
 
-    <section class="band is-well" aria-labelledby="did-h">
+    <section class="band is-raised" aria-labelledby="how-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
+          <h2 id="how-h">How a round works</h2>
+        </div>
+        <div class="main prose reveal">
+          <p>Each round hands the team virtual machines running a mix of Ubuntu, Fedora, Windows 10 and Windows Server, each one broken on purpose with real-world problems. Unauthorized users, weak passwords, services that should be off, firewall mistakes, malware that hides itself and policy violations. Points come in live as you find and fix each one before time runs out.</p>
+          <p>Staying at Platinum takes strong scores in every qualifying round. Reaching the National Semifinals three years running meant the team performed well all season, not in one lucky round.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band is-bone" aria-labelledby="did-h">
+      <div class="container chapter">
+        <div class="side reveal">
           <h2 id="did-h">What I did on the machines</h2>
         </div>
-        <div class="main">
-          <dl class="skills">
-            <div><dt>Linux</dt><dd>User audits, service cleanup, UFW and iptables rules, SSH hardening and file permissions on Ubuntu, Fedora and Debian</dd></div>
-            <div><dt>Windows</dt><dd>Local Security Policy, Group Policy, account control, service audits and registry hardening on Windows 10 and Server</dd></div>
-            <div><dt>Automation</dt><dd>Bash and PowerShell scripts that found misconfigurations faster than checking by hand</dd></div>
-            <div><dt>Forensics</dt><dd>Log analysis and artifact recovery for the forensics questions</dd></div>
+        <div class="main reveal">
+          <dl class="dl">
+            <div><dt>Linux</dt><dd>User audits, service management, UFW and iptables firewalls, SSH hardening and file permission fixes on Ubuntu, Fedora and Debian</dd></div>
+            <div><dt>Windows</dt><dd>Local Security Policy, Group Policy, user account control, service audits and registry hardening on Windows 10 and Windows Server</dd></div>
+            <div><dt>Triage</dt><dd>Finding and ranking vulnerabilities under time pressure</dd></div>
+            <div><dt>Automation</dt><dd>Bash and PowerShell scripts for fast, repeatable fixes</dd></div>
             <div><dt>Networks</dt><dd>Cisco Packet Tracer and Wireshark</dd></div>
+            <div><dt>Forensics</dt><dd>Log analysis and artifact recovery for the forensics questions</dd></div>
           </dl>
         </div>
       </div>
     </section>
 
-    <section class="band is-paper" aria-labelledby="teach-h">
+    <section class="band is-deep" aria-labelledby="teach-h">
       <div class="container chapter">
-        <div class="side">
+        <div class="side reveal">
           <h2 id="teach-h">Teaching the club</h2>
         </div>
-        <div class="main prose">
-          <p>I ran the club’s weekly security sessions for more than 30 students. I wrote the lessons, led hands-on labs on finding, exploiting and fixing vulnerabilities, and coached members through practice rounds before each competition.</p>
+        <div class="main prose reveal">
+          <p>Beyond competing, I ran the club’s weekly security sessions for more than 30 students. I wrote the lessons on finding, exploiting and fixing vulnerabilities, led hands-on labs, and coached members through practice rounds to get ready for each competition.</p>
           <h3>Other competitions</h3>
           <ul>
             <li>Lockheed Martin CyberQuest, 3rd place</li>
-            <li>PicoCTF, run by Carnegie Mellon</li>
-            <li>LINE CTF, an international event</li>
-            <li>Georgia TSA Cybersecurity CTF</li>
+            <li>PicoCTF, the large national CTF run by Carnegie Mellon</li>
+            <li>LINE CTF, an international capture the flag</li>
+            <li>Georgia TSA Cybersecurity CTF, at the state level</li>
           </ul>
         </div>
       </div>
     </section>
 
     <div class="container pager">
-      <a href="../index.html#work">Back to all work</a>
-      <a href="binge.html">Next, Binge</a>
+      <a href="gtmovies.html">Back, GT Movies Store</a>
+      <a href="binge.html">Next, Binge<svg class="arrow" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </main>
 
-  <footer class="is-field contact">
+  <footer class="contact">
     <div class="container">
       <h2>Get in touch</h2>
       <a class="mail" href="mailto:jgeorge337@gatech.edu">jgeorge337@gatech.edu</a>
